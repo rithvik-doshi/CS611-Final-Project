@@ -1,2 +1,0 @@
-id,     name,            email,              password
-1,      admin,           admin@gmail.com,    admin

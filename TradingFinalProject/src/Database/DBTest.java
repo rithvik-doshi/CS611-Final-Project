@@ -1,7 +1,7 @@
 package Database;
 
-
 import Model.Person;
+import Model.StockMarket;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class DBTest {
         //read file code
         //name is before change is Rithvik Doshi;
         String currentPath = Paths.get("").toAbsolutePath().toString();
-        currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/";
+        currentPath = currentPath + "/src/Database/DBFiles/";
         ArrayList<Person> fileStream = ReadFile.readFile(currentPath + "Customer.txt");
         for(int i = 0; i < fileStream.size();i++){
             System.out.println("Name: " + fileStream.get(i).getName());
@@ -29,5 +29,13 @@ public class DBTest {
             System.out.println("Name: " + person.getName());
             System.out.println("Email: " + person.getEmail());
         }
+
+        testStocks();
     }
+
+    public static void testStocks(){
+        StockMarket.instance.addStock("Apple", 100);
+        StockMarket.instance.removeStock("Apple");
+    }
+
 }
