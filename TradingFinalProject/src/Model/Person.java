@@ -6,6 +6,13 @@ public abstract class Person {
     private String email;
     private String password;
 
+    public Person(int ID, String name, String email, String password){
+        this.ID = ID;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
     public int getID() {
         return ID;
     }
