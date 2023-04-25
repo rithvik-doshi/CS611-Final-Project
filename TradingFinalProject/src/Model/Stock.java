@@ -16,4 +16,5 @@ public abstract class Stock {
     }
 
     protected abstract String stringify();
+
 }

@@ -3,6 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class Manager extends Person {
+
     private ArrayList<Request> requestQueue;
 
     private ManagerKey key;
@@ -18,4 +19,15 @@ public class Manager extends Person {
     public ManagerKey getKey() {
         return key;
     }
+    
+    //Approve the request
+    public void approveRequest(Request request){
+        request.approve();
+    }
+
+    //Reject the request
+    public void rejectRequest(Request request){
+        request.reject();
+    }
+    
 }
