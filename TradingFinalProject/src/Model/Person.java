@@ -1,5 +1,6 @@
 package Model;
 
+
 public abstract class Person {
     private int ID;
     private String name;
@@ -43,5 +44,17 @@ public abstract class Person {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public String toString() {
+        return "Name: " + name + " Password: " + password + " Type: " + type + " ID: " + id;
+    }
+
+    public boolean equals(Object o) {
+        if (o instanceof Person) {
+            Person p = (Person) o;
+            return p.getId().equals(id);
+        }
+        return false;
     }
 }

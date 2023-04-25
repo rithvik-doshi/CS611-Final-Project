@@ -1,7 +1,7 @@
 package Database;
 
-
 import Model.Person;
+import Model.StockMarket;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -29,5 +29,13 @@ public class DBTest {
             System.out.println("Name: " + person.getName());
             System.out.println("Email: " + person.getEmail());
         }
+
+        testStocks();
     }
+
+    public static void testStocks(){
+        StockMarket.instance.addStock("Apple", 100);
+        StockMarket.instance.removeStock("Apple");
+    }
+
 }
