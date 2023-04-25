@@ -1,1 +1,3 @@
-(STOCKNAME),(QUANTITY)
+item name, quantity
+Chair,1000
+Table,200

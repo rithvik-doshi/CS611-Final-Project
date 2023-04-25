@@ -1,6 +1,3 @@
-(name1), etc.
-(name2), etc.
-(name3), etc.
-(name4), etc.
-(name5), etc.
-(name6), etc.
+name, email
+David, david@gmail.com
+James, james@bu.edu
