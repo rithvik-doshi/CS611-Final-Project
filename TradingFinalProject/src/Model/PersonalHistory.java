@@ -20,7 +20,6 @@ public class PersonalHistory {
     }
 
 
-
     public static ArrayList<TransactionPersonalHistory> loadTransactions(String filePath) {
         ArrayList<TransactionPersonalHistory> personalHistories = new ArrayList<>();
         try {
@@ -40,7 +39,5 @@ public class PersonalHistory {
 
         return personalHistories;
     }
-
-
 
 }
