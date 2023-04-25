@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class ReadFile {
+public class CustomerFile {
     private Person person;
     private static ArrayList<Person> fileStream = new ArrayList<>();
 
@@ -14,7 +14,7 @@ public class ReadFile {
         return fileStream;
     }
     public static void setFileStream(ArrayList<Person> fileStream) {
-        ReadFile.fileStream = fileStream;
+        CustomerFile.fileStream = fileStream;
     }
 
 
