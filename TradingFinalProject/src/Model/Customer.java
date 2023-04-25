@@ -11,11 +11,26 @@ public class Customer extends Person {
 
 
     public Customer(String name, String password) {
-        this.type = "C";
+        super(name, password, "C", generateCurrentId());
         this.id = generateCurrentId();
-        this.personalAccount = new Account("Personal", 0);
-        this.tradingAccount = new Account("Trading", 0);
+        this.personalAccount = new PersonalAccount(this.id);
+        this.tradingAccount = null;
     }
+
+    //send request to manager to open a trading account
+    public void openTradingAccount(){
+
+        if(tradingAccount == null){
+        Request request = new Request(this.id);
+        request.writeRequestToDB();}
+
+        else{
+            System.out.println("You already have a trading account");
+        }
+    }
+
+    //check if the customer has a derived account from the trading account
+    
 
     public Account getPersonalAccount() {
         return personalAccount;
@@ -32,7 +47,6 @@ public class Customer extends Person {
     public void setTradingAccount(Account tradingAccount) {
         this.tradingAccount = tradingAccount;
     }
-
 
     // TODO: Add a method to get the current ID from DataBase
     private static int getCurrentID(){

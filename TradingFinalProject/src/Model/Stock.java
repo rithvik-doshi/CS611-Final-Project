@@ -1,6 +1,14 @@
 package Model;
 
 public class Stock {
-    private String name;
-    private int quantity;
+    protected String name;
+    protected int quantity;
+    protected double marketPrice;
+
+    public Stock(String name, int quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
+
+
 }
