@@ -46,14 +46,14 @@ public abstract class Person {
         this.password = password;
     }
     
-    public String toString() {
-        return "Name: " + name + " Password: " + password + " Type: " + type + " ID: " + id;
-    }
+//    public String toString() {
+//        return "Name: " + name + " Password: " + password + " Type: " + type + " ID: " + id;
+//    }
 
     public boolean equals(Object o) {
         if (o instanceof Person) {
             Person p = (Person) o;
-            return p.getId().equals(id);
+            return p.getID() == ID;
         }
         return false;
     }

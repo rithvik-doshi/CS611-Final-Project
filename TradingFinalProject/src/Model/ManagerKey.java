@@ -10,7 +10,7 @@ public class ManagerKey {
     private String key;
 
     public ManagerKey(int lookupId) {
-        String currentPath = Paths.get("").toAbsolutePath() + "/src/Database/DBFiles/";
+        String currentPath = Paths.get("").toAbsolutePath() + "/TradingFinalProject/src/Database/DBFiles/";
         String filePath = currentPath + "Manager.txt";
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;

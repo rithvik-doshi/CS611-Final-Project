@@ -22,7 +22,7 @@ public class Customer extends Person {
     public void openTradingAccount(){
 
         if(tradingAccount == null){
-        Request request = new Request(this.id);
+        Request request = new Request(this.getID());
         request.writeRequestToDB();}
 
         else{

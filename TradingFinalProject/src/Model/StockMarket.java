@@ -13,7 +13,7 @@ public class StockMarket {
         instance = new StockMarket();
     }
 
-    String currentPath = Paths.get("").toAbsolutePath() + "/src/Database/DBFiles/";
+    String currentPath = Paths.get("").toAbsolutePath() + "/TradingFinalProject/src/Database/DBFiles/";
 
     private StockMarket() {
         try {

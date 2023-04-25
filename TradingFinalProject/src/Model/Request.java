@@ -6,8 +6,8 @@ public class Request {
     private String status;
     private boolean isApproved;
 
-    public Request(String sender) {
-        this.sender = sender;
+    public Request(int sender) {
+        this.sender = String.valueOf(sender);
         this.status = "Pending";
         // this.receiver = receiver;
     }
