@@ -3,19 +3,20 @@ package Model;
 public class Customer extends Person {
     private Account personalAccount;
     private Account tradingAccount;
-    public Customer(String name, String password, String type, String id) {
-        super(name, password, type, id);
-        //TODO Auto-generated constructor stub
-        this.type = "C";
+    
+    public Customer(int ID, String name, String email, String password) {
+        super(ID,name,email,password);
     }
 
 
+    /**
     public Customer(String name, String password) {
         super(name, password, "C", generateCurrentId());
         this.id = generateCurrentId();
         this.personalAccount = new PersonalAccount(this.id);
         this.tradingAccount = null;
     }
+    */
 
     //send request to manager to open a trading account
     public void openTradingAccount(){

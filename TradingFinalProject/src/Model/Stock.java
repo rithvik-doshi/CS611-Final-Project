@@ -1,14 +1,20 @@
 package Model;
 
-public class Stock {
-    protected String name;
-    protected int quantity;
-    protected double marketPrice;
+public abstract class Stock {
+    private final String name;
 
-    public Stock(String name, int quantity) {
+    protected Stock(String name) {
         this.name = name;
-        this.quantity = quantity;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String toString() {
+        return name + ":\n\t" + stringify();
+    }
+
+    protected abstract String stringify();
 
 }

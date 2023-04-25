@@ -3,24 +3,23 @@ package Model;
 import java.util.ArrayList;
 
 public class Manager extends Person {
-    //singleton
-    private static Manager manager = null;
+
     private ArrayList<Request> requestQueue;
-    
-    
-    private Manager(String name, String password, String type, String id) {
-        super(name, password, "M", "M001");
-        //TODO Auto-generated constructor stub
+
+    private ManagerKey key;
+
+    public Manager(int ID, String name, String email, String password) {
+        super(ID, name, email, password);
+        key = new ManagerKey(ID);
     }
 
-
-    public static Manager getInstance(){
-        if(manager == null){
-            manager = new Manager("admin", "admin", "M", "M001");
-        }
-        return manager;
+    public String keyValue() {
+        return key.getKeyValue();
     }
-
+    public ManagerKey getKey() {
+        return key;
+    }
+    
     //Approve the request
     public void approveRequest(Request request){
         request.approve();
@@ -30,7 +29,5 @@ public class Manager extends Person {
     public void rejectRequest(Request request){
         request.reject();
     }
-
-    
     
 }
