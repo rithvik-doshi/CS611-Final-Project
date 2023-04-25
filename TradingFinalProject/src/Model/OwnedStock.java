@@ -20,6 +20,7 @@ public class OwnedStock extends Stock {
     }
 
     public void removeQuantity(int quantity) {
+//        If customer removes all stocks, need to remove item from trading account
         if (this.quantity - quantity < 1) {
             throw new IllegalArgumentException("Quantity must be greater than 0");
         }

@@ -8,6 +8,8 @@ public class TradingSystemModel {
     private CustomerStockTradingSystem CSTS;
     private static final SMProxy SMP = SMProxy.instance;
 
+//    login, load user/create user, and then enter them into the correct system
+
     public static void main(String[] args) {
 
         Manager manager = new Manager(1, "Rithvik Doshi", "bruh@buh.com", "password");

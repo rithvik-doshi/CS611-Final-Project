@@ -1,0 +1,3 @@
+Stock Transactions (SMP to trading and vice versa)
+
+Schema:
