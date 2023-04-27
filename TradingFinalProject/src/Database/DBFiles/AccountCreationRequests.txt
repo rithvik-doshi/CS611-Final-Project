@@ -1,3 +1,9 @@
-name, email
-David, david@gmail.com
-James, james@bu.edu
+"test1" "Pending"
+"test2" "Approved"
+"test3" "Rejected"
+"Rithvik" "Pending"
+"Rithvik" "Pending"
+"Rithvik" "Pending"
+"Rithvik" "Pending"
+"Rithvik" "Pending"
+
