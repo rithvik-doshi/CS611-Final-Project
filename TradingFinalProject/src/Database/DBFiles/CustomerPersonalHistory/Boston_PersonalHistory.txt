@@ -1,1 +1,9 @@
-Money transactions (personal -> trading and vice versa)
+behavior, quantity
+Deposit,4000
+Withdraw,1000
+Deposit,100
+Withdraw,200
+Withdraw,12
+Deposit,4000
+Deposit,10
+Deposit,3
