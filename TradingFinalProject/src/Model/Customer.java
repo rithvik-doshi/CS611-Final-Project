@@ -20,17 +20,14 @@ public class Customer extends Person {
 
     //send request to manager to open a trading account
     public void openTradingAccount(){
-
         if(tradingAccount == null){
-        Request request = new Request(this.getID());
+        Request request = new Request(this.getID()+"");
         request.writeRequestToDB();}
 
         else{
             System.out.println("You already have a trading account");
         }
     }
-
-    //check if the customer has a derived account from the trading account
     
 
     public Account getPersonalAccount() {
@@ -49,12 +46,14 @@ public class Customer extends Person {
         this.tradingAccount = tradingAccount;
     }
 
+    public static String generateCurrentId(){
+        return "C" + getCurrentID();
+    }
+
     // TODO: Add a method to get the current ID from DataBase
     private static int getCurrentID(){
         return 0;
     }
 
-    public static String generateCurrentId(){
-        return "C" + getCurrentID();
-    }
+
 }
