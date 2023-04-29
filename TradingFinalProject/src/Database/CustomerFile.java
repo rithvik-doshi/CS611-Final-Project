@@ -34,6 +34,7 @@ public class CustomerFile {
 
                 Customer person = new Customer(id, name, email, password);
                 fileStream.add(person);
+                
             }
         } catch (IOException e) {
             e.printStackTrace();
