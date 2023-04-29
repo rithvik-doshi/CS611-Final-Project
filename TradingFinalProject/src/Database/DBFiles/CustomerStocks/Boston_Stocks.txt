@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+(STOCKNAME),(QUANTITY)
+
+Filename should use the ID of the user
+=======
 item name, quantity
 Chair,1000
 Table,200
+>>>>>>> main
