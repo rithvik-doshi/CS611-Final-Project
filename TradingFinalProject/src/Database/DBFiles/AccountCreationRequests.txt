@@ -1,6 +1,9 @@
-(name1), etc.
-(name2), etc.
-(name3), etc.
-(name4), etc.
-(name5), etc.
-(name6), etc.
+"test1" "Pending"
+"test2" "Approved"
+"test3" "Rejected"
+"Rithvik" "Pending"
+"Rithvik" "Pending"
+"Rithvik" "Pending"
+"Rithvik" "Pending"
+"Rithvik" "Pending"
+
