@@ -1,4 +1,3 @@
-behavior, quantity
 Deposit,200
 Deposit,100
 Withdraw,200

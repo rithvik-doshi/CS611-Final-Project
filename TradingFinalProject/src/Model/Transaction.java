@@ -1,7 +1,7 @@
 package Model;
 
 public class Transaction {
-    //Behaviour should be sell or buy. Deposit or withdraw
+    //Behaviour should be sell or buy, Deposit or withdraw
 private String Behaviour;
 private int quantity;
 

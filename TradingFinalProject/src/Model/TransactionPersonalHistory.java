@@ -7,9 +7,10 @@ public class TransactionPersonalHistory extends Transaction {
     public TransactionPersonalHistory(String Behaviour, int quantity) {
         super(Behaviour, quantity);
     }
-    // add constructor to TransactionPersonalHistory
+    // 在 TransactionPersonalHistory 类中添加以下构造函数
     public TransactionPersonalHistory(String textLine) {
         super(textLine.split(",")[0].trim(), Integer.parseInt(textLine.split(",")[1].trim()));
     }
+
 
 }

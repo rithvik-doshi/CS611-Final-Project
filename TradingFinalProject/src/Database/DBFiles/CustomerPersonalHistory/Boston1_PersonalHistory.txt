@@ -1,4 +1,3 @@
-behavior, quantity
 Deposit,4000
 Withdraw,1000
 Deposit,100
