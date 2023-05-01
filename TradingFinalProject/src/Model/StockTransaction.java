@@ -1,5 +1,5 @@
 package Model;
 
-public class StockTransaction extends Transaction{
-    
-}
+//public class StockTransaction extends Transaction{
+//
+//}

@@ -1,9 +1,12 @@
 package Model;
+import java.util.HashMap;
 
 public class TradingAccount extends Account {
 
 
     double netProfit;
+    private HashMap<String, Integer> stockHoldings = new HashMap<>();
+    private HashMap<String, Double> purchasePrices = new HashMap<>();
 
     public TradingAccount(String type, double balance, String ownerID) {
         super(type, balance, ownerID);
@@ -49,7 +52,7 @@ public class TradingAccount extends Account {
 
     public boolean transferMoney(double amount, PersonalAccount account){
         if(this.withdrawMoney(amount)){
-            account.saveMoney(amount);
+            account.deposit(amount);
             return true;
         }
         else{
@@ -58,4 +61,50 @@ public class TradingAccount extends Account {
 
     }
 
+
+    //add by Yuxi Ge
+    public void buyStock(String name, int quantity, double price) {
+        stockHoldings.put(name, stockHoldings.getOrDefault(name, 0) + quantity);
+        purchasePrices.put(name, price);
+    }
+
+    public void sellStock(String name, int quantity, double price) {
+        int currentShares = stockHoldings.getOrDefault(name, 0);
+        if (currentShares >= quantity) {
+            stockHoldings.put(name, currentShares - quantity);
+
+            if (stockHoldings.get(name) == 0) {
+                stockHoldings.remove(name);
+            }
+
+            double purchasePrice = purchasePrices.getOrDefault(name, 0.0);
+            netProfit += (price - purchasePrice) * quantity;
+        } else {
+            System.out.println("Insufficient shares to sell.");
+        }
+    }
+
+    public boolean hasSufficientShares(String name, int quantity) {
+        return stockHoldings.getOrDefault(name, 0) >= quantity;
+    }
+
+    public double getRealizedProfit() {
+        return netProfit;
+    }
+
+    public double calculateUnrealizedProfit(StockMarket stockMarket) {
+        double unrealizedProfit = 0.0;
+
+        for (String name : stockHoldings.keySet()) {
+            int shares = stockHoldings.get(name);
+            double currentPrice = stockMarket.getStockPrice(name);
+            double purchasePrice = purchasePrices.getOrDefault(name, 0.0);
+
+            unrealizedProfit += (currentPrice - purchasePrice) * shares;
+        }
+
+        return unrealizedProfit;
+    }
 }
+
+

@@ -1,50 +1,41 @@
 package Model;
 
-public class PersonalAccount extends Account{
+public class PersonalAccount extends Account {
 
-        //read from database
-        public PersonalAccount(String id, String type, double balance, String ownerID) {
+    // Read from the database
+    public PersonalAccount(String id, String type, double balance, String ownerID) {
         super(id, type, balance, ownerID);
-        //TODO Auto-generated constructor stub
     }
-        
-    //create new account
+
+    // Create a new account
     public PersonalAccount(String ownerID) {
         super(ownerID, "Personal");
         this.id = generateCurrentId();
     }
 
-    public static String generateCurrentId(){
+    public static String generateCurrentId() {
         return "A" + getCurrentID();
     }
 
-    public void saveMoney(double amount){
+    public void deposit(double amount) {
         this.balance += amount;
     }
 
-    public boolean withdrawMoney(double amount){
-        if(this.balance >= amount){
+    public boolean withdraw(double amount) {
+        if (this.balance >= amount) {
             this.balance -= amount;
             return true;
-        }else{
+        } else {
             return false;
-        }   
+        }
     }
 
-    public boolean transferMoney(double amount, TradingAccount account){
-        if(this.withdrawMoney(amount)){
+    public boolean transferMoney(double amount, TradingAccount account) {
+        if (this.withdraw(amount)) {
             account.saveMoney(amount);
             return true;
-        }
-        else{
+        } else {
             return false;
         }
-
     }
-
-
-
-
-    //TODO: Add a method to get the current ID from DataBase
-
 }
