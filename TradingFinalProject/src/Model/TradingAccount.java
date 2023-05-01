@@ -4,7 +4,8 @@ import java.util.HashMap;
 public class TradingAccount extends Account {
 
 
-    double netProfit;
+    double realizedProfit;
+    // double unrealizedProfit;
     private HashMap<String, Integer> stockHoldings = new HashMap<>();
     private HashMap<String, Double> purchasePrices = new HashMap<>();
 
@@ -29,7 +30,7 @@ public class TradingAccount extends Account {
 // determine if the trading account can have a derivative account by checking the net profit over 10000
 
     public boolean canHaveDerivativeAccount(){
-        if(this.netProfit > 10000){
+        if(this.realizedProfit > 10000){
             return true;
         }else{
             return false;
@@ -78,7 +79,7 @@ public class TradingAccount extends Account {
             }
 
             double purchasePrice = purchasePrices.getOrDefault(name, 0.0);
-            netProfit += (price - purchasePrice) * quantity;
+            realizedProfit += (price - purchasePrice) * quantity;
         } else {
             System.out.println("Insufficient shares to sell.");
         }
@@ -89,10 +90,10 @@ public class TradingAccount extends Account {
     }
 
     public double getRealizedProfit() {
-        return netProfit;
+        return realizedProfit;
     }
 
-    public double calculateUnrealizedProfit(StockMarket stockMarket) {
+    public double getUnrealizedProfit(StockMarket stockMarket) {
         double unrealizedProfit = 0.0;
 
         for (String name : stockHoldings.keySet()) {
