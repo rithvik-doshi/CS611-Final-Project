@@ -1,28 +1,37 @@
 package Model;
 
-public class Transaction {
-    //Behaviour should be sell or buy, Deposit or withdraw
-private String Behaviour;
-private int quantity;
+public abstract class Transaction {
+    //Behaviour should be sell or buy, Deposit or withdraw depending on the specific transaction
+    private final String behaviour;
+    private final double money;
 
-public Transaction(String Behaviour, int quantity){
-    this.Behaviour = Behaviour;
-    this.quantity = quantity;
-}
+//    timestamp
+    private final String timestamp;
+
+    public Transaction(String Behaviour, double money){
+        this.behaviour = Behaviour;
+        this.money = money;
+        this.timestamp = java.time.LocalDateTime.now().toString();
+    }
+
+    public Transaction(String Behaviour, double money, String timestamp){
+        this.behaviour = Behaviour;
+        this.money = money;
+        this.timestamp = timestamp;
+    }
 
     public String getBehaviour() {
-        return Behaviour;
+        return behaviour;
     }
 
-    public void setBehaviour(String behaviour) {
-        Behaviour = behaviour;
+    public double getMoney() {
+        return money;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+    public abstract String[] getInfoAsArray();
+
 }

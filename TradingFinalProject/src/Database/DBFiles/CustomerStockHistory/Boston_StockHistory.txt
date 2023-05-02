@@ -1,4 +1,0 @@
-Buy,Chair,100,5000
-Sell,Table,20,2000
-Buy,KT,50,600
-Buy,MI,1,400
