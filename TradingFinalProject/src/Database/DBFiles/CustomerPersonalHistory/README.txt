@@ -1,5 +1,5 @@
 Filename convention: [name][customerID]_PersonalHistory.txt
-behavior,money amount
+behavior,money amount,timestamp
 Deposit,200
 Deposit,1000
 Withdraw,200
