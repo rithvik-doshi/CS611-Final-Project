@@ -10,12 +10,11 @@ package Model;
 
 public class PortfolioManagementSystem {
     Manager manager;
-    StockMarket stockMarket;
+    SMProxy stockMarket = SMProxy.instance;
     
 
-    public PortfolioManagementSystem(Manager manager, StockMarket stockMarket) {
+    public PortfolioManagementSystem(Manager manager) {
         this.manager = manager;
-        this.stockMarket = stockMarket;
     }
 
     public void approveRequest(Request request) {
@@ -36,16 +35,16 @@ public class PortfolioManagementSystem {
     }}
 
     //add a new stock to the stock market
-    public void addStock(String name, double price) {
+    public void addStock(String name, double price, int ID, ManagerKey key) {
         if(price < 0){System.out.println("Invalid Price. Add Stock failed");}
         else{}
-        stockMarket.addStock(name, price);
+        stockMarket.addStock(name, price, ID, key);
         System.out.println("Stock added, Name: " + name + " Price: " + price);
     }
 
     //remove a stock from the stock market
-    public void removeStock(String name) {
-        stockMarket.removeStock(name);
+    public void removeStock(String name, int ID, ManagerKey key) {
+        stockMarket.removeStock(name, ID, key);
         System.out.println("Stock removed, Name: " + name);
     }
 

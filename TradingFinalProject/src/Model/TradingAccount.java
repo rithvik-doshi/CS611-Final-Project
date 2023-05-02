@@ -93,7 +93,7 @@ public class TradingAccount extends Account {
         return realizedProfit;
     }
 
-    public double getUnrealizedProfit(StockMarket stockMarket) {
+    public double getUnrealizedProfit(SMProxy stockMarket) {
         double unrealizedProfit = 0.0;
 
         for (String name : stockHoldings.keySet()) {
