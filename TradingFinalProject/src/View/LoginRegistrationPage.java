@@ -1,15 +1,27 @@
 package View;
+import Model.CustomerLogin;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.nio.file.Paths;
 
 public class LoginRegistrationPage extends JFrame {
     private JButton loginButton;
     private JButton registerButton;
     private JTextField usernameTextField;
     private JPasswordField passwordField;
+    private CustomerLogin customerLogin;
+
 
     public LoginRegistrationPage() {
+
+        String currentPath = Paths.get("").toAbsolutePath().toString();
+        currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/Customer.txt";
+        customerLogin = new CustomerLogin(currentPath);
+
+
+
         // Create the login panel
         JPanel loginPanel = new JPanel(new GridLayout(3, 2));
         loginPanel.add(new JLabel("Username: "));
@@ -55,7 +67,13 @@ public class LoginRegistrationPage extends JFrame {
                 // Login button clicked
                 String username = usernameTextField.getText();
                 String password = new String(passwordField.getPassword());
-                // TODO: Implement login functionality
+
+                // Check if the login is successful
+                if (customerLogin.checkLogin(username, password)) {
+                    JOptionPane.showMessageDialog(null, "Login successful!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Incorrect username or password. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         registerButton.addActionListener(new ActionListener() {
