@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class TradingAccount extends Account {
 
-
+    double netProfit;
     double realizedProfit;
     // double unrealizedProfit;
     private HashMap<String, Integer> stockHoldings = new HashMap<>();
@@ -107,5 +107,3 @@ public class TradingAccount extends Account {
         return unrealizedProfit;
     }
 }
-
-

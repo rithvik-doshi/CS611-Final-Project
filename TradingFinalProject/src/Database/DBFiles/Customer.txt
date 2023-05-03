@@ -1,4 +1,5 @@
 id, name, email, password
 1, Boston, rithvik@bu.edu, 123
-2, Yuxi Ge, yuxig5@bu.edu, 123234235
-3, Peter Song, sozhangd@bu.edu, 08976wdfqhqiwdu
+2, Yuxi Ge, yuxig5@bu.edu, 456
+3, Peter Song, sozhangd@bu.edu, 789
+4, David, , 1020

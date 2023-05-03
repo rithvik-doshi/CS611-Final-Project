@@ -50,6 +50,7 @@ public class PersonalAccountView extends JFrame {
                 }
             }
         });
+
         withdrawButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String input = JOptionPane.showInputDialog("Enter amount to withdraw:");
@@ -99,4 +100,3 @@ public class PersonalAccountView extends JFrame {
         ui.setVisible(true);
     }
 }
-
