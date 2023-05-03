@@ -38,14 +38,19 @@ public class EntryInterface extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Customer button clicked
                 
-                JOptionPane.showMessageDialog(null, "You clicked the Customer button.");
+                customerLoginRegistrationPage = new LoginRegistrationPage();
+                EntryInterface.this.setVisible(false);;
+                // JOptionPane.showMessageDialog(null, "You clicked the Customer button.");
 
             }
         });
         managerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Manager button clicked
-                JOptionPane.showMessageDialog(null, "You clicked the Manager button.");
+                
+                managerLoginRegistrationPage = new ManagerLoginPage();
+                managerLoginRegistrationPage.setVisible(true);
+                EntryInterface.this.setVisible(false);;
             }
         });
         viewStocksButton.addActionListener(new ActionListener() {
