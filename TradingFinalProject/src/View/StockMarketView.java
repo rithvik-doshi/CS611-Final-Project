@@ -32,6 +32,27 @@ public class StockMarketView extends JFrame {
 
         populateTableWithStocks(); // Populate the table with stock data
 
+        stockTable.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                int selectedRow = stockTable.getSelectedRow();
+                if (selectedRow != -1) {
+                    //each row item name and item price.
+                    String itemName = (String) stockTable.getValueAt(selectedRow, 1);
+                    int itemPrice = (Integer) stockTable.getValueAt(selectedRow,0);
+
+                    int response = JOptionPane.showConfirmDialog(null,
+                            "Do you want to buy " + itemName + "?",
+                            "Buy Item",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE);
+                    if (response == JOptionPane.YES_OPTION) {
+                        // Add logic to handle purchasing the selected item
+
+                    }
+                }
+            }
+        });
+
         // Set up the buttons
         backButton = new JButton("Back");
         customerLoginButton = new JButton("Customer Login");
@@ -52,7 +73,6 @@ public class StockMarketView extends JFrame {
                 // Customer button clicked
                 LoginRegistrationPage customerLoginRegistrationPage = new LoginRegistrationPage();
                 StockMarketView.this.setVisible(false); // Set the current frame to be invisible
-
             }
         });
         managerLoginButton.addActionListener(new ActionListener() {
@@ -79,10 +99,13 @@ public class StockMarketView extends JFrame {
     }
 
     private void populateTableWithStocks() {
-        DefaultTableModel model = (DefaultTableModel) stockTable.getModel();
-        StockMarket stockMarket = StockMarket.instance;
-        for (MarketStock stock : stockMarket.stocks) {
-            model.addRow(new Object[]{String.format("$%.2f", stock.getMoney()), stock.getName(), "Unknown", "Unknown"});
+        DefaultTableModel tableModel = (DefaultTableModel) stockTable.getModel();
+        StockMarket stockMarketInstance = StockMarket.instance;
+
+        // Loop through all stocks in the stock market instance
+        for (MarketStock stock : stockMarketInstance.stocks) {
+            // Format the stock price with two decimal places and add the stock to the table model
+            tableModel.addRow(new Object[]{String.format("$%.2f", stock.getMoney()), stock.getName()});
         }
     }
 
