@@ -1,7 +1,6 @@
 package Model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -36,4 +35,22 @@ public class CustomerLogin {
         }
         return false;
     }
+
+    public boolean registerNewCustomer(String name, String email, String password,String path) {
+        int newID = customers.size() + 1;
+        Customer newCustomer = new Customer(newID, name, email, password);
+        customers.add(newCustomer);
+
+        try {
+            FileWriter fileWriter = new FileWriter(path, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(newID + ", " + name + ", " + email + ", " + password + "\n");
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
 }

@@ -20,31 +20,98 @@ public class LoginRegistrationPage extends JFrame {
         currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/Customer.txt";
         customerLogin = new CustomerLogin(currentPath);
 
+// Set up the frame
+        setTitle("Login/Registration Page");
+        setSize(700, 400); // Increase the size to make the window larger
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setVisible(true);
 
 
         // Create the login panel
-        JPanel loginPanel = new JPanel(new GridLayout(3, 2));
-        loginPanel.add(new JLabel("Username: "));
-        usernameTextField = new JTextField();
-        loginPanel.add(usernameTextField);
-        loginPanel.add(new JLabel("Password: "));
-        passwordField = new JPasswordField();
-        loginPanel.add(passwordField);
-        loginPanel.add(new JLabel());
-        loginButton = new JButton("Login");
-        loginPanel.add(loginButton);
+        JPanel loginPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints loginConstraints = new GridBagConstraints();
+        loginConstraints.insets = new Insets(5, 5, 5, 5); // Add padding
 
-        // Create the registration panel
-        JPanel registrationPanel = new JPanel(new GridLayout(3, 2));
-        registrationPanel.add(new JLabel("Username: "));
-        JTextField registerUsernameTextField = new JTextField();
-        registrationPanel.add(registerUsernameTextField);
-        registrationPanel.add(new JLabel("Password: "));
-        JPasswordField registerPasswordField = new JPasswordField();
-        registrationPanel.add(registerPasswordField);
-        registrationPanel.add(new JLabel());
+        // Add Username label and text field
+        loginConstraints.gridx = 0;
+        loginConstraints.gridy = 0;
+        loginConstraints.anchor = GridBagConstraints.WEST;
+        loginPanel.add(new JLabel("Username: "), loginConstraints);
+
+        loginConstraints.gridx = 1;
+        loginConstraints.gridy = 0;
+        loginConstraints.anchor = GridBagConstraints.WEST;
+        usernameTextField = new JTextField(15);
+        loginPanel.add(usernameTextField, loginConstraints);
+
+        // Add Password label and password field
+        loginConstraints.gridx = 0;
+        loginConstraints.gridy = 1;
+        loginConstraints.anchor = GridBagConstraints.WEST;
+        loginPanel.add(new JLabel("Password: "), loginConstraints);
+
+        loginConstraints.gridx = 1;
+        loginConstraints.gridy = 1;
+        loginConstraints.anchor = GridBagConstraints.WEST;
+        passwordField = new JPasswordField(15);
+        loginPanel.add(passwordField, loginConstraints);
+
+        // Add Login button
+        loginConstraints.gridx = 0;
+        loginConstraints.gridy = 2;
+        loginConstraints.gridwidth = 2;
+        loginConstraints.anchor = GridBagConstraints.CENTER;
+        loginButton = new JButton("Login");
+        loginPanel.add(loginButton, loginConstraints);
+
+// Create the registration panel
+        JPanel registrationPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+
+// Add Username label and text field
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.anchor = GridBagConstraints.WEST;
+        registrationPanel.add(new JLabel("Username: "), constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.anchor = GridBagConstraints.WEST;
+        JTextField registerUsernameTextField = new JTextField(15);
+        registrationPanel.add(registerUsernameTextField, constraints);
+
+// Add Email label and text field
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.anchor = GridBagConstraints.WEST;
+        registrationPanel.add(new JLabel("Email: "), constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 1;
+        constraints.anchor = GridBagConstraints.WEST;
+        JTextField registerEmailTextField = new JTextField(15);
+        registrationPanel.add(registerEmailTextField, constraints);
+
+// Add Password label and password field
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.anchor = GridBagConstraints.WEST;
+        registrationPanel.add(new JLabel("Password: "), constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+        constraints.anchor = GridBagConstraints.WEST;
+        JPasswordField registerPasswordField = new JPasswordField(15);
+        registrationPanel.add(registerPasswordField, constraints);
+
+// Add Register button
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
         registerButton = new JButton("Register");
-        registrationPanel.add(registerButton);
+        registrationPanel.add(registerButton, constraints);
 
         // Create the tabbed pane and add the login and registration panels to it
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -54,12 +121,6 @@ public class LoginRegistrationPage extends JFrame {
         // Add the tabbed pane to the frame
         getContentPane().add(tabbedPane);
 
-        // Set up the frame
-        setTitle("Login/Registration Page");
-        setSize(300, 150);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setVisible(true);
 
         // Add action listeners to the buttons
         loginButton.addActionListener(new ActionListener() {
@@ -76,13 +137,21 @@ public class LoginRegistrationPage extends JFrame {
                 }
             }
         });
+        String finalCurrentPath = currentPath;
         registerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Register button clicked
-                String username = registerUsernameTextField.getText();
+                String name = registerUsernameTextField.getText();
+                String email = registerEmailTextField.getText(); // You'll need to add a JTextField for email input
                 String password = new String(registerPasswordField.getPassword());
-                // TODO: Implement registration functionality
+                boolean success = customerLogin.registerNewCustomer(name, email, password, finalCurrentPath);
+                if (success) {
+                    JOptionPane.showMessageDialog(LoginRegistrationPage.this, "Registration successful!");
+                } else {
+                    JOptionPane.showMessageDialog(LoginRegistrationPage.this, "Registration failed. Please try again.");
+                }
             }
+
         });
     }
 
