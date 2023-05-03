@@ -1,8 +1,8 @@
 package Model;
 
 public class Customer extends Person {
-    private Account personalAccount;
-    private Account tradingAccount;
+    private PersonalAccount personalAccount;
+    private TradingAccount tradingAccount;
     
     public Customer(int ID, String name, String email, String password) {
         super(ID,name,email,password);
@@ -30,19 +30,19 @@ public class Customer extends Person {
     }
     
 
-    public Account getPersonalAccount() {
+    public PersonalAccount getPersonalAccount() {
         return personalAccount;
     }
 
-    public void setPersonalAccount(Account personalAccount) {
+    public void setPersonalAccount(PersonalAccount personalAccount) {
         this.personalAccount = personalAccount;
     }
 
-    public Account getTradingAccount() {
+    public TradingAccount getTradingAccount() {
         return tradingAccount;
     }
 
-    public void setTradingAccount(Account tradingAccount) {
+    public void setTradingAccount(TradingAccount tradingAccount) {
         this.tradingAccount = tradingAccount;
     }
 

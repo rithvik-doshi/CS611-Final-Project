@@ -32,6 +32,7 @@ public class EntryInterface extends JFrame {
                 customerLoginRegistrationPage = new LoginRegistrationPage();
                 EntryInterface.this.setVisible(false); // Set the current frame to be invisible
 
+
             }
         });
 
@@ -42,6 +43,7 @@ public class EntryInterface extends JFrame {
                 managerLoginRegistrationPage = new ManagerLoginPage();
                 managerLoginRegistrationPage.setVisible(true);
                 EntryInterface.this.setVisible(false); // Set the current frame to be invisible
+
             }
         });
 

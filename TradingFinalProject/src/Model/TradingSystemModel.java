@@ -21,6 +21,15 @@ public class TradingSystemModel {
         System.out.println(SMP.removeStock("BRUH", manager.getID(), manager.getKey()));
         System.out.println(SMP.addStock("BRUH", 10230.2, manager.getID(), manager.getKey()));
         System.out.println(SMP.setStockPrice("BRUH", 23, manager.getID(), manager.getKey()));
+
+        PersonalTransactionHistory pth = new PersonalTransactionHistory("32134", "Rithvik Doshi");
+        pth.addToHistory(new PersonalTransaction("WITHDRAW", 345));
+        System.out.println(pth);
+
+        StockTransactionHistory sth = new StockTransactionHistory("2", "Yuxi");
+        sth.addToHistory(new StockTransaction("BUY", "BRUH", 100, 100));
+        System.out.println(sth);
+
     }
 
 

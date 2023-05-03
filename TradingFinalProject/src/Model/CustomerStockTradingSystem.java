@@ -5,7 +5,7 @@ public class CustomerStockTradingSystem {
     private Customer customer;
     private PersonalAccount personalAccount;
     private TradingAccount tradingAccount;
-    private StockMarket stockMarket = StockMarket.instance;
+    private SMProxy stockMarket = SMProxy.instance;
 
     public CustomerStockTradingSystem(Customer customer, PersonalAccount personalAccount) {
         this.customer = customer;
@@ -71,6 +71,6 @@ public class CustomerStockTradingSystem {
     }
 
     public double getUnrealizedProfit() {
-        return tradingAccount.calculateUnrealizedProfit(stockMarket);
+        return tradingAccount.getUnrealizedProfit(stockMarket);
     }
 }
