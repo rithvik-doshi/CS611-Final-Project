@@ -71,6 +71,6 @@ public class CustomerStockTradingSystem {
     }
 
     public double getUnrealizedProfit() {
-        return tradingAccount.calculateUnrealizedProfit(stockMarket);
+        return tradingAccount.getUnrealizedProfit(stockMarket);
     }
 }
