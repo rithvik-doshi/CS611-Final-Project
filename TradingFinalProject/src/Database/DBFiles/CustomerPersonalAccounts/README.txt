@@ -1,1 +1,1 @@
-Filename convention: [name][customerID]_Stocks.txt
+Filename convention: [name][customerID]_Account.txt
