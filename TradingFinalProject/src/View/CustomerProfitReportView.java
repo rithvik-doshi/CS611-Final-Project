@@ -5,7 +5,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import Model.Customer;
-import Model.StockMarket;
+import Model.SMProxy;
 
 public class CustomerProfitReportView extends JFrame {
     private JPanel reportPanel;
@@ -47,7 +47,7 @@ public class CustomerProfitReportView extends JFrame {
             JLabel nameLabel = new JLabel(customer.getName());
             customerPanel.add(nameLabel);
 
-            JLabel unrealizedProfitLabel = new JLabel("Unrealized Profit: " + customer.getTradingAccount().getUnrealizedProfit(StockMarket.instance));
+            JLabel unrealizedProfitLabel = new JLabel("Unrealized Profit: " + customer.getTradingAccount().getUnrealizedProfit(SMProxy.instance));
             customerPanel.add(unrealizedProfitLabel);
 
             JLabel realizedProfitLabel = new JLabel("Realized Profit: " + customer.getTradingAccount().getRealizedProfit());

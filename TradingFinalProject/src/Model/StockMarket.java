@@ -57,7 +57,7 @@ public class StockMarket {
                 return false;
             }
         }
-        stocks.add(new MarketStock(name, price));
+        stocks.add(StockFactory.createMarketStock(name, price));
         return updateStocks();
     }
 
