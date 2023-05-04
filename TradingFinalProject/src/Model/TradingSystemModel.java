@@ -19,7 +19,7 @@ public class TradingSystemModel {
 
 //    login, load user/create user, and then enter them into the correct system
 
-    public boolean login(String username, String password) {
+    public boolean login(String email, String password) {
 
 //        Check if user exists in customer database
         File file = new File(currentPath + "Customer.txt");
@@ -31,7 +31,7 @@ public class TradingSystemModel {
                 if (parts.length < 4) {
                     continue;
                 }
-                if (parts[2].equals(username) && parts[3].equals(password)) {
+                if (parts[2].equals(email) && parts[3].equals(password)) {
                     mode = ModelMode.CUSTOMER;
                     status = UserStatus.LOGGED_IN;
                     return true;
@@ -51,7 +51,7 @@ public class TradingSystemModel {
                 if (parts.length < 4) {
                     continue;
                 }
-                if (parts[2].equals(username) && parts[3].equals(password)) {
+                if (parts[2].equals(email) && parts[3].equals(password)) {
                     mode = ModelMode.MANAGER;
                     status = UserStatus.LOGGED_IN;
                     return true;
@@ -78,6 +78,12 @@ public class TradingSystemModel {
 //        This is not the correct way to initialize a manager, doing it for testing purposes
         System.out.println(manager.keyValue());
 
+        TradingSystemModel TSP = new TradingSystemModel();
+
+        System.out.println(TSP.login("rithvik@bu.edu", "123"));
+        System.out.println(TSP.getMode().toString() + " " + TSP.getStatus().toString());
+
+
         System.out.println(SMP.addStock("BRUH", 100, manager.getID(), manager.getKey()));
         System.out.println(SMP.addStock("BRUH", 10230.2, manager.getID(), manager.getKey()));
         System.out.println(SMP.removeStock("BRUH", manager.getID(), manager.getKey()));
@@ -92,6 +98,14 @@ public class TradingSystemModel {
         sth.addToHistory(new StockTransaction("BUY", "BRUH", 100, 100));
         System.out.println(sth);
 
+    }
+
+    public ModelMode getMode() {
+        return mode;
+    }
+
+    public UserStatus getStatus() {
+        return status;
     }
 
 

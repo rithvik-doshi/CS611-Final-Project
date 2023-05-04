@@ -1,3 +1,4 @@
 1,Boston,rithvik@bu.edu,123
 2,Yuxi Ge,yuxig5@bu.edu,123234235
 3,Peter Song,sozhangd@bu.edu,08976wdfqhqiwdu
+32134,Rithvik Doshi,rithvik@bu.edu,password

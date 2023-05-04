@@ -2,7 +2,3 @@
 "mramoska@bu.edu" "Approved"
 "yuxi@bu.edu" "Rejected"
 "zhangde@bu.edu" "Pending"
-"Rithvik" "Pending"
-"Rithvik" "Pending"
-"Rithvik" "Pending"
-"Rithvik" "Pending"
