@@ -9,6 +9,7 @@ package Model;
 // implemented.
 
 public class PortfolioManagementSystem {
+
     Manager manager;
     SMProxy stockMarket = SMProxy.instance;
     

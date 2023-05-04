@@ -10,6 +10,7 @@ public class EntryInterface extends JFrame {
     private JButton exitButton;
     private LoginRegistrationPage customerLoginRegistrationPage;
     private ManagerLoginPage managerLoginRegistrationPage;
+    private StockMarketView stockMarketView;
 
     public EntryInterface() {
         // Create the panel and add the buttons to it
@@ -23,6 +24,38 @@ public class EntryInterface extends JFrame {
         exitButton = new JButton("Exit");
         panel.add(exitButton);
 
+
+        // Add action listeners to the buttons
+        customerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Customer button clicked
+                customerLoginRegistrationPage = new LoginRegistrationPage();
+                EntryInterface.this.setVisible(false); // Set the current frame to be invisible
+
+
+            }
+        });
+
+        managerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Customer button clicked
+                managerLoginRegistrationPage = new ManagerLoginPage();
+                managerLoginRegistrationPage.setVisible(true);
+                EntryInterface.this.setVisible(false); // Set the current frame to be invisible
+
+            }
+        });
+
+        viewStocksButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                stockMarketView = new StockMarketView();
+                stockMarketView.setVisible(true);
+                EntryInterface.this.setVisible(false);
+            }
+        });
+
         // Add the panel to the frame
         getContentPane().add(panel);
 
@@ -33,33 +66,6 @@ public class EntryInterface extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
-        // Add action listeners to the buttons
-        customerButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Customer button clicked
-                
-                JOptionPane.showMessageDialog(null, "You clicked the Customer button.");
-
-            }
-        });
-        managerButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Manager button clicked
-                JOptionPane.showMessageDialog(null, "You clicked the Manager button.");
-            }
-        });
-        viewStocksButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // View Stocks button clicked
-                JOptionPane.showMessageDialog(null, "You clicked the View Market Stocks button.");
-            }
-        });
-        exitButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Exit button clicked
-                System.exit(0);
-            }
-        });
     }
 
     public static void main(String[] args) {
