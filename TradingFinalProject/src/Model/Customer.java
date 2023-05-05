@@ -3,9 +3,11 @@ package Model;
 public class Customer extends Person {
     private PersonalAccount personalAccount;
     private TradingAccount tradingAccount;
+    private double balance;
     
-    public Customer(int ID, String name, String email, String password) {
+    public Customer(int ID, String name, String email, String password, double balance) {
         super(ID,name,email,password);
+        this.balance = balance;
     }
 
 
@@ -56,4 +58,11 @@ public class Customer extends Person {
     }
 
 
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
 }

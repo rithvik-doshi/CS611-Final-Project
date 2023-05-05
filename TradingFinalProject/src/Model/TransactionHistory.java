@@ -17,7 +17,7 @@ public abstract class TransactionHistory {
 
     protected TransactionHistory(String customerID, String name) {
         //TODO: load history from file based on input params
-        String fileIdentity = name + customerID;
+        String fileIdentity = customerID;
 
         fileName = historyType(fileIdentity);
 

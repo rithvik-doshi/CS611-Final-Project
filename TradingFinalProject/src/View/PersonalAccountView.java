@@ -1,5 +1,7 @@
 package View;
 
+import Model.CustomerPersonalAccountSystem;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 public class PersonalAccountView extends JFrame {
+    private JLabel greetingLabel;
     private JLabel accountBalanceLabel;
     private JLabel transactionHistoryLabel;
     private JButton saveButton;
@@ -17,12 +20,16 @@ public class PersonalAccountView extends JFrame {
     private double accountBalance = 0.0;
     private String[] transactionHistory = {"Transaction 1", "Transaction 2", "Transaction 3"};
 
-    public PersonalAccountView() {
+    public PersonalAccountView(CustomerPersonalAccountSystem customerPersonalAccountSystem) {
         // Set up the frame
         super("Personal Account");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        this.customerPersonalAccountSystem = customerPersonalAccountSystem;
+
+        // Set up the greeting label
+        greetingLabel = new JLabel("Hi " + customerPersonalAccountSystem.getCustomer().getName()+ "!");
 
         // Set up the labels
         DecimalFormat df = new DecimalFormat("$#,##0.00");
@@ -69,11 +76,13 @@ public class PersonalAccountView extends JFrame {
                 }
             }
         });
+
         tradingAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // TODO: Implement trading account button functionality
             }
         });
+
         requestTradingAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // TODO: Implement request trading account button functionality
@@ -82,13 +91,15 @@ public class PersonalAccountView extends JFrame {
 
         // Set up the panel
         JPanel panel = new JPanel(new BorderLayout());
+        panel.add(greetingLabel, BorderLayout.NORTH);
+        panel.add(accountBalanceLabel, BorderLayout.CENTER);
+        panel.add(transactionHistoryLabel, BorderLayout.SOUTH);
+
         JPanel buttonPanel = new JPanel(new FlowLayout());
         buttonPanel.add(saveButton);
         buttonPanel.add(withdrawButton);
         buttonPanel.add(tradingAccountButton);
         buttonPanel.add(requestTradingAccountButton);
-        panel.add(accountBalanceLabel, BorderLayout.NORTH);
-        panel.add(transactionHistoryLabel, BorderLayout.CENTER);
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
         // Add panel to the frame
@@ -96,7 +107,7 @@ public class PersonalAccountView extends JFrame {
     }
 
     public static void main(String[] args) {
-        PersonalAccountView ui = new PersonalAccountView();
-        ui.setVisible(true);
+//        PersonalAccountView ui = new PersonalAccountView();
+//        ui.setVisible(true);
     }
 }

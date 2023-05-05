@@ -7,11 +7,13 @@ public class PersonalAccount extends Account {
         super(id, type, balance, ownerID);
     }
 
-    // Create a new account
-    public PersonalAccount(String ownerID) {
-        super(ownerID, "Personal");
-        this.id = generateCurrentId();
+    // Construct new Personal Account
+    public PersonalAccount(int id){
+        super();
+        this.id = id;
+        this.balance = 0;
     }
+
 
     public static String generateCurrentId() {
         return "A" + getCurrentID();

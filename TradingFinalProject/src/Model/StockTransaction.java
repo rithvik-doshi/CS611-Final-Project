@@ -28,11 +28,11 @@ public class StockTransaction extends Transaction{
 
     @Override
     public String[] getInfoAsArray() {
-        return new String[]{this.getBehaviour(), this.getStockName(), String.valueOf(this.getQuantity()), String.valueOf(this.getMoney()), this.getTimestamp()};
+        return new String[]{this.getBehaviour(), this.getStockName(), String.valueOf(this.getQuantity()), String.valueOf(this.getMoney())};
     }
 
     public String toString() {
-        return this.getBehaviour() + "," + this.getStockName() + "," + this.getQuantity() + "," + this.getMoney() + "," + this.getTimestamp();
+        return this.getBehaviour() + "," + this.getStockName() + "," + this.getQuantity() + "," + this.getMoney();
     }
 
 }

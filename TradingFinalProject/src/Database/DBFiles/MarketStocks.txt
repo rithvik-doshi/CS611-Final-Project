@@ -1,3 +1,4 @@
+stockname, price
 AAPL,123.03
 GOOG,234.23
 MSFT,140.2

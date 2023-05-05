@@ -1,7 +1,10 @@
 package View;
+import Model.ManagerLogin;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.nio.file.Paths;
 
 public class ManagerLoginPage extends JFrame {
     private JLabel titleLabel;
@@ -14,6 +17,7 @@ public class ManagerLoginPage extends JFrame {
     private JTextField keyTextField;
     private JButton loginButton;
     private JButton backButton;
+    private ManagerLogin managerLogin;
 
     public ManagerLoginPage() {
         // Set up the frame
@@ -38,21 +42,6 @@ public class ManagerLoginPage extends JFrame {
         loginButton = new JButton("Login");
         backButton = new JButton("Back");
 
-        loginButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // TODO: Implement login functionality
-                JOptionPane.showMessageDialog(null, "Login successful!");
-            }
-        });
-
-        backButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Back button clicked
-                EntryInterface entryInterface = new EntryInterface();
-                ManagerLoginPage.this.setVisible(false);
-            }
-        });
-
         loginPanel.add(usernameLabel);
         loginPanel.add(usernameTextField);
         loginPanel.add(passwordLabel);
@@ -67,10 +56,35 @@ public class ManagerLoginPage extends JFrame {
         loginPanel.add(new JLabel(""));
         loginPanel.add(buttonPanel);
 
-
         // Add components to the frame
         getContentPane().add(titleLabel, BorderLayout.NORTH);
         getContentPane().add(loginPanel, BorderLayout.CENTER);
+
+        String currentPath = Paths.get("").toAbsolutePath().toString();
+        currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/Manager.txt";
+        managerLogin = new ManagerLogin(currentPath);
+
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String username = usernameTextField.getText();
+                String password = new String(passwordField.getPassword());
+                String managerKey = keyTextField.getText();
+
+                if (managerLogin.checkLogin(username, password, managerKey)) {
+                    JOptionPane.showMessageDialog(null, "Login successful!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Incorrect username, password, or manager key. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Back button clicked
+                ManagerLoginPage.this.setVisible(false);
+                EntryInterface entryInterface = new EntryInterface();
+            }
+        });
     }
 
     public static void main(String[] args) {

@@ -16,7 +16,6 @@ public class PersonalTransactionHistory extends TransactionHistory {
     public Transaction getTransaction(String[] parts) {
         String behaviour = parts[0];
         double money = Double.parseDouble(parts[1]);
-        String timestamp = parts[2];
-        return new PersonalTransaction(behaviour, money, timestamp);
+        return new PersonalTransaction(behaviour, money);
     }
 }

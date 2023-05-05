@@ -11,10 +11,10 @@ public class PersonalTransaction extends Transaction {
 
     @Override
     public String[] getInfoAsArray() {
-        return new String[]{this.getBehaviour(), String.valueOf(this.getMoney()), this.getTimestamp()};
+        return new String[]{this.getBehaviour(), String.valueOf(this.getMoney())};
     }
 
     public String toString() {
-        return this.getBehaviour() + "," + this.getMoney() + "," + this.getTimestamp();
+        return this.getBehaviour() + "," + this.getMoney();
     }
 }

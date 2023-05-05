@@ -1,6 +1,7 @@
 package View;
 
 import Model.CustomerLogin;
+import Model.CustomerPersonalAccountSystem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,10 @@ public class LoginRegistrationPage extends JFrame {
     private JPasswordField passwordField;
     private CustomerLogin customerLogin;
     private EntryInterface entryInterface;
+    private JButton backButtonLogin;
+    private JButton backButtonRegister;
+    private CustomerPersonalAccountSystem customerPersonalAccountSystem;
+
 
 
     public LoginRegistrationPage() {
@@ -59,7 +64,7 @@ public class LoginRegistrationPage extends JFrame {
         loginButton = new JButton("Login");
         backButton = new JButton("Back");
         buttonPanel.add(loginButton);
-        buttonPanel.add(backButton);
+
 
         loginConstraints.gridx = 0;
         loginConstraints.gridy = 2;
@@ -120,6 +125,7 @@ public class LoginRegistrationPage extends JFrame {
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Login", loginPanel);
         tabbedPane.addTab("Registration", registrationPanel);
+        // tabbedPane.addTab("back", backButtonLogin);
 
         getContentPane().add(tabbedPane);
 
@@ -137,6 +143,12 @@ public class LoginRegistrationPage extends JFrame {
 
                 if (customerLogin.checkLogin(username, password)) {
                     JOptionPane.showMessageDialog(null, "Login successful!");
+                    //create customer object
+                    customerPersonalAccountSystem = customerLogin.getCustomerPersonalAccountSystem();
+                    PersonalAccountView personalAccountView = new PersonalAccountView(customerPersonalAccountSystem);
+                    personalAccountView.setVisible(true);
+
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Incorrect username or password. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -157,6 +169,22 @@ public class LoginRegistrationPage extends JFrame {
                 }
             }
         });
+
+        backButtonLogin = new JButton("Back");
+        backButtonLogin.addActionListener(e -> {
+            LoginRegistrationPage.this.dispose();
+            EntryInterface ui = new EntryInterface();
+            ui.setVisible(true);
+        });
+        loginPanel.add(backButtonLogin, BorderLayout.NORTH);
+
+        backButtonRegister = new JButton("Back");
+        backButtonRegister.addActionListener(e -> {
+            LoginRegistrationPage.this.dispose();
+            EntryInterface ui = new EntryInterface();
+            ui.setVisible(true);
+        });
+        registrationPanel.add(backButtonRegister, BorderLayout.NORTH);
     }
 
     public static void main(String[] args) {
