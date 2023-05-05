@@ -7,21 +7,52 @@ public class PersonalAccount extends Account {
         super(id, type, balance, ownerID);
     }
 
-    // Construct new Personal Account
-    public PersonalAccount(int id){
-        super();
-        this.id = id;
-        this.balance = 0;
-    }
+//    // Construct new Personal Account
+//    public PersonalAccount(int id){
+//        super();
+//        this.id = id;
+//        this.balance = 0;
+//    }
 
 
-    public static String generateCurrentId() {
-        return "A" + getCurrentID();
-    }
+//    public static String generateCurrentId() {
+//        return "A" + getCurrentID();
+//    }
 
     public void deposit(double amount) {
         this.balance += amount;
     }
+
+
+    public static void updateCustomerFile(String filePath, int id, double newMoney) {
+        System.out.println(customerPath);
+
+        try {
+            List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8));
+            int lineNumber = -1;
+
+            for (int i = 1; i < fileContent.size(); i++) {
+                String[] fields = fileContent.get(i).split(", ");
+                if (Integer.parseInt(fields[0]) == id) {
+                    lineNumber = i;
+                    break;
+                }
+            }
+
+            if (lineNumber != -1) {
+                String[] fields = fileContent.get(lineNumber).split(", ");
+                fields[4] = String.valueOf(newMoney);
+                fileContent.set(lineNumber, String.join(", ", fields));
+                Files.write(Paths.get(filePath), fileContent, StandardCharsets.UTF_8);
+                System.out.println("Money updated successfully");
+            } else {
+                System.out.println("Customer not found.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public boolean withdraw(double amount) {
         if (this.balance >= amount) {
@@ -39,5 +70,12 @@ public class PersonalAccount extends Account {
         } else {
             return false;
         }
+    }
+
+
+
+    public static void main(String[] args) {
+        updateCustomerFile(customerPath, 1, 2500);
+        System.out.println(customerPath);
     }
 }

@@ -50,6 +50,7 @@ public class PersonalAccountView extends JFrame {
                     try {
                         double amount = Double.parseDouble(input);
                         accountBalance += amount;
+                        customerPersonalAccountSystem.saveMoney(amount);
                         accountBalanceLabel.setText("Account Balance: " + df.format(accountBalance));
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid amount.");
@@ -79,10 +80,25 @@ public class PersonalAccountView extends JFrame {
 
         tradingAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO: Implement trading account button functionality
+                if (!customerPersonalAccountSystem.getCustomer().checkTradingAccountExit()) {
+                    // Create a custom dialog with message and Yes/No buttons
+                    int result = JOptionPane.showOptionDialog(PersonalAccountView.this,
+                            "You do not have a trading account. Would you like to apply for one?",
+                            "Apply for Trading Account",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE,
+                            null, null, null);
+
+                    if (result == JOptionPane.YES_OPTION) {
+                        // Proceed with the trading account application process
+
+                    }
+                }
+                else {
+
+                }
             }
         });
-
         requestTradingAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // TODO: Implement request trading account button functionality

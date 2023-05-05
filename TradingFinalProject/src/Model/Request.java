@@ -70,8 +70,5 @@ public class Request {
             e.printStackTrace();
         }
     }
-    
 
-
-    
 }

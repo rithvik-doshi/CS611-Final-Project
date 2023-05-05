@@ -1,5 +1,13 @@
 package Model;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.io.BufferedWriter;
+
 public class Customer extends Person {
     private PersonalAccount personalAccount;
     private TradingAccount tradingAccount;
