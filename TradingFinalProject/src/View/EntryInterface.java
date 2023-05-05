@@ -56,6 +56,15 @@ public class EntryInterface extends JFrame {
             }
         });
 
+        exitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0); // Exit the application with a status code of 0
+            }
+        });
+        panel.add(exitButton);
+
+
+
         // Add the panel to the frame
         getContentPane().add(panel);
 

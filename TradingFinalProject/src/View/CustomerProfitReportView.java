@@ -59,5 +59,10 @@ public class CustomerProfitReportView extends JFrame {
         reportPanel.revalidate();
         reportPanel.repaint();
     }
+
+    public static void main(String[] args) {
+        new CustomerProfitReportView();
+    }
+
 }
 

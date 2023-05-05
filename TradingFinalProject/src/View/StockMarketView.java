@@ -38,7 +38,7 @@ public class StockMarketView extends JFrame {
                 if (selectedRow != -1) {
                     //each row item name and item price.
                     String itemName = (String) stockTable.getValueAt(selectedRow, 1);
-                    int itemPrice = (Integer) stockTable.getValueAt(selectedRow,0);
+//                    Double itemPrice = Double.parseDouble((String) stockTable.getValueAt(selectedRow,0)) ;
 
                     int response = JOptionPane.showConfirmDialog(null,
                             "Do you want to buy " + itemName + "?",

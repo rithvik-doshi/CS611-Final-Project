@@ -37,10 +37,14 @@ public class CustomerLogin {
     }
 
     public boolean registerNewCustomer(String name, String email, String password,String path) {
+        System.out.println(customers.size());
         int newID = customers.size() + 1;
         Customer newCustomer = new Customer(newID, name, email, password);
         customers.add(newCustomer);
 
+        if(name.isEmpty()|| email.isEmpty()|| password.isEmpty()){
+            return false;
+        }
         try {
             FileWriter fileWriter = new FileWriter(path, true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
