@@ -14,3 +14,9 @@ Deposit, 100.0
 Deposit, 3500.0
 Deposit, 3500.0
 Deposit, 1000.0
+Deposit, 1000.0
+Deposit, 2501.0
+Deposit, 2501.0
+Deposit, 1000.0
+Deposit, 1000.0
+Deposit, 3500.0
