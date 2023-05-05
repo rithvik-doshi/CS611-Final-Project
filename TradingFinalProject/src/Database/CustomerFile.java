@@ -32,8 +32,8 @@ public class CustomerFile {
                 String email = data[2].trim();
                 String password = data[3].trim();
 
-                Customer person = new Customer(id, name, email, password);
-                fileStream.add(person);
+//                Customer person = new Customer(id, name, email, password);
+//                fileStream.add(person);
                 
             }
         } catch (IOException e) {

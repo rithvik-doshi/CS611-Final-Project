@@ -142,8 +142,8 @@ public class LoginRegistrationPage extends JFrame {
                 String password = new String(passwordField.getPassword());
 
                 if (customerLogin.checkLogin(username, password)) {
+                    System.out.println("successful");
                     JOptionPane.showMessageDialog(null, "Login successful!");
-                    //create customer object
                     customerPersonalAccountSystem = customerLogin.getCustomerPersonalAccountSystem();
                     PersonalAccountView personalAccountView = new PersonalAccountView(customerPersonalAccountSystem);
                     personalAccountView.setVisible(true);

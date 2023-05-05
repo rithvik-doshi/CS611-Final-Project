@@ -72,33 +72,33 @@ public class TradingSystemModel {
         return true;
     }
 
-    public static void main(String[] args) {
-
-        Manager manager = new Manager(1, "Rithvik Doshi", "bruh@buh.com", "password");
-//        This is not the correct way to initialize a manager, doing it for testing purposes
-        System.out.println(manager.keyValue());
-
-        TradingSystemModel TSP = new TradingSystemModel();
-
-        System.out.println(TSP.login("rithvik@bu.edu", "123"));
-        System.out.println(TSP.getMode().toString() + " " + TSP.getStatus().toString());
-
-
-        System.out.println(SMP.addStock("BRUH", 100, manager.getID(), manager.getKey()));
-        System.out.println(SMP.addStock("BRUH", 10230.2, manager.getID(), manager.getKey()));
-        System.out.println(SMP.removeStock("BRUH", manager.getID(), manager.getKey()));
-        System.out.println(SMP.addStock("BRUH", 10230.2, manager.getID(), manager.getKey()));
-        System.out.println(SMP.setStockPrice("BRUH", 23, manager.getID(), manager.getKey()));
-
-        PersonalTransactionHistory pth = new PersonalTransactionHistory("32134", "Rithvik Doshi");
-        pth.addToHistory(new PersonalTransaction("WITHDRAW", 345));
-        System.out.println(pth);
-
-        StockTransactionHistory sth = new StockTransactionHistory("2", "Yuxi");
-        sth.addToHistory(new StockTransaction("BUY", "BRUH", 100, 100));
-        System.out.println(sth);
-
-    }
+//    public static void main(String[] args) {
+//
+//        Manager manager = new Manager(1, "Rithvik Doshi", "bruh@buh.com", "password");
+////        This is not the correct way to initialize a manager, doing it for testing purposes
+//        System.out.println(manager.keyValue());
+//
+//        TradingSystemModel TSP = new TradingSystemModel();
+//
+//        System.out.println(TSP.login("rithvik@bu.edu", "123"));
+//        System.out.println(TSP.getMode().toString() + " " + TSP.getStatus().toString());
+//
+//
+//        System.out.println(SMP.addStock("BRUH", 100, manager.getID(), manager.getKey()));
+//        System.out.println(SMP.addStock("BRUH", 10230.2, manager.getID(), manager.getKey()));
+//        System.out.println(SMP.removeStock("BRUH", manager.getID(), manager.getKey()));
+//        System.out.println(SMP.addStock("BRUH", 10230.2, manager.getID(), manager.getKey()));
+//        System.out.println(SMP.setStockPrice("BRUH", 23, manager.getID(), manager.getKey()));
+//
+//        PersonalTransactionHistory pth = new PersonalTransactionHistory("32134", "Rithvik Doshi");
+//        pth.addToHistory(new PersonalTransaction("WITHDRAW", 345));
+//        System.out.println(pth);
+//
+//        StockTransactionHistory sth = new StockTransactionHistory("2", "Yuxi");
+//        sth.addToHistory(new StockTransaction("BUY", "BRUH", 100, 100));
+//        System.out.println(sth);
+//
+//    }
 
     public ModelMode getMode() {
         return mode;

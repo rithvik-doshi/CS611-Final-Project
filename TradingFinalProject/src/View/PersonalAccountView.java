@@ -33,7 +33,7 @@ public class PersonalAccountView extends JFrame {
 
         // Set up the labels
         DecimalFormat df = new DecimalFormat("$#,##0.00");
-        accountBalanceLabel = new JLabel("Account Balance: " + df.format(accountBalance));
+        accountBalanceLabel = new JLabel("Account Balance: " + customerPersonalAccountSystem.getCustomer().getBalance());
         transactionHistoryLabel = new JLabel("Transaction History: ");
 
         // Set up the buttons

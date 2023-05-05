@@ -3,6 +3,7 @@ package Model;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.Array;
 import java.util.ArrayList;
 
@@ -31,7 +32,7 @@ public class CustomerPersonalAccountSystem {
     public ArrayList<String[]> readDataFromFile(String filePath) {
         ArrayList<String[]> data = new ArrayList<>();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            BufferedReader reader = new BufferedReader(new FileReader(currentPath));
             String line = reader.readLine(); // skip header line
             while ((line = reader.readLine()) != null) {
                 String[] fields = line.split(",");

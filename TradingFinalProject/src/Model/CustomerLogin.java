@@ -17,7 +17,7 @@ public class CustomerLogin {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] parts = line.split(", ");
-                if (parts.length != 4) {
+                if (parts.length != 5) {
                     continue;
                 }
                 Customer customer = new Customer(Integer.parseInt(parts[0]), parts[1], parts[2], parts[3], Double.parseDouble(parts[4]));
@@ -33,7 +33,6 @@ public class CustomerLogin {
             if (customer.getName().equals(username) && customer.getPassword().equals(password)) {
                 PersonalAccount personalAccount = new PersonalAccount(customer.getID(), customer.getBalance());
                 customerPersonalAccountSystem = new CustomerPersonalAccountSystem(customer);
-
                 return true;
             }
         }
