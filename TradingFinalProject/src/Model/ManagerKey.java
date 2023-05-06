@@ -16,6 +16,9 @@ public class ManagerKey {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
+                if (parts.length < 5) {
+                    continue;
+                }
                 int id = Integer.parseInt(parts[0].trim());
                 if (id == lookupId) {
                     key = parts[4].trim();
