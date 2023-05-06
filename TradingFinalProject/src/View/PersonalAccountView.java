@@ -38,7 +38,7 @@ public class PersonalAccountView extends JFrame {
         transactionHistoryLabel = new JLabel("Transaction History: ");
 
         // Set up the buttons
-        saveButton = new JButton("Save Money");
+        saveButton = new JButton("Deposit Money");
         withdrawButton = new JButton("Withdraw Money");
         tradingAccountButton = new JButton("Trading Account");
         requestTradingAccountButton = new JButton("Request Trading Account");
@@ -46,7 +46,7 @@ public class PersonalAccountView extends JFrame {
         // Add action listeners to the buttons
         saveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String input = JOptionPane.showInputDialog("Enter amount to save:");
+                String input = JOptionPane.showInputDialog("Enter amount to deposit:");
                 if (input != null) {
                     try {
                         double amount = Double.parseDouble(input);

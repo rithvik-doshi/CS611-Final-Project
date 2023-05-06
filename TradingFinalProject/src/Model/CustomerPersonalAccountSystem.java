@@ -46,4 +46,10 @@ public class CustomerPersonalAccountSystem {
 
     public void saveMoney(double amount) {
     }
+
+    public void withdrawMoney(double amount) {
+    }
+
+    public void sendOpenTradingAccountRequest() {
+    }
 }
