@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 public class PersonalAccountView extends JFrame {
+    private CustomerPersonalAccountSystem customerPersonalAccountSystem;
     private JLabel greetingLabel;
     private JLabel accountBalanceLabel;
     private JLabel transactionHistoryLabel;

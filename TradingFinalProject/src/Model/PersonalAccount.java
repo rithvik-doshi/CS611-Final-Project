@@ -1,6 +1,18 @@
 package Model;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
 public class PersonalAccount extends Account {
+
+    private static final String basePath = Paths.get("").toAbsolutePath() + "/TradingFinalProject/src/Database/DBFiles/";
+
+    public static String filePath = basePath + "CustomerPersonalAccounts.txt/" + id + "_Account.txt";
 
     // Read from the database
     public PersonalAccount(String id, String type, double balance, String ownerID) {
@@ -24,7 +36,7 @@ public class PersonalAccount extends Account {
     }
 
 
-    public static void updateCustomerFile(String filePath, int id, double newMoney) {
+    public static void updateCustomerFile(int id, double newMoney) {
 
         System.out.println("newMoney: " + newMoney);
         try {
@@ -56,6 +68,7 @@ public class PersonalAccount extends Account {
 
 
     public boolean withdraw(double amount) {
+
         if (balance >= amount) {
             balance -= amount;
 
@@ -70,7 +83,7 @@ public class PersonalAccount extends Account {
                 System.out.println("An error occurred while writing request to DBfile.");
                 e.printStackTrace();
             }
-            updateCustomerFile(customerPath,id,balance);
+            updateCustomerFile(Integer.parseInt(id), balance);
             return true;
         } else {
             return false;
@@ -89,7 +102,7 @@ public class PersonalAccount extends Account {
 
 
     public static void main(String[] args) {
-        updateCustomerFile(customerPath, 1, 2500);
-        System.out.println(customerPath);
+        updateCustomerFile(1, 2500);
+//        System.out.println(basePath);
     }
 }

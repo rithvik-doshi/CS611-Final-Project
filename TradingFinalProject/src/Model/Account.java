@@ -1,7 +1,7 @@
 package Model;
 
 public class Account{
-    protected String id;
+    protected static String id;
     protected String type;
     protected double balance;
     protected String ownerID;
