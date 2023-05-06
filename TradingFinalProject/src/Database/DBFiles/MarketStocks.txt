@@ -1,6 +1,4 @@
-stockname, price
-AAPL,123.03
-GOOG,234.23
+AAPL,122.03
 MSFT,140.2
 AMZN,1856.97
 FB,178.1
@@ -25,3 +23,7 @@ PFE,38.41
 KO,54.28
 PEP,156.19
 BRUH,23.0
+testing,23.23
+bruhmongus,1.0
+GOOG,999.0
+ytye,23.0
