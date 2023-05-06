@@ -48,7 +48,7 @@ public class ManageStockView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ManageStockView.this.dispose();
-                ManagerPortfolioView ui = new ManagerPortfolioView();
+                ManagerPortfolioView ui = new ManagerPortfolioView(manager);
                 ui.setVisible(true);
             }
         });

@@ -15,8 +15,13 @@ public class ManagerPortfolioView extends JFrame {
     private JButton approveCustomersButton;
     private JButton trackCustomersButton;
 
-    public ManagerPortfolioView() {
+    private Manager manager;
+
+    public ManagerPortfolioView(Manager manager) {
         super("Manager Portfolio System");
+
+        this.manager = manager;
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -35,7 +40,7 @@ public class ManagerPortfolioView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // handle manage stocks button action
-                ManageStockView ui = new ManageStockView(new Manager(1, "Rithvik Doshi", "bruh@buh.com", "password"));
+                ManageStockView ui = new ManageStockView(manager);
                 ui.setVisible(true);
                 ManagerPortfolioView.this.setVisible(false);
             }
@@ -45,7 +50,7 @@ public class ManagerPortfolioView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // handle approve customers button action
-                TradingAccountRequestsView ui = new TradingAccountRequestsView();
+                TradingAccountRequestsView ui = new TradingAccountRequestsView(manager);
                 ui.setVisible(true);
                 ManagerPortfolioView.this.setVisible(false);
             }
@@ -55,7 +60,7 @@ public class ManagerPortfolioView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // handle track customers button action
-                CustomerProfitReportView ui = new CustomerProfitReportView();
+                CustomerProfitReportView ui = new CustomerProfitReportView(manager);
                 ui.setVisible(true);
                 ManagerPortfolioView.this.setVisible(false);
             }
@@ -73,7 +78,7 @@ public class ManagerPortfolioView extends JFrame {
 
 
     public static void main(String[] args) {
-        ManagerPortfolioView ui = new ManagerPortfolioView();
+//        ManagerPortfolioView ui = new ManagerPortfolioView();
     }
 
 }

@@ -16,7 +16,9 @@ public class TradingAccountRequestsView extends JFrame {
     private RequestFactory requestFactory = new RequestFactory();
 //    private PortfolioManagementSystem portfolioManagementSystem = new PortfolioManagementSystem();
 
-    public TradingAccountRequestsView() {
+    private Manager manager;
+
+    public TradingAccountRequestsView(Manager manager) {
 
         super("Trading Account Requests");
         setTitle("Trading Account Requests");
@@ -38,7 +40,7 @@ public class TradingAccountRequestsView extends JFrame {
         backButton = new JButton("Back");
         backButton.addActionListener(e -> {
             TradingAccountRequestsView.this.dispose();
-            ManagerPortfolioView ui = new ManagerPortfolioView();
+            ManagerPortfolioView ui = new ManagerPortfolioView(manager);
             ui.setVisible(true);
         });
         add(backButton, BorderLayout.NORTH);
@@ -94,6 +96,6 @@ public class TradingAccountRequestsView extends JFrame {
     }
 
     public static void main(String[] args) {
-        new TradingAccountRequestsView();
+//        new TradingAccountRequestsView();
     }
 }
