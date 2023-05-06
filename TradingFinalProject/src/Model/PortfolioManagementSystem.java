@@ -10,7 +10,7 @@ package Model;
 
 public class PortfolioManagementSystem {
 
-    Manager manager;
+    private  Manager manager ;
     SMProxy stockMarket = SMProxy.instance;
     
 

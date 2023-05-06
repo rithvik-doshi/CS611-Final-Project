@@ -1,4 +1,5 @@
 package View;
+import Model.Manager;
 import Model.ManagerLogin;
 
 import javax.swing.*;
@@ -72,6 +73,9 @@ public class ManagerLoginPage extends JFrame {
 
                 if (managerLogin.checkLogin(username, password, managerKey)) {
                     JOptionPane.showMessageDialog(null, "Login successful!");
+                    Manager manager = managerLogin.getManager();
+                    ManagerPortfolioView managerPortfolioView = new ManagerPortfolioView();
+                    managerPortfolioView.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(null, "Incorrect username, password, or manager key. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
                 }

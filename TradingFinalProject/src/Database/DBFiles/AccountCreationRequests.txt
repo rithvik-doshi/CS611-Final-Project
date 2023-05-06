@@ -1,4 +1,4 @@
-"rithvik@bu.edu" "Pending"
-"mramoska@bu.edu" "Approved"
-"yuxi@bu.edu" "Rejected"
-"zhangde@bu.edu" "Pending"
+rithvik@bu.edu Pending
+zhangde@bu.edu Pending
+SAM@BU.EDU Pending
+SAM@BU.EDU Pending
