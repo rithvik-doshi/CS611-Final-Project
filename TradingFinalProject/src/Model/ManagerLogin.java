@@ -18,14 +18,14 @@ public class ManagerLogin {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-                int ID = Integer.parseInt(data[0].trim());
+                int ID = Integer.parseInt(data[0]);
                 String fileUsername = data[1].trim();
                 String fileemail = data[2].trim();
                 String filePassword = data[3].trim();
                 String fileManagerKey = data[4].trim();
 
                 if (fileUsername.equalsIgnoreCase(username) && filePassword.equals(password) && fileManagerKey.equals(managerKey)) {
-                    manager = new Manager(1,fileUsername,fileemail,filePassword);
+                    manager = new Manager(ID,fileUsername,fileemail,filePassword);
                     return true;
                 }
             }

@@ -1,12 +1,14 @@
 package Model;
 
 public class Account{
-    protected static String id;
+    protected String id;
     protected String type;
     protected double balance;
     protected String ownerID;
 
     //For read account from database
+    public Account(){}
+
     public Account(String id, String type, double balance, String ownerID) {
         this.type = type;
         this.balance = balance;
@@ -36,12 +38,12 @@ public class Account{
     protected static int getCurrentID(){
         return 0;
     }
-    
+
 
     public String getId() {
         return id;
     }
-    
+
     public String getType() {
         return type;
     }

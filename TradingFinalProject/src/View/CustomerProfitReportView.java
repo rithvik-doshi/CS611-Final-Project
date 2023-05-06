@@ -5,15 +5,20 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import Model.Customer;
+import Model.Manager;
 import Model.SMProxy;
 
 public class CustomerProfitReportView extends JFrame {
     private JPanel reportPanel;
     private JButton backButton;
 
-    public CustomerProfitReportView() {
+    private Manager manager;
+
+    public CustomerProfitReportView(Manager manager) {
         setTitle("Customer Profit Report");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.manager = manager;
 
         reportPanel = new JPanel();
         reportPanel.setLayout(new BoxLayout(reportPanel, BoxLayout.Y_AXIS));
@@ -22,7 +27,7 @@ public class CustomerProfitReportView extends JFrame {
         backButton = new JButton("Back");
         backButton.addActionListener(e -> {
             CustomerProfitReportView.this.dispose();
-            ManagerPortfolioView ui = new ManagerPortfolioView();
+            ManagerPortfolioView ui = new ManagerPortfolioView(manager);
             ui.setVisible(true);
         });
         add(backButton, BorderLayout.NORTH);
@@ -61,7 +66,7 @@ public class CustomerProfitReportView extends JFrame {
     }
 
     public static void main(String[] args) {
-        new CustomerProfitReportView();
+//        new CustomerProfitReportView();
     }
 
 }
