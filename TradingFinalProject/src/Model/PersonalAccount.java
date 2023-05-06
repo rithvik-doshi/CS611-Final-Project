@@ -10,13 +10,20 @@ import java.util.List;
 
 public class PersonalAccount extends Account {
 
-    private static final String basePath = Paths.get("").toAbsolutePath() + "/TradingFinalProject/src/Database/DBFiles/";
+    private int id;
+    private double balance;
+    private String filePath;
+    private String currentPath;
+    private static  String customerPath = Paths.get("").toAbsolutePath().toString() +"/TradingFinalProject/src/Database/DBFiles/Customer.txt";
+    // Customer Constructor for Read from the database
+    public PersonalAccount(int id, double balance) {
+        this.id = id;
+        this.balance = balance;
+        System.out.println("this is balance:"+balance);
+        String currentPath = Paths.get("").toAbsolutePath().toString();
+        currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/";
+        this.filePath = currentPath+ "CustomerPersonalHistory/"+ this.id +"_PersonalHistory.txt";
 
-    public static String filePath = basePath + "CustomerPersonalAccounts.txt/" + id + "_Account.txt";
-
-    // Read from the database
-    public PersonalAccount(String id, String type, double balance, String ownerID) {
-        super(id, type, balance, ownerID);
     }
 
 //    // Construct new Personal Account
@@ -32,11 +39,25 @@ public class PersonalAccount extends Account {
 //    }
 
     public void deposit(double amount) {
-        this.balance += amount;
+        balance += amount;
+        String data = "Deposit" + ", " + amount+"\n";
+
+        try {
+            FileWriter fw = new FileWriter(filePath, true);
+            fw.write(data);
+            fw.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while writing request to DBfile.");
+            e.printStackTrace();
+        }
+        updateCustomerFile(customerPath,id,balance);
+        System.out.println("New balance:"+balance);
+
     }
 
 
-    public static void updateCustomerFile(int id, double newMoney) {
+    public static void updateCustomerFile(String filePath, int id, double newMoney) {
 
         System.out.println("newMoney: " + newMoney);
         try {
@@ -68,7 +89,6 @@ public class PersonalAccount extends Account {
 
 
     public boolean withdraw(double amount) {
-
         if (balance >= amount) {
             balance -= amount;
 
@@ -83,7 +103,7 @@ public class PersonalAccount extends Account {
                 System.out.println("An error occurred while writing request to DBfile.");
                 e.printStackTrace();
             }
-            updateCustomerFile(Integer.parseInt(id), balance);
+            updateCustomerFile(customerPath,id,balance);
             return true;
         } else {
             return false;
@@ -102,7 +122,7 @@ public class PersonalAccount extends Account {
 
 
     public static void main(String[] args) {
-        updateCustomerFile(1, 2500);
-//        System.out.println(basePath);
+        updateCustomerFile(customerPath, 1, 2500);
+        System.out.println(customerPath);
     }
 }

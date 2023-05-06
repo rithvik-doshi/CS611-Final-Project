@@ -51,10 +51,6 @@ public class StockMarket {
 
     public ArrayList<MarketStock> stocks = new ArrayList<>();
 
-    public ArrayList<MarketStock> getStocks() {
-        return stocks;
-    }
-
     public boolean addStock(String name, double price) {
         for (MarketStock stock : stocks) {
             if (stock.getName().equals(name)) {

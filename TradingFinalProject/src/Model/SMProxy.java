@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
-
 public class SMProxy {
     private static final StockMarket SM = StockMarket.instance;
     public static final SMProxy instance;
@@ -13,8 +11,6 @@ public class SMProxy {
     private boolean validate(int ID, String key) {
 
         ManagerKey managerKey = new ManagerKey(ID);
-
-        System.out.println(key + " " + managerKey.getKeyValue());
 
         if (managerKey.getKeyValue().equals(key)) {
             return true;
@@ -47,9 +43,4 @@ public class SMProxy {
         }
         return false;
     }
-
-    public ArrayList<MarketStock> getAllStocks() {
-        return SM.getStocks();
-    }
-
 }

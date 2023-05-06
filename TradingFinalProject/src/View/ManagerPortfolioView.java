@@ -1,7 +1,5 @@
 package View;
 
-import Model.Manager;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -35,7 +33,7 @@ public class ManagerPortfolioView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // handle manage stocks button action
-                ManageStockView ui = new ManageStockView(new Manager(1, "Rithvik Doshi", "bruh@buh.com", "password"));
+                ManageStockView ui = new ManageStockView();
                 ui.setVisible(true);
                 ManagerPortfolioView.this.setVisible(false);
             }

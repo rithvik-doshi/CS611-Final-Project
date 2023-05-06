@@ -37,7 +37,6 @@ public class CustomerLogin {
     public boolean checkLogin(String username, String password) {
         for (Customer customer : customers) {
             if (customer.getName().equals(username) && customer.getPassword().equals(password)) {
-//                PersonalAccount personalAccount = new PersonalAccount(customer.getID(), customer.getBalance());
                 customerPersonalAccountSystem = new CustomerPersonalAccountSystem(customer);
                 return true;
             }

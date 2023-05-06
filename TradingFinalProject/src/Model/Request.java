@@ -1,6 +1,12 @@
 package Model;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class Request {
     private String sender;
@@ -25,8 +31,56 @@ public class Request {
     }
 
     public void approve() {
+        this.status = "Approved";
         this.isApproved = true;
         setApproved();
+        createCustomerStockDBFiles();
+        createStockHisotyDBFiles();
+    }
+
+    public void createStockHisotyDBFiles(){
+        String currentPath = Paths.get("").toAbsolutePath().toString();
+        currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/CustomerStockHistory/"+ getSender() +"_StockHistory.txt";
+        Path path = Paths.get(currentPath);
+        boolean fileExists = Files.exists(path);
+        if(fileExists){return;}
+        else{
+            try {
+                File file = new File("/TradingFinalProject/src/Database/DBFiles/CustomerStockHistory", getSender() +"_StockHistory.txt");
+                Files.createFile(path);
+                try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.WRITE)) {
+                    String header = "behavior, item name, quantity, total price" +
+                            "\n";
+                    writer.write(header);
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public void createCustomerStockDBFiles(){
+        String currentPath = Paths.get("").toAbsolutePath().toString();
+        currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/CustomerStocks/"+ getSender() +"_Stocks.txt";
+        Path path = Paths.get(currentPath);
+        boolean fileExists = Files.exists(path);
+        if(fileExists){return;}
+        else{
+            try {
+                File file = new File("/TradingFinalProject/src/Database/DBFiles/CustomerStocks", getSender() +"_Stocks.txt");
+                Files.createFile(path);
+                try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.WRITE)) {
+                    String header = "itemname, quantity" +
+                            "\n";
+                    writer.write(header);
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void reject() {
@@ -58,7 +112,7 @@ public class Request {
     //TODO write request to database
     public void writeRequestToDB() {
         String path = "TradingFinalProject/src/Database/DBFiles/AccountCreationRequests.txt";
-        String data = "\""+sender + "\" \"" + status+"\"\n";
+        String data = sender + " " + status+"\n";
 
         try {
             FileWriter fw = new FileWriter(path, true);

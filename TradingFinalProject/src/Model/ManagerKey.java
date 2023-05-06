@@ -13,12 +13,9 @@ public class ManagerKey {
         String currentPath = Paths.get("").toAbsolutePath() + "/TradingFinalProject/src/Database/DBFiles/";
         String filePath = currentPath + "Manager.txt";
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line = br.readLine();
+            String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length < 5) {
-                    continue;
-                }
                 int id = Integer.parseInt(parts[0].trim());
                 if (id == lookupId) {
                     key = parts[4].trim();
@@ -36,4 +33,5 @@ public class ManagerKey {
     public String getKeyValue() {
         return key;
     }
+
 }

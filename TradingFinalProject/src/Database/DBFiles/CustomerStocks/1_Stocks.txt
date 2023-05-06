@@ -1,4 +1,4 @@
-item name, quantity
+itemname, quantity
 AAPL,23
 GOOG,17
 MSFT,12

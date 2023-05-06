@@ -5,10 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import Model.Manager;
+import Model.Stock;
 import Model.MarketStock;
-import Model.SMProxy;
 
 public class ManageStockView extends JFrame {
 
@@ -19,16 +17,16 @@ public class ManageStockView extends JFrame {
 
     // List of stocks
     private ArrayList<MarketStock> Marketstocks;
-
-    private Manager manager;
     
 
-    public ManageStockView(Manager manager) {
+    public ManageStockView() {
         super("Manage Stocks");
-
-        this.manager = manager;
         //Test Proposed:
-        Marketstocks = SMProxy.instance.getAllStocks();
+        Marketstocks = new ArrayList<>();
+        Marketstocks.add(new MarketStock("AAPL", 100.00));
+        Marketstocks.add(new MarketStock("GOOG", 200.00));
+        Marketstocks.add(new MarketStock("MSFT", 300.00));
+
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -89,8 +87,8 @@ public class ManageStockView extends JFrame {
                     try {
                         double stockPrice = Double.parseDouble(stockPriceString);
 
-                        SMProxy.instance.addStock(stockName, stockPrice, manager.getID(), manager.getKey());
-                        Marketstocks = SMProxy.instance.getAllStocks();
+                        MarketStock newStock = new MarketStock(stockName, stockPrice);
+                        Marketstocks.add(newStock);
                         displayStocks();
 
                         addStockDialog.dispose();
@@ -145,17 +143,6 @@ public class ManageStockView extends JFrame {
                 }
             });
             stockPanel.add(editPriceButton);
-
-            JButton deleteStockButton = new JButton("Delete");
-
-            deleteStockButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    deleteStock(stock);
-                }
-            });
-            stockPanel.add(deleteStockButton);
-
     
     
             this.stockPanel.add(stockPanel);
@@ -181,9 +168,7 @@ public class ManageStockView extends JFrame {
                 if (!priceString.isEmpty()) {
                     try {
                         double price = Double.parseDouble(priceString);
-//                        stock.setMoney(price);
-                        SMProxy.instance.setStockPrice(stock.getName(), price, manager.getID(), manager.getKey());
-                        Marketstocks = SMProxy.instance.getAllStocks();
+                        stock.setMoney(price);
                         displayStocks();
     
                         editPriceDialog.dispose();
@@ -214,24 +199,10 @@ public class ManageStockView extends JFrame {
         editPriceDialog.setVisible(true);
     }
 
-    private void deleteStock(MarketStock stock) {
-        int result = JOptionPane.showConfirmDialog(this,
-                "Are you sure you want to remove " + stock.getName() + " from the stock market?",
-                "Delete Stock", JOptionPane.YES_NO_OPTION);
 
-        // If the user clicked the "Yes" button, delete the stock
-        if (result == JOptionPane.YES_OPTION) {
-            // Call some method to delete the stock
-            SMProxy.instance.removeStock(stock.getName(), manager.getID(), manager.getKey());
-        }
-
-        SMProxy.instance.getAllStocks();
-        displayStocks();
-
-    }
 
     public static void main(String[] args) {
-        new ManageStockView(new Manager(1, "Rithvik Doshi", "bruh@buh.com", "password"));
+        new ManageStockView();
     }
 }
     

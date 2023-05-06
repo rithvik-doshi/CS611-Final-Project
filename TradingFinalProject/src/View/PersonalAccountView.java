@@ -1,15 +1,16 @@
 package View;
 
 import Model.CustomerPersonalAccountSystem;
+import Model.PersonalTransaction;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class PersonalAccountView extends JFrame {
-    private CustomerPersonalAccountSystem customerPersonalAccountSystem;
     private JLabel greetingLabel;
     private JLabel accountBalanceLabel;
     private JLabel transactionHistoryLabel;
@@ -17,9 +18,10 @@ public class PersonalAccountView extends JFrame {
     private JButton withdrawButton;
     private JButton tradingAccountButton;
     private JButton requestTradingAccountButton;
+    private CustomerPersonalAccountSystem customerPersonalAccountSystem;
 
     private double accountBalance = 0.0;
-    private String[] transactionHistory = {"Transaction 1", "Transaction 2", "Transaction 3"};
+    private ArrayList<String[]> PersonalTransactionHistory;
 
     public PersonalAccountView(CustomerPersonalAccountSystem customerPersonalAccountSystem) {
         // Set up the frame
@@ -28,6 +30,10 @@ public class PersonalAccountView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         this.customerPersonalAccountSystem = customerPersonalAccountSystem;
+        accountBalance = customerPersonalAccountSystem.getCustomer().getBalance();
+        //Personal Accout History should be like [["Deposit", "1000"], ["Withdraw", "1000"]]
+        PersonalTransactionHistory = customerPersonalAccountSystem.readPersonalTransactionHistoryFromDB();
+
 
         // Set up the greeting label
         greetingLabel = new JLabel("Hi " + customerPersonalAccountSystem.getCustomer().getName()+ "!");
@@ -103,6 +109,8 @@ public class PersonalAccountView extends JFrame {
         });
         requestTradingAccountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                customerPersonalAccountSystem.sendOpenTradingAccountRequest();
+                JOptionPane.showMessageDialog(null, "Request Send");
                 // TODO: Implement request trading account button functionality
             }
         });
@@ -117,15 +125,12 @@ public class PersonalAccountView extends JFrame {
         buttonPanel.add(saveButton);
         buttonPanel.add(withdrawButton);
         buttonPanel.add(tradingAccountButton);
-        buttonPanel.add(requestTradingAccountButton);
+        if(!customerPersonalAccountSystem.ifCustomerHasTradingAccount()){
+        buttonPanel.add(requestTradingAccountButton);}
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
         // Add panel to the frame
         getContentPane().add(panel);
     }
 
-    public static void main(String[] args) {
-//        PersonalAccountView ui = new PersonalAccountView();
-//        ui.setVisible(true);
-    }
 }

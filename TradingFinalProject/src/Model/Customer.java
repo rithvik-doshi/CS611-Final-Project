@@ -1,5 +1,13 @@
 package Model;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.io.BufferedWriter;
+
 public class Customer extends Person {
     private PersonalAccount personalAccount;
     private TradingAccount tradingAccount;
@@ -8,21 +16,46 @@ public class Customer extends Person {
     public Customer(int ID, String name, String email, String password, double balance) {
         super(ID,name,email,password);
         this.balance = balance;
+        createPersonalAccountHistory();
+        this.personalAccount = new PersonalAccount(getID(), balance);
+    }
+
+    public void saveMoney(double money){
+        personalAccount.deposit(money);
+    }
+
+    public boolean withDrawMoney(double money){
+        return personalAccount.withdraw(money);
     }
 
 
-    /**
-    public Customer(String name, String password) {
-        super(name, password, "C", generateCurrentId());
-        this.id = generateCurrentId();
-        this.personalAccount = new PersonalAccount(this.id);
-        this.tradingAccount = null;
+
+    private void createPersonalAccountHistory(){
+
+        String currentPath = Paths.get("").toAbsolutePath().toString();
+        currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/CustomerPersonalHistory/"+ getID() +"_PersonalHistory.txt";
+        Path path = Paths.get(currentPath);
+        boolean fileExists = Files.exists(path);
+        if(fileExists){return;}
+        else{
+            try {
+                File file = new File("/TradingFinalProject/src/Database/DBFiles/CustomerPersonalHistory", getID() +"_PersonalHistory.txt");
+                Files.createFile(path);
+                try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.WRITE)) {
+                    String header = "behavior, quantity" +
+                            "\n";
+                    writer.write(header);
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
-    */
 
     //send request to manager to open a trading account
-    public void openTradingAccount(){
-        if(tradingAccount == null){
+    public void sendTradingAccountRequest(){
+        if(!checkTradingAccountExit()){
         Request request = new Request(this.getID()+"");
         request.writeRequestToDB();}
 
@@ -30,7 +63,18 @@ public class Customer extends Person {
             System.out.println("You already have a trading account");
         }
     }
-    
+
+    public boolean checkTradingAccountExit() {
+        String currentPath = Paths.get("").toAbsolutePath().toString();
+        currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/CustomerStockHistory/"+ getID() +"_StockHistory.txt";
+
+        Path path = Paths.get(currentPath);
+
+        boolean fileExists = Files.exists(path);
+        return fileExists;
+
+    }
+
 
     public PersonalAccount getPersonalAccount() {
         return personalAccount;
@@ -64,9 +108,5 @@ public class Customer extends Person {
 
     public void setBalance(int balance) {
         this.balance = balance;
-    }
-
-    public boolean checkTradingAccountExit() {
-        return tradingAccount != null;
     }
 }

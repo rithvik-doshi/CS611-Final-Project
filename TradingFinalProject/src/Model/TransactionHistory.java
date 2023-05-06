@@ -12,8 +12,8 @@ public abstract class TransactionHistory {
 
     private final ArrayList<Transaction> history;
     private final String fileName;
-
     private static final String currentPath = Paths.get("").toAbsolutePath() + "/TradingFinalProject/src/Database/DBFiles/";
+
 
     protected TransactionHistory(String customerID, String name) {
         //TODO: load history from file based on input params
@@ -66,6 +66,11 @@ public abstract class TransactionHistory {
 
         return true;
     }
+
+    public ArrayList<Transaction> getHistory(){
+        return history;
+    }
+
 
     @Override
     public String toString() {

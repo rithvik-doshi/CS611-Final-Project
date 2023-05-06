@@ -8,14 +8,16 @@ package Model;
 // (allowing them to trade options). The ability to trade options is not to be 
 // implemented.
 
+import java.nio.file.Paths;
+
 public class PortfolioManagementSystem {
 
     private  Manager manager ;
     SMProxy stockMarket = SMProxy.instance;
-    
+    CustomerLogin customerInformation = new CustomerLogin(Paths.get("").toAbsolutePath().toString()+ "/TradingFinalProject/src/Database/DBFiles/Customer.txt");
 
     public PortfolioManagementSystem(Manager manager) {
-        this.manager = manager;
+       this.manager = manager;
     }
 
     public void approveRequest(Request request) {
