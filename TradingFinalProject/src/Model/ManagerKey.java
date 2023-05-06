@@ -36,5 +36,4 @@ public class ManagerKey {
     public String getKeyValue() {
         return key;
     }
-
 }

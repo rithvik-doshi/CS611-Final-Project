@@ -70,6 +70,7 @@ public class PersonalAccountView extends JFrame {
                             JOptionPane.showMessageDialog(null, "Insufficient funds.");
                         } else {
                             accountBalance -= amount;
+                            customerPersonalAccountSystem.withdrawMoney(amount);
                             accountBalanceLabel.setText("Account Balance: " + df.format(accountBalance));
                         }
                     } catch (NumberFormatException ex) {
@@ -92,7 +93,7 @@ public class PersonalAccountView extends JFrame {
 
                     if (result == JOptionPane.YES_OPTION) {
                         // Proceed with the trading account application process
-
+                        customerPersonalAccountSystem.sendOpenTradingAccountRequest();
                     }
                 }
                 else {

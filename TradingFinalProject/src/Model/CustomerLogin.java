@@ -28,6 +28,12 @@ public class CustomerLogin {
         }
     }
 
+    //get all customer ArrayList
+    public ArrayList<Customer> getCustomersList(){
+        return customers;
+    }
+
+
     public boolean checkLogin(String username, String password) {
         for (Customer customer : customers) {
             if (customer.getName().equals(username) && customer.getPassword().equals(password)) {

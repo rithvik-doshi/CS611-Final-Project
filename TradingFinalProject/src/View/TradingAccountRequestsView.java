@@ -4,11 +4,17 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
+
+import Model.Manager;
+import Model.PortfolioManagementSystem;
 import Model.Request;
+import Model.RequestFactory;
 
 public class TradingAccountRequestsView extends JFrame {
     private JPanel requestsPanel;
     private JButton backButton;
+    private RequestFactory requestFactory = new RequestFactory();
+//    private PortfolioManagementSystem portfolioManagementSystem = new PortfolioManagementSystem();
 
     public TradingAccountRequestsView() {
 
@@ -16,13 +22,14 @@ public class TradingAccountRequestsView extends JFrame {
         setTitle("Trading Account Requests");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        ArrayList<Request> requestArrayLis = requestFactory.createRequests();
         //Test data
-        ArrayList<Request> requests = new ArrayList<>();
-        requests.add(new Request("John", "Pending"));
-        requests.add(new Request("Jane", "Pending"));
-        requests.add(new Request("Jack", "Pending"));   
-        requests.add(new Request("Jill", "Pending"));
-        requests.add(new Request("James", "Pending"));
+//        ArrayList<Request> requestArrayLis = new ArrayList<>();
+//        requestArrayLis.add(new Request("John", "Pending"));
+//        requestArrayLis.add(new Request("Jane", "Pending"));
+//        requestArrayLis.add(new Request("Jack", "Pending"));
+//        requestArrayLis.add(new Request("Jill", "Pending"));
+//        requestArrayLis.add(new Request("James", "Pending"));
 
         requestsPanel = new JPanel();
         requestsPanel.setLayout(new BoxLayout(requestsPanel, BoxLayout.Y_AXIS));
@@ -44,7 +51,7 @@ public class TradingAccountRequestsView extends JFrame {
         setSize(400, 600);
         setLocationRelativeTo(null);
         setVisible(true);
-        displayRequests(requests);
+        displayRequests(requestArrayLis);
     }
 
     public void displayRequests(ArrayList<Request> requests) {
@@ -61,7 +68,9 @@ public class TradingAccountRequestsView extends JFrame {
             requestPanel.add(statusLabel);
 
             JButton approveButton = new JButton("Approve");
+            //approved code logic
             approveButton.addActionListener(e -> {
+//                portfolioManagementSystem.approveRequest(request);
                 request.approve();
                 displayRequests(requests);
             });
