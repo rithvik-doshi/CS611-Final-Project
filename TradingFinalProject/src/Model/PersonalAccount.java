@@ -33,16 +33,6 @@ public class PersonalAccount extends Account {
     public void deposit(double amount) {
         balance += amount;
         String data = "Deposit" + ", " + amount+"\n";
-
-        try {
-            FileWriter fw = new FileWriter(filePath, true);
-            fw.write(data);
-            fw.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred while writing request to DBfile.");
-            e.printStackTrace();
-        }
         updateCustomerFile(customerPath,id,balance);
         System.out.println("New balance:"+balance);
         PersonalTransaction t = new PersonalTransaction("Deposit", amount);
@@ -86,16 +76,6 @@ public class PersonalAccount extends Account {
             balance -= amount;
 
             String data = "Withdraw" + ", " + amount+"\n";
-
-            try {
-                FileWriter fw = new FileWriter(filePath, true);
-                fw.write(data);
-                fw.close();
-                System.out.println("Successfully wrote to the file.");
-            } catch (IOException e) {
-                System.out.println("An error occurred while writing request to DBfile.");
-                e.printStackTrace();
-            }
             updateCustomerFile(customerPath,id,balance);
             PersonalTransaction t = new PersonalTransaction("Withdraw", amount);
             personalTransactionHistory.addToHistory(t);
@@ -114,7 +94,13 @@ public class PersonalAccount extends Account {
         }
     }
 
+    public double getProfit() {
+        return personalTransactionHistory.getProfit() + balance;
+    }
 
+    public String getHistory() {
+        return personalTransactionHistory.toString();
+    }
 
     public static void main(String[] args) {
         updateCustomerFile(customerPath, 1, 2500);

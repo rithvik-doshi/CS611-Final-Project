@@ -11,20 +11,17 @@ import java.text.DecimalFormat;
 public class PersonalAccountView extends JFrame {
     private JLabel greetingLabel;
     private JLabel accountBalanceLabel;
-    private JLabel transactionHistoryLabel;
     private JButton saveButton;
     private JButton withdrawButton;
     private JButton tradingAccountButton;
-    private JButton requestTradingAccountButton;
+    private JButton viewRealizedProfit;
 
     private double accountBalance;
-    private String[] transactionHistory = {"Transaction 1", "Transaction 2", "Transaction 3"};
-
     public PersonalAccountView(CustomerPersonalAccountSystem customerPersonalAccountSystem) {
         // Set up the frame
         super("Personal Account");
         setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         // Set up the greeting label
@@ -36,13 +33,12 @@ public class PersonalAccountView extends JFrame {
         // Set up the labels
         DecimalFormat df = new DecimalFormat("$#,##0.00");
         accountBalanceLabel = new JLabel("Account Balance: " + customerPersonalAccountSystem.getPersonalAccountBalance());
-        transactionHistoryLabel = new JLabel("Transaction History: ");
 
         // Set up the buttons
         saveButton = new JButton("Deposit Money");
         withdrawButton = new JButton("Withdraw Money");
         tradingAccountButton = new JButton("Trading Account");
-        requestTradingAccountButton = new JButton("Request Trading Account");
+        viewRealizedProfit = new JButton("View Realized Profits");
 
         // Add action listeners to the buttons
         saveButton.addActionListener(new ActionListener() {
@@ -106,13 +102,21 @@ public class PersonalAccountView extends JFrame {
                     }
                 }
                 else {
-
+                    TradingAccountView tradingAccountView = new TradingAccountView();
+                    tradingAccountView.setVisible(true);
                 }
             }
         });
-        requestTradingAccountButton.addActionListener(new ActionListener() {
+        viewRealizedProfit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // TODO: Implement request trading account button functionality
+
+                StringBuilder sb = new StringBuilder();
+
+                sb.append("Realized Profits: ").append(customerPersonalAccountSystem.getProfit()).append("\nHistory: \n");
+                sb.append(customerPersonalAccountSystem.getHistory());
+
+                JOptionPane.showMessageDialog(null, sb.toString(), "Profits", JOptionPane.PLAIN_MESSAGE);
             }
         });
 
@@ -120,13 +124,12 @@ public class PersonalAccountView extends JFrame {
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(greetingLabel, BorderLayout.NORTH);
         panel.add(accountBalanceLabel, BorderLayout.CENTER);
-        panel.add(transactionHistoryLabel, BorderLayout.SOUTH);
 
-        JPanel buttonPanel = new JPanel(new FlowLayout());
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 2));
         buttonPanel.add(saveButton);
         buttonPanel.add(withdrawButton);
         buttonPanel.add(tradingAccountButton);
-        buttonPanel.add(requestTradingAccountButton);
+        buttonPanel.add(viewRealizedProfit);
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
         // Add panel to the frame

@@ -1,9 +1,6 @@
-Deposit, 1.32412341234E11
+behavior, quantity
 Withdraw, 918234.0
 Withdraw, 1923841.0
-Withdraw, 1.32409499158E11
-Withdraw, -123.0
-Withdraw, -123.0
 Deposit, 23.0
 Deposit, 23.0
 Deposit, 123.0
@@ -28,3 +25,8 @@ Deposit, 123.0
 Deposit, 123.0
 Withdraw, 134.0
 Withdraw, 134.0
+Deposit, 23.0
+Deposit, 23.0
+Deposit, 23.0
+Deposit, 23.0
+Withdraw, 45.0

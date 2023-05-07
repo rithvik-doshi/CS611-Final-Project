@@ -71,6 +71,12 @@ public abstract class TransactionHistory {
         return true;
     }
 
+    public double getProfit(){
+        return getProfit(history);
+    }
+
+    public abstract double getProfit(ArrayList<Transaction> history);
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
