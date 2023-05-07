@@ -2,17 +2,23 @@ package Model;
 
 public class OwnedStock extends Stock {
     private int quantity;
-
-    public OwnedStock(String name, int quantity) {
+    private double purchasePrice;
+    private String StockName;
+    public OwnedStock(String name, int quantity, double purchasePrice) {
         super(name);
         if (quantity < 1) {
             throw new IllegalArgumentException("Quantity must be greater than 0");
         }
         this.quantity = quantity;
+        this.purchasePrice = purchasePrice;
     }
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public double getPurchasePrice(){
+        return this.purchasePrice;
     }
 
     public void addQuantity(int quantity) {
@@ -26,6 +32,12 @@ public class OwnedStock extends Stock {
         }
         this.quantity -= quantity;
     }
+
+    public boolean equals(String string){
+        return true;
+    }
+
+
 
     @Override
     protected String stringify() {

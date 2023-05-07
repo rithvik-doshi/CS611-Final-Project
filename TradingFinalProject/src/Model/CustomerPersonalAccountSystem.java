@@ -30,7 +30,7 @@ public class CustomerPersonalAccountSystem {
     // returned sample should look like:[["Deposit", "1000"], ["Withdraw", "1000"]]
     public ArrayList<String[]> readPersonalTransactionHistoryFromDB() {
         String currentPath = Paths.get("").toAbsolutePath().toString();
-        currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/CustomerPersonalHistory/"+customer.getID()+"_PersonalHistory.txt";
+        currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/CustomerStocks/"+customer.getID()+"_PersonalHistory.txt";
 
 //        String filePath = personalTransactionHistory.historyType(customer.getID()+"");
         ArrayList<String[]> data = new ArrayList<>();
