@@ -22,7 +22,7 @@ public class TradingAccountView extends JFrame {
     public TradingAccountView() {
         super("Trading Account");
         setSize(700, 700);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         // Set up the greeting label

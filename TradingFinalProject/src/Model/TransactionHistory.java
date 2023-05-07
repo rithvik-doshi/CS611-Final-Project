@@ -29,9 +29,13 @@ public abstract class TransactionHistory {
             if (!file.isFile()) {
                 file.createNewFile();
                 System.out.println("Created new file: " + file.getAbsolutePath());
+//                add a line to the file
+                FileWriter fw = new FileWriter(file, true);
+                fw.write("Behavior, quantity\n");
                 return;
             }
             Scanner scanner = new Scanner(file);
+            scanner.nextLine();
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
                 String[] parts = line.split(",");
@@ -66,6 +70,12 @@ public abstract class TransactionHistory {
 
         return true;
     }
+
+    public double getProfit(){
+        return getProfit(history);
+    }
+
+    public abstract double getProfit(ArrayList<Transaction> history);
 
     @Override
     public String toString() {

@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class PersonalTransactionHistory extends TransactionHistory {
 
 
@@ -17,5 +19,18 @@ public class PersonalTransactionHistory extends TransactionHistory {
         String behaviour = parts[0];
         double money = Double.parseDouble(parts[1]);
         return new PersonalTransaction(behaviour, money);
+    }
+
+    @Override
+    public double getProfit(ArrayList<Transaction> history) {
+        double profit = 0;
+        for (Transaction t : history) {
+            if (t.getBehaviour().equals("Deposit")) {
+                profit += t.getMoney();
+            } else {
+                profit -= t.getMoney();
+            }
+        }
+        return profit;
     }
 }

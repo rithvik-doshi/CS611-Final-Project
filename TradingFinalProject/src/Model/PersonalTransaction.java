@@ -15,6 +15,6 @@ public class PersonalTransaction extends Transaction {
     }
 
     public String toString() {
-        return this.getBehaviour() + "," + this.getMoney();
+        return this.getBehaviour() + ", " + this.getMoney();
     }
 }

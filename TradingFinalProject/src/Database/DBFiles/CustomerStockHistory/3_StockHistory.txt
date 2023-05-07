@@ -1,5 +1,5 @@
 behavior, item name, quantity, total price
-Sell,KMT,100,5000
-Sell，UZI,20,2000
+Sell, KMT, 100, 5000
+Sell，UZI, 20, 2000
 Sell, HUI, 50,600
 Sell, MIR, 1, 400
