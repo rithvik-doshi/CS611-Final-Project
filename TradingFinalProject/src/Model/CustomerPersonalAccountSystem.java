@@ -10,11 +10,10 @@ import java.util.ArrayList;
 public class CustomerPersonalAccountSystem {
 
     private Customer customer;
-    private PersonalAccount personalAccount;
+
 
     public CustomerPersonalAccountSystem(Customer customer){
         this.customer = customer;
-        personalAccount = new PersonalAccount(customer.getID(), customer.getBalance());
 //        personalTransactionHistory = new PersonalTransactionHistory(""+customer.getID(), customer.getName());
     }
     //Yuxi Ge get current customer object
@@ -25,7 +24,7 @@ public class CustomerPersonalAccountSystem {
 
 
     public double getPersonalAccountBalance(){
-        return customer.getBalance();
+        return customer.getPersonalAccount().getBalance();
     }
 
 

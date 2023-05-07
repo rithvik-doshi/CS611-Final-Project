@@ -1,5 +1,5 @@
 behavior, item name, quantity, total price
-Sell,Chair,100,5000
-Sell，Table,20,2000
+Sell, Chair, 100, 5000
+Sell，Table, 20, 2000
 Sell, KT, 50,600
 Sell, MI, 1, 400

@@ -5,3 +5,13 @@ Withdraw,200
 Withdraw,12
 Deposit,200
 Withdraw,300
+Deposit, 12.0
+Deposit, 12.0
+Deposit, 12.0
+Deposit, 12.0
+Withdraw, 24.0
+Withdraw, 24.0
+Deposit, 12313.0
+Deposit, 12313.0
+Withdraw, 12313.0
+Withdraw, 12313.0

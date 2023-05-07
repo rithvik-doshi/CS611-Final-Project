@@ -6,8 +6,12 @@ public class Account{
     protected double balance;
     protected String ownerID;
 
-    //For read account from database
-    public Account(){}
+//    For personal account init
+    public Account(double balance, String ownerID){
+        this.type = "Personal";
+        this.balance = balance;
+        this.ownerID = ownerID;
+    }
 
     public Account(String id, String type, double balance, String ownerID) {
         this.type = type;

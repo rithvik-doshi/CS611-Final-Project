@@ -15,15 +15,19 @@ public class PersonalAccount extends Account {
     private String filePath;
     private String currentPath;
     private static  String customerPath = Paths.get("").toAbsolutePath().toString() +"/TradingFinalProject/src/Database/DBFiles/Customer.txt";
+
+    PersonalTransactionHistory personalTransactionHistory;
+
     // Customer Constructor for Read from the database
     public PersonalAccount(int id, double balance) {
+        super(balance, String.valueOf(id));
         this.id = id;
         this.balance = balance;
         System.out.println("this is balance:"+balance);
         String currentPath = Paths.get("").toAbsolutePath().toString();
         currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/";
         this.filePath = currentPath+ "CustomerPersonalHistory/"+ this.id +"_PersonalHistory.txt";
-
+        this.personalTransactionHistory = new PersonalTransactionHistory(String.valueOf(id), "Personal");
     }
 
     public void deposit(double amount) {
@@ -41,7 +45,8 @@ public class PersonalAccount extends Account {
         }
         updateCustomerFile(customerPath,id,balance);
         System.out.println("New balance:"+balance);
-
+        PersonalTransaction t = new PersonalTransaction("Deposit", amount);
+        personalTransactionHistory.addToHistory(t);
     }
 
 
@@ -92,6 +97,8 @@ public class PersonalAccount extends Account {
                 e.printStackTrace();
             }
             updateCustomerFile(customerPath,id,balance);
+            PersonalTransaction t = new PersonalTransaction("Withdraw", amount);
+            personalTransactionHistory.addToHistory(t);
             return true;
         } else {
             return false;
