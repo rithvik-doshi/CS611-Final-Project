@@ -1,5 +1,8 @@
 behavior, item name, quantity, total price
-Buy, Chair, 100, 5000
-Sell，Table, 20, 2000
-Buy, KT, 50,600
+Buy, APPL, 100, 5000
+Sell，GOOG, 20, 2000
+Buy, KMT, 50,600
 Buy, MI, 1, 400
+sell, MSFT, 0, 0.0
+sell, MSFT, 1, 140.2
+sell, GOOG, 1, 91249.0

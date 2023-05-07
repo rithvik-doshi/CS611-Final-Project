@@ -23,7 +23,6 @@ PFE,38.41
 KO,54.28
 PEP,156.19
 BRUH,23.0
-testing,23.23
 bruhmongus,1.0
 ytye,23.0
 GOOG,91249.0

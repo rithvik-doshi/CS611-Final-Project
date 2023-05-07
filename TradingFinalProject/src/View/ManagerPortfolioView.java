@@ -14,6 +14,7 @@ public class ManagerPortfolioView extends JFrame {
     private JButton manageStocksButton;
     private JButton approveCustomersButton;
     private JButton trackCustomersButton;
+    private JButton backButton;
 
     private Manager manager;
 
@@ -34,6 +35,7 @@ public class ManagerPortfolioView extends JFrame {
         manageStocksButton = new JButton("Manage Stocks");
         approveCustomersButton = new JButton("Approve New Customers");
         trackCustomersButton = new JButton("Track Customers");
+        backButton = new JButton("Back");
 
 
         manageStocksButton.addActionListener(new ActionListener() {
@@ -66,9 +68,17 @@ public class ManagerPortfolioView extends JFrame {
             }
         });
 
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ManagerLoginPage managerLoginPage = new ManagerLoginPage();
+                ManagerPortfolioView.this.setVisible(false);
+            }
+        });
+
         buttonPanel.add(manageStocksButton);
         buttonPanel.add(approveCustomersButton);
         buttonPanel.add(trackCustomersButton);
+        buttonPanel.add(backButton);
         add(buttonPanel, BorderLayout.CENTER);
 
         setSize(600, 400);

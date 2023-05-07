@@ -1,5 +1,5 @@
 id, name, email, password, money
-1, Boston, rithvik@bu.edu, 123, 6000.0
+1, Boston, rithvik@bu.edu, 123, 97402.2
 2, Yuxi Ge, yuxig5@bu.edu, 456, 2500.0
 3, Peter Song, sozhangd@bu.edu, 789, 234.0
 4, SAM, SAM@BU.EDU, 123, 0

@@ -14,7 +14,7 @@ public class PersonalAccountView extends JFrame {
     private JButton saveButton;
     private JButton withdrawButton;
     private JButton tradingAccountButton;
-    private JButton viewRealizedProfit;
+    private JButton personalAccountHistory;
 
     private double accountBalance;
     public PersonalAccountView(CustomerPersonalAccountSystem customerPersonalAccountSystem) {
@@ -38,7 +38,7 @@ public class PersonalAccountView extends JFrame {
         saveButton = new JButton("Deposit Money");
         withdrawButton = new JButton("Withdraw Money");
         tradingAccountButton = new JButton("Trading Account");
-        viewRealizedProfit = new JButton("View Realized Profits");
+        personalAccountHistory = new JButton("View Personal Account History");
 
         // Add action listeners to the buttons
         saveButton.addActionListener(new ActionListener() {
@@ -102,18 +102,19 @@ public class PersonalAccountView extends JFrame {
                     }
                 }
                 else {
-                    TradingAccountView tradingAccountView = new TradingAccountView();
+
+                    TradingAccountView tradingAccountView = new TradingAccountView(customerPersonalAccountSystem);
                     tradingAccountView.setVisible(true);
                 }
             }
         });
-        viewRealizedProfit.addActionListener(new ActionListener() {
+        personalAccountHistory.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // TODO: Implement request trading account button functionality
 
                 StringBuilder sb = new StringBuilder();
 
-                sb.append("Realized Profits: ").append(customerPersonalAccountSystem.getProfit()).append("\nHistory: \n");
+                sb.append("History: \n");
                 sb.append(customerPersonalAccountSystem.getHistory());
 
                 JOptionPane.showMessageDialog(null, sb.toString(), "Profits", JOptionPane.PLAIN_MESSAGE);
@@ -129,7 +130,7 @@ public class PersonalAccountView extends JFrame {
         buttonPanel.add(saveButton);
         buttonPanel.add(withdrawButton);
         buttonPanel.add(tradingAccountButton);
-        buttonPanel.add(viewRealizedProfit);
+        buttonPanel.add(personalAccountHistory);
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
         // Add panel to the frame

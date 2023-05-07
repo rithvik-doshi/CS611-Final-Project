@@ -89,6 +89,8 @@ public class ManagerLoginPage extends JFrame {
                 EntryInterface entryInterface = new EntryInterface();
             }
         });
+
+
     }
 
     public static void main(String[] args) {

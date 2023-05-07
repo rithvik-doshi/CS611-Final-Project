@@ -5,6 +5,8 @@ public class TradingAccount extends Account {
 
     double netProfit;
     double realizedProfit;
+    private StockTransactionHistory stockTransactionHistory;
+
     // double unrealizedProfit;
     private HashMap<String, Integer> stockHoldings = new HashMap<>();
     private HashMap<String, Double> purchasePrices = new HashMap<>();
@@ -22,6 +24,8 @@ public class TradingAccount extends Account {
     public TradingAccount(String ownerID) {
         super(ownerID, "Trading");
         this.id = generateCurrentId();
+        this.stockTransactionHistory = new StockTransactionHistory(ownerID, id);
+
     }
 
     public static String generateCurrentId(){
@@ -90,7 +94,7 @@ public class TradingAccount extends Account {
     }
 
     public double getRealizedProfit() {
-        return realizedProfit;
+        return stockTransactionHistory.getProfit();
     }
 
     public double getUnrealizedProfit(SMProxy stockMarket) {

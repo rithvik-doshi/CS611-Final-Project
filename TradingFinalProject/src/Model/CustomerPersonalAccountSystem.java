@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.sql.Array;
 import java.util.ArrayList;
 
 public class CustomerPersonalAccountSystem {
@@ -73,13 +72,11 @@ public class CustomerPersonalAccountSystem {
         System.out.println(c.getBalance());
     }
 
-    public double getProfit(){
-        return customer.getPersonalAccount().getProfit();
-    }
-
     public String getHistory(){
         return customer.getPersonalAccount().getHistory();
     }
+
+
 
 
 }

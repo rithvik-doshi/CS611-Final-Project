@@ -25,13 +25,6 @@ public class TradingAccountRequestsView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         ArrayList<Request> requestArrayLis = requestFactory.createRequests();
-        //Test data
-//        ArrayList<Request> requestArrayLis = new ArrayList<>();
-//        requestArrayLis.add(new Request("John", "Pending"));
-//        requestArrayLis.add(new Request("Jane", "Pending"));
-//        requestArrayLis.add(new Request("Jack", "Pending"));
-//        requestArrayLis.add(new Request("Jill", "Pending"));
-//        requestArrayLis.add(new Request("James", "Pending"));
 
         requestsPanel = new JPanel();
         requestsPanel.setLayout(new BoxLayout(requestsPanel, BoxLayout.Y_AXIS));

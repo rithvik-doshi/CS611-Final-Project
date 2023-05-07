@@ -94,10 +94,6 @@ public class PersonalAccount extends Account {
         }
     }
 
-    public double getProfit() {
-        return personalTransactionHistory.getProfit() + balance;
-    }
-
     public String getHistory() {
         return personalTransactionHistory.toString();
     }
