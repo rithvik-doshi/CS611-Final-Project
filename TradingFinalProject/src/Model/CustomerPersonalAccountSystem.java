@@ -73,10 +73,6 @@ public class CustomerPersonalAccountSystem {
         System.out.println(c.getBalance());
     }
 
-    public double getProfit(){
-        return customer.getPersonalAccount().getProfit();
-    }
-
     public String getHistory(){
         return customer.getPersonalAccount().getHistory();
     }
