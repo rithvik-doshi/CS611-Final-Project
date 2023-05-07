@@ -9,19 +9,12 @@ public class TradingAccount extends Account {
     private HashMap<String, Integer> stockHoldings = new HashMap<>();
     private HashMap<String, Double> purchasePrices = new HashMap<>();
 
-    public TradingAccount(String type, double balance, String ownerID) {
-        super(type, balance, ownerID);
-        //TODO Auto-generated constructor stub
-    }
-    
-    public TradingAccount(String id, String type, double balance, String ownerID) {
-        super(id, type, balance, ownerID);
-        //TODO Auto-generated constructor stub
-    }
+    private StockTransactionHistory stockTransactionHistory;
 
     public TradingAccount(String ownerID) {
         super(ownerID, "Trading");
         this.id = generateCurrentId();
+        this.stockTransactionHistory = new StockTransactionHistory(ownerID, id);
     }
 
     public static String generateCurrentId(){
@@ -90,7 +83,7 @@ public class TradingAccount extends Account {
     }
 
     public double getRealizedProfit() {
-        return realizedProfit;
+        return stockTransactionHistory.getProfit();
     }
 
     public double getUnrealizedProfit(SMProxy stockMarket) {
