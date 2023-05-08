@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.HashMap;
+
 public class CustomerStockTradingSystem {
 
     private Customer customer;
@@ -10,13 +12,26 @@ public class CustomerStockTradingSystem {
     public CustomerStockTradingSystem(Customer customer, PersonalAccount personalAccount) {
         this.customer = customer;
         this.personalAccount = personalAccount;
-        this.tradingAccount = null;
+        this.tradingAccount = new TradingAccount(customer.getID());
     }
+
+    public double getBalance(){
+        return personalAccount.getBalance();
+    }
+
+    public HashMap<String, Integer> getStockHoldings(){
+        return tradingAccount.getStockHoldings();
+    }
+
+    public HashMap<String, Double> getPurchasePrices(){
+        return tradingAccount.getPurchasePrices();
+    }
+
 
     // Request to create a trading account
     public void createTradingAccount() {
         if (customer.getTradingAccount() == null) {
-            this.tradingAccount = new TradingAccount(Integer.toString(customer.getID()));
+            this.tradingAccount = new TradingAccount(customer.getID());
             customer.setTradingAccount(tradingAccount);
         } else {
             System.out.println("You already have a trading account.");
@@ -25,31 +40,31 @@ public class CustomerStockTradingSystem {
 
     // Allow money to be added/deducted from a personal account
     public void addFunds(double amount) {
-        if (personalAccount.withdraw(amount)) {
-            tradingAccount.saveMoney(amount);
-        } else {
-            System.out.println("Insufficient funds in the personal account.");
-        }
+        personalAccount.deposit(amount);
     }
 
     public void deductFunds(double amount) {
-        if (tradingAccount.withdrawMoney(amount)) {
-            personalAccount.deposit(amount);
-        } else {
-            System.out.println("Insufficient funds in the trading account.");
+        if(personalAccount.getBalance() < amount){
+            System.out.println("not enough funds");
+        }
+        else {
+            personalAccount.withdraw(amount);
         }
     }
 
     // Trade existing stocks
-    public void buyStock(String name, int quantity) {
+    public boolean buyStock(String name, int quantity) {
         double stockPrice = stockMarket.getStockPrice(name);
         double cost = stockPrice * quantity;
 
-        if (tradingAccount.getBalance() >= cost) {
+        if (personalAccount.getBalance() >= cost) {
             tradingAccount.buyStock(name, quantity, stockPrice);
             deductFunds(cost);
+            return true;
         } else {
-            System.out.println("Insufficient funds for this transaction.");
+
+            System.out.println("1Insufficient funds for this transaction.");
+            return false;
         }
     }
 
@@ -73,4 +88,13 @@ public class CustomerStockTradingSystem {
     public double getUnrealizedProfit() {
         return tradingAccount.getUnrealizedProfit(stockMarket);
     }
-}
+
+    public boolean canHaveDerivativeAccount(){
+        return tradingAccount.canHaveDerivativeAccount();
+    }
+
+    public static void  main(String[]arg){
+
+    }
+
+    }

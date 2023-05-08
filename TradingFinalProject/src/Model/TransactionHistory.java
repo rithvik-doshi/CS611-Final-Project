@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public abstract class TransactionHistory {
@@ -26,19 +27,21 @@ public abstract class TransactionHistory {
         history = new ArrayList<>();
 
         try {
+            System.out.println(fileName);
             if (!file.isFile()) {
                 file.createNewFile();
                 System.out.println("Created new file: " + file.getAbsolutePath());
 //                add a line to the file
                 FileWriter fw = new FileWriter(file, true);
-                fw.write("Behavior, quantity\n");
+                fw.write(fileHeader());
                 return;
             }
             Scanner scanner = new Scanner(file);
             scanner.nextLine();
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
-                String[] parts = line.split(",");
+                String[] parts = line.split(",\\s?");
+                System.out.println(Arrays.toString(parts));
                 if (parts.length < 2){
                     continue;
                 }
@@ -52,6 +55,8 @@ public abstract class TransactionHistory {
     public abstract String historyType(String fileIdentity);
 
     public abstract Transaction getTransaction(String[] parts);
+
+    public abstract String fileHeader();
 
     public boolean addToHistory(Transaction t){
         //TODO: add to history

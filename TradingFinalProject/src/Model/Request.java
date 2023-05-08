@@ -19,7 +19,6 @@ public class Request {
     public Request(String sender) {
         this.sender = sender;
         this.status = "Pending";
-        writeRequestToDB();
         // this.receiver = receiver;
     }
     // Constructor for read data from database
@@ -151,6 +150,16 @@ public class Request {
 
     //TODO write request to database
     public void writeRequestToDB() {
+
+        RequestFactory rf = new RequestFactory();
+
+        rf.createRequests();
+
+        if (rf.senderInRequests(sender)) {
+            System.out.println("Request already exists in DB");
+            return;
+        }
+
         String path = "TradingFinalProject/src/Database/DBFiles/AccountCreationRequests.txt";
         String data = sender + " " + status+"\n";
 
@@ -165,8 +174,8 @@ public class Request {
         }
     }
 
-    public static void main(String[] args) {
-        Request r = new Request("1", "Pending");
-
-    }
+//    public static void main(String[] args) {
+//        Request r = new Request("1", "Pending");
+//
+//    }
 }

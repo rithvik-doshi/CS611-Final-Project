@@ -4,21 +4,22 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
-import Model.Customer;
-import Model.Manager;
-import Model.SMProxy;
+
+import Model.*;
 
 public class CustomerProfitReportView extends JFrame {
     private JPanel reportPanel;
     private JButton backButton;
 
     private Manager manager;
+    private PortfolioManagementSystem portfolioManagementSystem;
 
     public CustomerProfitReportView(Manager manager) {
         setTitle("Customer Profit Report");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.manager = manager;
+        portfolioManagementSystem = new PortfolioManagementSystem(manager);
 
         reportPanel = new JPanel();
         reportPanel.setLayout(new BoxLayout(reportPanel, BoxLayout.Y_AXIS));
@@ -37,8 +38,9 @@ public class CustomerProfitReportView extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         add(scrollPane);
 
-        setSize(400, 600);
+        setSize(800, 800);
         setLocationRelativeTo(null);
+        displayReport(portfolioManagementSystem.getCustomerInfor());
 
     }
 
@@ -52,11 +54,22 @@ public class CustomerProfitReportView extends JFrame {
             JLabel nameLabel = new JLabel(customer.getName());
             customerPanel.add(nameLabel);
 
-            JLabel unrealizedProfitLabel = new JLabel("Unrealized Profit: " + customer.getTradingAccount().getUnrealizedProfit(SMProxy.instance));
-            customerPanel.add(unrealizedProfitLabel);
+            TradingAccount tradingAccount = customer.getTradingAccount();
 
-            JLabel realizedProfitLabel = new JLabel("Realized Profit: " + customer.getTradingAccount().getRealizedProfit());
+            double realizedProfit;
+            JLabel realizedProfitLabel, unrealizedProfitLabel;
+
+            if (tradingAccount != null) {
+                realizedProfit = tradingAccount.getRealizedProfit();
+                realizedProfitLabel = new JLabel("Realized Profit: " + realizedProfit);
+                unrealizedProfitLabel = new JLabel("Unrealized Profit: " + customer.getTradingAccount().getUnrealizedProfit(SMProxy.instance));
+            } else {
+                realizedProfitLabel = new JLabel("Realized Profit: N/A (no trading account)");
+                unrealizedProfitLabel = new JLabel("Unrealized Profit: N/A (no trading account)");
+            }
+
             customerPanel.add(realizedProfitLabel);
+            customerPanel.add(unrealizedProfitLabel);
 
             reportPanel.add(customerPanel);
         }

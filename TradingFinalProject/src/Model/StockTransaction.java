@@ -12,12 +12,6 @@ public class StockTransaction extends Transaction{
         this.quantity = quantity;
     }
 
-    public StockTransaction(String behavior, String stockName, int quantity, double price, String timestamp) {
-        super(behavior, price, timestamp);
-        this.stockName = stockName;
-        this.quantity = quantity;
-    }
-
     public String getStockName() {
         return stockName;
     }

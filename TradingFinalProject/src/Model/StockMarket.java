@@ -81,7 +81,7 @@ public class StockMarket {
                 return stock.getMoney();
             }
         }
-        return -1;
+        return 0;
     }
 
     public boolean setStockPrice(String name, double price) {
@@ -94,10 +94,10 @@ public class StockMarket {
     }
 
     public String toString() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (MarketStock stock : stocks) {
-            result += stock.toString() + "\n";
+            result.append(stock.toString()).append("\n");
         }
-        return result;
+        return result.toString();
     }
 }

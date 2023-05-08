@@ -14,7 +14,7 @@ public class TradingAccountRequestsView extends JFrame {
     private JPanel requestsPanel;
     private JButton backButton;
     private RequestFactory requestFactory = new RequestFactory();
-//    private PortfolioManagementSystem portfolioManagementSystem = new PortfolioManagementSystem();
+    private PortfolioManagementSystem portfolioManagementSystem;
 
     private Manager manager;
 
@@ -23,15 +23,8 @@ public class TradingAccountRequestsView extends JFrame {
         super("Trading Account Requests");
         setTitle("Trading Account Requests");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        portfolioManagementSystem = new PortfolioManagementSystem(manager);
         ArrayList<Request> requestArrayLis = requestFactory.createRequests();
-        //Test data
-//        ArrayList<Request> requestArrayLis = new ArrayList<>();
-//        requestArrayLis.add(new Request("John", "Pending"));
-//        requestArrayLis.add(new Request("Jane", "Pending"));
-//        requestArrayLis.add(new Request("Jack", "Pending"));
-//        requestArrayLis.add(new Request("Jill", "Pending"));
-//        requestArrayLis.add(new Request("James", "Pending"));
 
         requestsPanel = new JPanel();
         requestsPanel.setLayout(new BoxLayout(requestsPanel, BoxLayout.Y_AXIS));
@@ -39,6 +32,7 @@ public class TradingAccountRequestsView extends JFrame {
 
         backButton = new JButton("Back");
         backButton.addActionListener(e -> {
+            requestFactory.removeApprovedAndRejectedRequest();
             TradingAccountRequestsView.this.dispose();
             ManagerPortfolioView ui = new ManagerPortfolioView(manager);
             ui.setVisible(true);
@@ -63,7 +57,7 @@ public class TradingAccountRequestsView extends JFrame {
             JPanel requestPanel = new JPanel(new GridLayout(1, 3));
             requestPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
 
-            JLabel nameLabel = new JLabel(request.getSender());
+            JLabel nameLabel = new JLabel(portfolioManagementSystem.getNamefromId(Integer.valueOf(request.getSender())));
             requestPanel.add(nameLabel);
 
             JLabel statusLabel = new JLabel(request.getStatus());

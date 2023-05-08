@@ -30,6 +30,14 @@ public class CustomerLogin {
 
     //get all customer ArrayList
     public ArrayList<Customer> getCustomersList(){
+        for (Customer customer : customers) {
+            TradingAccount ta;
+            ta = new TradingAccount(customer.getID());
+            if (ta.found) {
+                customer.setTradingAccount(ta);
+                customer.getTradingAccount().createStockTransactionHistory();
+            }
+        }
         return customers;
     }
 
@@ -48,14 +56,22 @@ public class CustomerLogin {
         return customerPersonalAccountSystem;
     }
 
-    public boolean registerNewCustomer(String name, String email, String password,String path) {
-        System.out.println(customers.size());
+    public int registerNewCustomer(String name, String email, String password,String path) {
+
         int newID = customers.size() + 1;
+
+        for (Customer customer : customers) {
+            if (customer.getEmail().equals(email)) {
+                return 0;
+            }
+        }
+
+        System.out.println(customers.size());
         Customer newCustomer = new Customer(newID, name, email, password,0);
         customers.add(newCustomer);
 
         if(name.isEmpty()|| email.isEmpty()|| password.isEmpty()){
-            return false;
+            return -1;
         }
         try {
             FileWriter fileWriter = new FileWriter(path, true);
@@ -64,9 +80,9 @@ public class CustomerLogin {
             bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
+            return -1;
         }
-        return true;
+        return 1;
     }
 
 }

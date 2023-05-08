@@ -5,10 +5,6 @@ public class PersonalTransaction extends Transaction {
         super(behavior, money);
     }
 
-    public PersonalTransaction(String behavior, double money, String timestamp) {
-        super(behavior, money, timestamp);
-    }
-
     @Override
     public String[] getInfoAsArray() {
         return new String[]{this.getBehaviour(), String.valueOf(this.getMoney())};

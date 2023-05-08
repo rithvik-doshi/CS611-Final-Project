@@ -22,6 +22,11 @@ public class PersonalTransactionHistory extends TransactionHistory {
     }
 
     @Override
+    public String fileHeader() {
+        return "Behavior, quantity\n";
+    }
+
+    @Override
     public double getProfit(ArrayList<Transaction> history) {
         double profit = 0;
         for (Transaction t : history) {

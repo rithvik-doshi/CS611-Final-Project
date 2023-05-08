@@ -1,32 +1,58 @@
 package View;
 
+import Model.*;
+
+import javax.swing.text.html.HTMLEditorKit;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TradingAccountView extends JFrame {
 
     private JLabel greetingLabel;
     private JLabel titleLabel;
     private JLabel accountBalanceLabel;
-    private JLabel transactionHistoryLabel;
-    private JButton depositButton;
-    private JButton withdrawButton;
+    private JButton backButton;
+    private JButton viewStockMarketButton;
+    private CustomerStockTradingSystem customerStockTradingSystem;
+    private HashMap<String, Integer> stockHoldings = new HashMap<>();
+    private double balance;
+    private StockMarketView stockMarketView;
+    private ArrayList<String> transactionHistory;
+    private TransactionData transactionData;
+
+    private JTextPane transactionHistoryPane;
+    private JScrollPane transactionHistoryScrollPane;
 
     private JPanel ownedStocksPanel;
 
-    private String[] transactionHistory = {"Transaction 1", "Transaction 2", "Transaction 3"};
+    private JPanel panel = new JPanel(new BorderLayout());
+    DecimalFormat df = new DecimalFormat("$#,##0.00");
 
-    public TradingAccountView() {
+    String currentPath = Paths.get("").toAbsolutePath() + "/TradingFinalProject/src/Database/DBFiles/CustomerStockHistory/";
+    String path;
+
+    public TradingAccountView(CustomerPersonalAccountSystem customerPersonalAccountSystem) {
         super("Trading Account");
         setSize(700, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        customerStockTradingSystem = new CustomerStockTradingSystem(customerPersonalAccountSystem.getCustomer(), customerPersonalAccountSystem.getCustomer().getPersonalAccount());
+        stockHoldings = customerStockTradingSystem.getStockHoldings();
+        balance = customerStockTradingSystem.getBalance();
+
+        path = currentPath + customerPersonalAccountSystem.getCustomer().getID() + "_StockHistory.txt";
+        transactionData = new TransactionData(path);
+        transactionHistory = transactionData.getTransactionHistory(path);
 
         // Set up the greeting label
-        greetingLabel = new JLabel("Hi Customer!");
+        greetingLabel = new JLabel("Hi " + customerPersonalAccountSystem.getCustomer().getName() + "!");
 
         titleLabel = new JLabel("Manage Stocks");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
@@ -34,105 +60,132 @@ public class TradingAccountView extends JFrame {
         add(titleLabel, BorderLayout.NORTH);
 
         // Set up the labels
-        DecimalFormat df = new DecimalFormat("$#,##0.00");
-        accountBalanceLabel = new JLabel("Account Balance: 23");
-        transactionHistoryLabel = new JLabel("Transaction History: ");
+        accountBalanceLabel = new JLabel("Account Balance: " + df.format(balance));
+        transactionHistoryPane = new JTextPane();
+        transactionHistoryPane.setEditable(false);
+        transactionHistoryPane.setEditorKit(new HTMLEditorKit());
+        transactionHistoryScrollPane = new JScrollPane(transactionHistoryPane);
+        updateTransactionHistoryLabel();
 
-        // Set up the buttons
-        depositButton = new JButton("Deposit from personal acct");
-        withdrawButton = new JButton("Withdraw to personal acct");
-
-
-
-        // Add action listeners to the buttons
-        depositButton.addActionListener(new ActionListener() {
+        // Create and set up the Back button
+        backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String input = JOptionPane.showInputDialog("Enter amount to transfer:");
-                if (input != null) {
-                    try {
-                        double amount = Double.parseDouble(input);
-                        double accountBalance = amount;
-                        accountBalanceLabel.setText("Account Balance: " + df.format(accountBalance));
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid amount.");
-                    }
-                }
-            }
-        });
-
-        withdrawButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String input = JOptionPane.showInputDialog("Enter amount to withdraw:");
-                if (input != null) {
-                    try {
-                        double amount = Double.parseDouble(input);
-                        if (amount > 45) {
-                            JOptionPane.showMessageDialog(null, "Insufficient funds.");
-                        } else {
-                            accountBalanceLabel.setText("Account Balance: " + 45);
-                        }
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid amount.");
-                    }
-                }
+                // Close this window
+                PersonalAccountView personalAccountView = new PersonalAccountView(customerPersonalAccountSystem);
+                personalAccountView.setVisible(true);
+                TradingAccountView.this.dispose();
             }
         });
 
         ownedStocksPanel = new JPanel();
         ownedStocksPanel.setLayout(new BoxLayout(ownedStocksPanel, BoxLayout.Y_AXIS));
-//        ownedStocksPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
-
-
 
         updateStocksPanel();
 
         // Set up the panel
-        JPanel panel = new JPanel(new BorderLayout());
         panel.add(greetingLabel, BorderLayout.NORTH);
         panel.add(accountBalanceLabel, BorderLayout.WEST);
-        panel.add(transactionHistoryLabel, BorderLayout.EAST);
+        panel.add(transactionHistoryScrollPane, BorderLayout.CENTER);
 
-        JScrollPane scrollPane = new JScrollPane(ownedStocksPanel);
-        panel.add(scrollPane, BorderLayout.CENTER);
+        JPanel centerPanel = new JPanel(new GridLayout(1, 2));
+        JScrollPane ownedStocksScrollPane = new JScrollPane(ownedStocksPanel);
+        centerPanel.add(ownedStocksScrollPane);
+        centerPanel.add(transactionHistoryScrollPane);
+        panel.add(centerPanel, BorderLayout.CENTER);
 
-        JPanel buttonPanel = new JPanel(new FlowLayout());
-        buttonPanel.add(depositButton);
-        buttonPanel.add(withdrawButton);
-        panel.add(buttonPanel, BorderLayout.SOUTH);
 
+        // Create and set up the viewStockMarketButton
+        viewStockMarketButton = new JButton("View Stock Market");
+        viewStockMarketButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Create a new StockMarketView and display it
+                stockMarketView = new StockMarketView(customerPersonalAccountSystem);
+                stockMarketView.setVisible(true);
+                dispose();
+
+            }
+        });
+
+        // Add the viewStockMarketButton to the panel
+        panel.add(viewStockMarketButton, BorderLayout.SOUTH);
+
+        // Add the Back button to the top-right corner
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.NORTHEAST;
+        // Create a top panel for the title and the back button
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(titleLabel, BorderLayout.CENTER);
+
+        // Add the Back button to the top-right corner
+        JPanel backButtonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        backButtonPanel.add(backButton);
+        topPanel.add(backButtonPanel, BorderLayout.EAST);
+
+        add(topPanel, BorderLayout.NORTH);
         // Add panel to the frame
         getContentPane().add(panel);
+
+        if (customerStockTradingSystem.canHaveDerivativeAccount()){
+
+            JOptionPane.showMessageDialog(null, "You can now apply for a derivative account!", "Derivative Account", JOptionPane.PLAIN_MESSAGE);
+        }
+
+    }
+
+    private void updateTransactionHistoryLabel() {
+        StringBuilder transactionsStringBuilder = new StringBuilder("<html><body>");
+        transactionHistory = transactionData.getTransactionHistory(path);
+        for (String transaction : transactionHistory) {
+            transactionsStringBuilder.append(transaction);
+            transactionsStringBuilder.append("<br/>");
+        }
+
+        transactionsStringBuilder.append("</body></html>");
+
+        transactionHistoryPane.setText(transactionsStringBuilder.toString());
+        transactionHistoryPane.revalidate();
+        transactionHistoryPane.repaint();
     }
 
     private void updateStocksPanel() {
 
         ownedStocksPanel.removeAll();
 
-        String[] stocks = {"AAPL", "GOOG", "MSFT", "AMZN", "FB", "AAPL", "GOOG", "MSFT", "AMZN", "FB", "AAPL", "GOOG", "MSFT", "AMZN", "FB", "AAPL", "GOOG", "MSFT", "AMZN", "FB"};
-        int[] quantities = {100, 200, 300, 400, 500, 100, 200, 300, 400, 500, 100, 200, 300, 400, 500, 100, 200, 300, 400, 500};
-
-        for (int i = 0; i < stocks.length; i++) {
+        for (String stock : stockHoldings.keySet()) {
             JPanel stockPanel = new JPanel(new FlowLayout());
-            stockPanel.add(new JLabel(stocks[i]));
-            stockPanel.add(new JLabel(Integer.toString(quantities[i])));
+            stockPanel.add(new JLabel(stock));
+            stockPanel.add(new JLabel(stockHoldings.get(stock) + "ct"));
+            stockPanel.add(new JLabel(df.format(SMProxy.instance.getStockPrice(stock)) + "/ea"));
 
             JButton addOrRemoveStockButton = new JButton("+/-");
-            int finalI = i;
             addOrRemoveStockButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    addOrRemoveStock(stocks[finalI], quantities[finalI]);
+                    addOrRemoveStock(stock, stockHoldings.get(stock));
                 }
             });
             stockPanel.add(addOrRemoveStockButton);
-
 
             ownedStocksPanel.add(stockPanel);
         }
 
         this.ownedStocksPanel.revalidate();
         this.ownedStocksPanel.repaint();
+    }
 
+    private void updateEnv(){
+        updateStocksPanel();
+        balance = customerStockTradingSystem.getBalance();
+        System.out.println("Balance here: " + balance);
+        panel.remove(accountBalanceLabel);
+        accountBalanceLabel = new JLabel("Account Balance: " + df.format(balance));
+        panel.add(accountBalanceLabel, BorderLayout.WEST);
+        updateTransactionHistoryLabel();
+        panel.revalidate();
+        panel.repaint();
     }
 
     private void addOrRemoveStock(String stockName, int quantity) {
@@ -142,8 +195,7 @@ public class TradingAccountView extends JFrame {
         dialogPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // Create a JLabel to display the stock name
-        dialogPanel.add(new JLabel("Stock name: " + stockName));
-
+        dialogPanel.add(new JLabel("Stock name: " + stockName + " at " + df.format(SMProxy.instance.getStockPrice(stockName)) + "/ea"));
 
         // Create a JTextField to allow the user to enter the quantity change
         JTextField quantityField = new JTextField(Integer.toString(0));
@@ -161,12 +213,21 @@ public class TradingAccountView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Parse the entered quantity as an integer
                 int quantityChange = Integer.parseInt(quantityField.getText());
+                if (quantityChange == 0) {
+                    addOrRemoveDialog.dispose();
+                    return;
+                }
+                // Update the stock holdings
+                if (customerStockTradingSystem.buyStock(stockName, quantityChange)) {
+                    stockHoldings.put(stockName, quantity + quantityChange);
+                    balance = customerStockTradingSystem.getBalance();
+                } else {
+                    // generate a new window shows "Insufficient funds for this transaction."
+                    JOptionPane.showMessageDialog(null, "Insufficient funds for this transaction.");
+                }
 
-                // Update the stock quantity in the table
-//                int rowIndex = getRowIndex(stockName);
-//                int currentQuantity = Integer.parseInt(stockTable.getValueAt(rowIndex, 1).toString());
-//                int newQuantity = currentQuantity + quantityChange;
-//                stockTable.setValueAt(newQuantity, rowIndex, 1);
+                // Update the stocks panel
+                updateEnv();
 
                 // Close the dialog
                 addOrRemoveDialog.dispose();
@@ -179,12 +240,22 @@ public class TradingAccountView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Parse the entered quantity as an integer
                 int quantityChange = Integer.parseInt(quantityField.getText());
+                if (quantityChange == 0) {
+                    addOrRemoveDialog.dispose();
+                    return;
+                }
+                // Check if the quantity to remove is less than or equal to the current quantity
+                if (quantityChange <= quantity) {
+                    // Update the stock holdings
+                    customerStockTradingSystem.sellStock(stockName, quantityChange);
+                    balance = customerStockTradingSystem.getBalance();
+                    // Update the stocks panel
+                    updateStocksPanel();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid quantity. Cannot remove more than owned.");
+                }
 
-                // Update the stock quantity in the table
-//                int rowIndex = getRowIndex(stockName);
-//                int currentQuantity = Integer.parseInt(stockTable.getValueAt(rowIndex, 1).toString());
-//                int newQuantity = currentQuantity - quantityChange;
-//                stockTable.setValueAt(newQuantity, rowIndex, 1);
+                updateEnv();
 
                 // Close the dialog
                 addOrRemoveDialog.dispose();
@@ -198,12 +269,5 @@ public class TradingAccountView extends JFrame {
         addOrRemoveDialog.pack();
         addOrRemoveDialog.setLocationRelativeTo(this);
         addOrRemoveDialog.setVisible(true);
-
     }
-
-    public static void main(String[] args) {
-        TradingAccountView ui = new TradingAccountView();
-        ui.setVisible(true);
-    }
-
 }

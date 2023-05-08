@@ -17,6 +17,7 @@ public class PersonalAccountView extends JFrame {
     private JButton personalAccountHistory;
 
     private double accountBalance;
+    DecimalFormat df = new DecimalFormat("$#,##0.00");
     public PersonalAccountView(CustomerPersonalAccountSystem customerPersonalAccountSystem) {
         // Set up the frame
         super("Personal Account");
@@ -31,7 +32,6 @@ public class PersonalAccountView extends JFrame {
         System.out.println("Account Balance at init: " + accountBalance);
 
         // Set up the labels
-        DecimalFormat df = new DecimalFormat("$#,##0.00");
         accountBalanceLabel = new JLabel("Account Balance: " + customerPersonalAccountSystem.getPersonalAccountBalance());
 
         // Set up the buttons
@@ -51,8 +51,8 @@ public class PersonalAccountView extends JFrame {
                         }
                         double amount = Double.parseDouble(input);
                         accountBalance += amount;
-                        System.out.println("Account Balance after deposit: " + accountBalance);
                         customerPersonalAccountSystem.saveMoney(amount);
+                        System.out.println("Account Balance after deposit: " + customerPersonalAccountSystem.getPersonalAccountBalance());
                         accountBalanceLabel.setText("Account Balance: " + df.format(accountBalance));
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid amount.");
@@ -74,8 +74,8 @@ public class PersonalAccountView extends JFrame {
                             JOptionPane.showMessageDialog(null, "Insufficient funds.");
                         } else {
                             accountBalance -= amount;
-                            System.out.println("Account Balance after withdraw: " + accountBalance);
                             customerPersonalAccountSystem.withdrawMoney(amount);
+                            System.out.println("Account Balance after withdraw: " + customerPersonalAccountSystem.getPersonalAccountBalance());
                             accountBalanceLabel.setText("Account Balance: " + df.format(accountBalance));
                         }
                     } catch (NumberFormatException ex) {
@@ -102,8 +102,10 @@ public class PersonalAccountView extends JFrame {
                     }
                 }
                 else {
-                    TradingAccountView tradingAccountView = new TradingAccountView();
+
+                    TradingAccountView tradingAccountView = new TradingAccountView(customerPersonalAccountSystem);
                     tradingAccountView.setVisible(true);
+                    dispose();
                 }
             }
         });
@@ -134,6 +136,9 @@ public class PersonalAccountView extends JFrame {
 
         // Add panel to the frame
         getContentPane().add(panel);
+
+
+
     }
 
     public static void main(String[] args) {

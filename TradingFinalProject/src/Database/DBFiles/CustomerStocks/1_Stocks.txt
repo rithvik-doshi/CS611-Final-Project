@@ -1,6 +1,7 @@
-item name, quantity
-AAPL,23
-GOOG,17
-MSFT,12
-YHOO,9
-LNKD,8
+item name, quantity, purchase price
+AAPL,23,12
+GOOG,15,11
+NFLX,11,401
+YHOO,9,22
+TSLA,7,108
+V,1,23.85

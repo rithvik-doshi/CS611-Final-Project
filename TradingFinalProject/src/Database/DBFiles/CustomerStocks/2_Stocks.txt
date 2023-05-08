@@ -1,0 +1,6 @@
+item name, quantity, purchase price
+AAPL,23,15
+GOOG,17,20
+MSFT,12,30
+YHOO,9,25
+LNKD,8,99

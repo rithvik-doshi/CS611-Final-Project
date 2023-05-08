@@ -1,5 +1,43 @@
 behavior, item name, quantity, total price
-Buy, Chair, 100, 5000
-Sell，Table, 20, 2000
-Buy, KT, 50,600
+Buy, APPL, 100, 5000
+Sell, GOOG, 20, 2000
+Buy, KMT, 50,600
 Buy, MI, 1, 400
+sell, MSFT, 0, 0.0
+sell, MSFT, 1, 140.2
+sell, GOOG, 1, 91249.0
+sell, NFLX, 1, 40.0
+sell, NFLX, 1, 40.0
+buy, NFLX, 1, 40.0
+buy, NFLX, 1, 40.0
+buy, NFLX, 1, 40.0
+buy, NFLX, 1, 40.0
+buy, GOOG, 1, 91.0
+buy, GOOG, 1, 91.0
+buy, AAPL, 1, 34.0
+buy, AAPL, 1, 34.0
+buy, TSLA, 10, 999.9
+buy, TSLA, 10, 999.9
+buy, NFLX, 1, 40.0
+buy, NFLX, 13, 520.0
+buy, NFLX, 13, 520.0
+sell, NFLX, 13, 520.0
+sell, NFLX, 13, 520.0
+sell, NFLX, 1, 40.0
+sell, NFLX, 1, 40.0
+buy, NFLX, 1, 40.0
+buy, NFLX, 1, 40.0
+sell, NFLX, 1, 40.0
+sell, GOOG, 1, 91.0
+sell, AAPL, 1, 34.0
+sell, TSLA, 1, 99.99
+sell, NFLX, 1, 40.0
+sell, GOOG, 1, 91.0
+buy, NFLX, 1, 40.0
+sell, NFLX, 1, 40.0
+buy, AAPL, 1, 34.0
+buy, FB, 1, 18.1
+buy, MA, 12, 601.4399999999999
+buy, V, 1, 23.85
+buy, V, 1, 23.85
+buy, V, 1, 23.85

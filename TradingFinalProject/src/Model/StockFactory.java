@@ -6,8 +6,8 @@ public class StockFactory {
         return new MarketStock(name, price);
     }
 
-    public static OwnedStock createOwnedStock(String name, int quantity) {
-        return new OwnedStock(name, quantity);
+    public static OwnedStock createOwnedStock(String name, int quantity, double purchasePrice) {
+        return new OwnedStock(name, quantity, purchasePrice);
     }
 
 }

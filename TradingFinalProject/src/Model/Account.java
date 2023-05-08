@@ -7,6 +7,8 @@ public class Account{
     protected String ownerID;
 
 //    For personal account init
+    public Account(){}
+
     public Account(double balance, String ownerID){
         this.type = "Personal";
         this.balance = balance;
@@ -52,9 +54,7 @@ public class Account{
         return type;
     }
 
-    public double getBalance() {
-        return balance;
-    }
+
 
     public String getOwnerID() {
         return ownerID;

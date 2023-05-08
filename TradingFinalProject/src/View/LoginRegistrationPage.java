@@ -161,11 +161,13 @@ public class LoginRegistrationPage extends JFrame {
                 String name = registerUsernameTextField.getText();
                 String email = registerEmailTextField.getText();
                 String password = new String(registerPasswordField.getPassword());
-                boolean success = customerLogin.registerNewCustomer(name, email, password, finalCurrentPath);
-                if (success) {
+                int success = customerLogin.registerNewCustomer(name, email, password, finalCurrentPath);
+                if (success == 1) {
                     JOptionPane.showMessageDialog(LoginRegistrationPage.this, "Registration successful!");
-                } else {
+                } else if (success == -1) {
                     JOptionPane.showMessageDialog(LoginRegistrationPage.this, "Registration failed. Please try again.");
+                } else if (success == 0) {
+                    JOptionPane.showMessageDialog(LoginRegistrationPage.this, "This email has already been registered. Please try again, or log in via the login tab.");
                 }
             }
         });
@@ -176,7 +178,7 @@ public class LoginRegistrationPage extends JFrame {
             EntryInterface ui = new EntryInterface();
             ui.setVisible(true);
         });
-        loginPanel.add(backButtonLogin, BorderLayout.NORTH);
+        loginPanel.add(backButtonLogin);
 
         backButtonRegister = new JButton("Back");
         backButtonRegister.addActionListener(e -> {
@@ -184,7 +186,7 @@ public class LoginRegistrationPage extends JFrame {
             EntryInterface ui = new EntryInterface();
             ui.setVisible(true);
         });
-        registrationPanel.add(backButtonRegister, BorderLayout.NORTH);
+        registrationPanel.add(backButtonRegister);
     }
 
     public static void main(String[] args) {

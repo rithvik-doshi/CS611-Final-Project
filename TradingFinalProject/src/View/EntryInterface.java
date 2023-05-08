@@ -3,14 +3,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+
 public class EntryInterface extends JFrame {
     private JButton customerButton;
     private JButton managerButton;
-    private JButton viewStocksButton;
     private JButton exitButton;
     private LoginRegistrationPage customerLoginRegistrationPage;
     private ManagerLoginPage managerLoginRegistrationPage;
-    private StockMarketView stockMarketView;
+
+
 
     public EntryInterface() {
         // Create the panel and add the buttons to it
@@ -19,8 +20,7 @@ public class EntryInterface extends JFrame {
         panel.add(customerButton);
         managerButton = new JButton("Manager");
         panel.add(managerButton);
-        viewStocksButton = new JButton("View Market Stocks");
-        panel.add(viewStocksButton);
+
         exitButton = new JButton("Exit");
         panel.add(exitButton);
 
@@ -47,14 +47,7 @@ public class EntryInterface extends JFrame {
             }
         });
 
-        viewStocksButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                stockMarketView = new StockMarketView();
-                stockMarketView.setVisible(true);
-                EntryInterface.this.setVisible(false);
-            }
-        });
+
 
         exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

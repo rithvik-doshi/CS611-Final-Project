@@ -1,6 +1,5 @@
 package Model;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -98,8 +97,12 @@ public class PersonalAccount extends Account {
         return personalTransactionHistory.toString();
     }
 
-    public static void main(String[] args) {
-        updateCustomerFile(customerPath, 1, 2500);
-        System.out.println(customerPath);
+//    public static void main(String[] args) {
+//        updateCustomerFile(customerPath, 1, 2500);
+//        System.out.println(customerPath);
+//    }
+
+    public double getBalance() {
+        return balance;
     }
 }

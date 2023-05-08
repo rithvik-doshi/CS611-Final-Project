@@ -1,17 +1,12 @@
 package Model;
 
-import View.EntryInterface;
-import org.w3c.dom.ls.LSOutput;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class RequestFactory {
     private ArrayList<Request> requests = new ArrayList<>();
-    private final String filePath = Paths.get("").toAbsolutePath().toString() + "/TradingFinalProject/src/Database/DBFiles/AccountCreationRequests.txt";
+    private final String filePath = Paths.get("").toAbsolutePath() + "/TradingFinalProject/src/Database/DBFiles/AccountCreationRequests.txt";
     
     public RequestFactory() {
     }
@@ -38,26 +33,49 @@ public class RequestFactory {
         return requests;
     }
 
-    public ArrayList<Request> removeApprovedAndRejectedRequest(){
+    public boolean removeApprovedAndRejectedRequest(){
         ArrayList<Request> result = new ArrayList<>();
         for(Request r :requests){
             if(r.getStatus().equals("Pending")){
                 result.add(r);
             }
         }
-        return result;
-    };
-
-
-
-    public static void main(String[] args) {
-
-        RequestFactory createRequests = new RequestFactory();
-
-        ArrayList<Request> requests = new ArrayList<>();
-        requests = createRequests.createRequests();
-        System.out.println(requests.size());
+        requests = result;
+        return setRequests();
     }
+
+    public boolean senderInRequests(String sender){
+        for(Request r : requests){
+            if(r.getSender().equals(sender)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean setRequests(){
+        try (FileWriter fileWriter = new FileWriter(filePath)) {
+            fileWriter.write("");
+            for (Request request : requests) {
+                fileWriter.write(request.getSender() + " " + request.getStatus() + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+
+
+//    public static void main(String[] args) {
+//
+//        RequestFactory createRequests = new RequestFactory();
+//
+//        ArrayList<Request> requests = new ArrayList<>();
+//        requests = createRequests.createRequests();
+//        System.out.println(requests.size());
+//    }
 
 }
 
