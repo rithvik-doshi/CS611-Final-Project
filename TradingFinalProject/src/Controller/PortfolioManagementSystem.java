@@ -1,4 +1,4 @@
-package Model;
+package Controller;
 //- Manage the stocks available to trade and current prices
 // - Approve new customers
 // - Track (receive reports) of all customers and their unrealized and/or realized
@@ -8,12 +8,14 @@ package Model;
 // (allowing them to trade options). The ability to trade options is not to be 
 // implemented.
 
+import Model.*;
+
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class PortfolioManagementSystem {
 
-    private  Manager manager ;
+    private Manager manager ;
     SMProxy stockMarket = SMProxy.instance;
 
     ArrayList<Customer> customerInfor = new CustomerLogin(Paths.get("").toAbsolutePath().toString()+"/TradingFinalProject/src/Database/DBFiles/Customer.txt").getCustomersList();

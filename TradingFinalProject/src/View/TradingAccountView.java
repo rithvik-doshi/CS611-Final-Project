@@ -1,5 +1,7 @@
 package View;
 
+import Controller.CustomerPersonalAccountSystem;
+import Controller.CustomerStockTradingSystem;
 import Model.*;
 
 import javax.swing.text.html.HTMLEditorKit;
@@ -138,6 +140,7 @@ public class TradingAccountView extends JFrame {
     private void updateTransactionHistoryLabel() {
         StringBuilder transactionsStringBuilder = new StringBuilder("<html><body>");
         transactionHistory = transactionData.getTransactionHistory(path);
+        System.out.println(transactionHistory);
         for (String transaction : transactionHistory) {
             transactionsStringBuilder.append(transaction);
             transactionsStringBuilder.append("<br/>");

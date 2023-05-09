@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import Model.Manager;
-import Model.PortfolioManagementSystem;
+import Controller.PortfolioManagementSystem;
 import Model.Request;
 import Model.RequestFactory;
 

@@ -1,6 +1,6 @@
 package View;
 
-import Model.CustomerPersonalAccountSystem;
+import Controller.CustomerPersonalAccountSystem;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,0 +1,8 @@
+behavior, quantity
+Deposit, 500.0
+Withdraw, 400.0
+Deposit, 100.0
+Withdraw, 3.0
+Withdraw, 62.47
+Deposit, 62.47
+Deposit, 303.0

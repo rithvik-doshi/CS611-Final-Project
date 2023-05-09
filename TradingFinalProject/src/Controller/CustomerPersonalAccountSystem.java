@@ -1,4 +1,6 @@
-package Model;
+package Controller;
+
+import Model.Customer;
 
 public class CustomerPersonalAccountSystem {
 

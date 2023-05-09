@@ -1,0 +1,7 @@
+behavior, item name, quantity, total price
+buy, bruhmongus, 400, 400.0
+sell, bruhmongus, 100, 100.0
+buy, bruhmongus, 3, 3.0
+buy, INTC, 1, 62.47
+sell, INTC, 1, 62.47
+sell, bruhmongus, 303, 303.0

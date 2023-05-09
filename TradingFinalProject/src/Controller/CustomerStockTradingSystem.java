@@ -1,4 +1,9 @@
-package Model;
+package Controller;
+
+import Model.Customer;
+import Model.PersonalAccount;
+import Model.SMProxy;
+import Model.TradingAccount;
 
 import java.util.HashMap;
 

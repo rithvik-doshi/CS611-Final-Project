@@ -5,6 +5,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
+import Controller.PortfolioManagementSystem;
 import Model.*;
 
 public class CustomerProfitReportView extends JFrame {

@@ -14,6 +14,7 @@ public class TransactionData {
     }
 
     private void readTransactionHistory(String filePath) {
+        transactionHistory = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line;

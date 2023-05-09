@@ -1,5 +1,7 @@
 package Model;
 
+import Controller.CustomerPersonalAccountSystem;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;

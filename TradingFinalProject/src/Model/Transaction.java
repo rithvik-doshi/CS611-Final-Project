@@ -18,6 +18,4 @@ public abstract class Transaction {
         return money;
     }
 
-    public abstract String[] getInfoAsArray();
-
 }

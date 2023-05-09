@@ -32,14 +32,16 @@ public class StockTransactionHistory extends TransactionHistory{
     public double getProfit(ArrayList<Transaction> history) {
         double profit = 0;
         for (Transaction t : history) {
+
             if (t instanceof StockTransaction) {
-                if (t.getBehaviour().equals("Buy")) {
-                    profit -= t.getMoney()* ((StockTransaction) t).getQuantity();
+                if (t.getBehaviour().toLowerCase().equals("buy")) {
+                    profit -= t.getMoney();
                 } else {
-                    profit += t.getMoney()* ((StockTransaction) t).getQuantity();
+                    profit += t.getMoney();
                 }
             }
         }
+        System.out.println("Profit: " + profit);
         return profit;
     }
 

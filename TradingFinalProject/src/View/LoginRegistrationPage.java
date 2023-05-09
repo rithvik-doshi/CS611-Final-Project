@@ -1,7 +1,7 @@
 package View;
 
 import Model.CustomerLogin;
-import Model.CustomerPersonalAccountSystem;
+import Controller.CustomerPersonalAccountSystem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -118,9 +118,6 @@ public class LoginRegistrationPage extends JFrame {
         constraints.gridy = 3;
         constraints.gridwidth = 2;
         constraints.anchor = GridBagConstraints.WEST;
-
-        backButton = new JButton("Back");
-        registrationPanel.add(backButton, constraints);
 
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Login", loginPanel);

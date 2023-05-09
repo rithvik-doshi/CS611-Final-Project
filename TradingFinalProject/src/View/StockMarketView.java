@@ -1,5 +1,7 @@
 package View;
 
+import Controller.CustomerPersonalAccountSystem;
+import Controller.CustomerStockTradingSystem;
 import Model.*;
 
 import javax.swing.*;
