@@ -6,7 +6,7 @@ Author: Rithivik Doshi, Zhangde Song, Yuxi Ge.
 Hava 8
 
 #### How to run the code:
-java javac EntryInterface.java
+java javac EntryInterface.java    
 java EntryInterface.java
 
 #### Files:
