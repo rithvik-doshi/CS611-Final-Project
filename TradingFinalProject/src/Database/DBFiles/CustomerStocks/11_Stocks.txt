@@ -1,0 +1,3 @@
+itemname, quantity
+VZ,800,9.29
+PYPL,100,74.36

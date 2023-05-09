@@ -1,13 +1,14 @@
 # CS611-Final-Project
-## Stock Market
+## Stock Market Project
 Author: Rithivik Doshi, Zhangde Song, Yuxi Ge. 
 
 ## Environment 
 Java 8
 
 #### How to run the code:
-java javac Main.java    
-java Main.java
+1. Firstly, ensure that all the files are located in the folders, and that you are using the same database files that were included. If you need to, make sure to clear all the files you need to but keep any file headers that are present.
+2. Run `java Main.java` in `TradingFinalProject/src/` directory.
+3. Enjoy!
 
 #### Files:
 ##### Account.java

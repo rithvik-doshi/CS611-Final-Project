@@ -1,0 +1,4 @@
+behavior, item name, quantity, total price
+buy, VZ, 1000, 9290.0
+sell, VZ, 200, 199800.0
+buy, PYPL, 100, 7436.0
