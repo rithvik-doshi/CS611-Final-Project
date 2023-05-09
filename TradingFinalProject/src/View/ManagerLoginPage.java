@@ -8,17 +8,10 @@ import java.awt.event.*;
 import java.nio.file.Paths;
 
 public class ManagerLoginPage extends JFrame {
-    private JLabel titleLabel;
-    private JPanel loginPanel;
-    private JLabel usernameLabel;
-    private JTextField usernameTextField;
-    private JLabel passwordLabel;
-    private JPasswordField passwordField;
-    private JLabel keyLabel;
-    private JTextField keyTextField;
-    private JButton loginButton;
-    private JButton backButton;
-    private ManagerLogin managerLogin;
+    private final JTextField usernameTextField;
+    private final JPasswordField passwordField;
+    private final JTextField keyTextField;
+    private final ManagerLogin managerLogin;
 
     public ManagerLoginPage() {
         // Set up the frame
@@ -28,20 +21,20 @@ public class ManagerLoginPage extends JFrame {
         setLocationRelativeTo(null);
 
         // Set up the title label
-        titleLabel = new JLabel("Manager Login");
+        JLabel titleLabel = new JLabel("Manager Login");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
 
         // Set up the login panel
-        loginPanel = new JPanel();
+        JPanel loginPanel = new JPanel();
         loginPanel.setLayout(new GridLayout(4, 2));
-        usernameLabel = new JLabel("Username:");
+        JLabel usernameLabel = new JLabel("Username:");
         usernameTextField = new JTextField();
-        passwordLabel = new JLabel("Password:");
+        JLabel passwordLabel = new JLabel("Password:");
         passwordField = new JPasswordField();
-        keyLabel = new JLabel("Key:");
+        JLabel keyLabel = new JLabel("Key:");
         keyTextField = new JTextField();
-        loginButton = new JButton("Login");
-        backButton = new JButton("Back");
+        JButton loginButton = new JButton("Login");
+        JButton backButton = new JButton("Back");
 
         loginPanel.add(usernameLabel);
         loginPanel.add(usernameTextField);
@@ -88,17 +81,12 @@ public class ManagerLoginPage extends JFrame {
 
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Back button clicked
                 ManagerLoginPage.this.setVisible(false);
-                EntryInterface entryInterface = new EntryInterface();
+                dispose();
             }
         });
 
 
     }
 
-    public static void main(String[] args) {
-        ManagerLoginPage ui = new ManagerLoginPage();
-        ui.setVisible(true);
-    }
 }

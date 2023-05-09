@@ -1,7 +1,6 @@
 package Model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class StockTransactionHistory extends TransactionHistory{
 
@@ -34,7 +33,7 @@ public class StockTransactionHistory extends TransactionHistory{
         for (Transaction t : history) {
 
             if (t instanceof StockTransaction) {
-                if (t.getBehaviour().toLowerCase().equals("buy")) {
+                if (t.getBehaviour().equalsIgnoreCase("buy")) {
                     profit -= t.getMoney();
                 } else {
                     profit += t.getMoney();

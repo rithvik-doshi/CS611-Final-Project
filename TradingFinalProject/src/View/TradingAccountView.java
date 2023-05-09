@@ -17,26 +17,20 @@ import java.util.HashMap;
 
 public class TradingAccountView extends JFrame {
 
-    private JLabel greetingLabel;
-    private JLabel titleLabel;
     private JLabel accountBalanceLabel;
-    private JButton backButton;
-    private JButton viewStockMarketButton;
 
-    private JButton viewProfitsButton;
-    private CustomerStockTradingSystem customerStockTradingSystem;
-    private HashMap<String, Integer> stockHoldings = new HashMap<>();
+    private final CustomerStockTradingSystem customerStockTradingSystem;
+    private final HashMap<String, Integer> stockHoldings;
     private double balance;
     private StockMarketView stockMarketView;
     private ArrayList<String> transactionHistory;
-    private TransactionData transactionData;
+    private final TransactionData transactionData;
 
-    private JTextPane transactionHistoryPane;
-    private JScrollPane transactionHistoryScrollPane;
+    private final JTextPane transactionHistoryPane;
 
-    private JPanel ownedStocksPanel;
+    private final JPanel ownedStocksPanel;
 
-    private JPanel panel = new JPanel(new BorderLayout());
+    private final JPanel panel = new JPanel(new BorderLayout());
     DecimalFormat df = new DecimalFormat("$#,##0.00");
 
     String currentPath = Paths.get("").toAbsolutePath() + "/TradingFinalProject/src/Database/DBFiles/CustomerStockHistory/";
@@ -58,10 +52,10 @@ public class TradingAccountView extends JFrame {
         transactionData = new TransactionData(path);
         transactionHistory = transactionData.getTransactionHistory(path);
 
-        greetingLabel = new JLabel("Hi, " + customerPersonalAccountSystem.getCustomer().getName() + "!");
+        JLabel greetingLabel = new JLabel("Hi, " + customerPersonalAccountSystem.getCustomer().getName() + "!");
 
 
-        titleLabel = new JLabel("Manage Stocks");
+        JLabel titleLabel = new JLabel("Manage Stocks");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         add(titleLabel, BorderLayout.NORTH);
@@ -71,11 +65,11 @@ public class TradingAccountView extends JFrame {
         transactionHistoryPane = new JTextPane();
         transactionHistoryPane.setEditable(false);
         transactionHistoryPane.setEditorKit(new HTMLEditorKit());
-        transactionHistoryScrollPane = new JScrollPane(transactionHistoryPane);
+        JScrollPane transactionHistoryScrollPane = new JScrollPane(transactionHistoryPane);
         updateTransactionHistoryLabel();
 
         // Create and set up the Back button
-        backButton = new JButton("Back");
+        JButton backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Close this window
@@ -103,7 +97,7 @@ public class TradingAccountView extends JFrame {
 
 
         // Create and set up the viewStockMarketButton
-        viewStockMarketButton = new JButton("View Stock Market");
+        JButton viewStockMarketButton = new JButton("View Stock Market");
         viewStockMarketButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Create a new StockMarketView and display it
@@ -114,16 +108,14 @@ public class TradingAccountView extends JFrame {
             }
         });
 
-        viewProfitsButton = new JButton("View Profits");
+        JButton viewProfitsButton = new JButton("View Profits");
 
         viewProfitsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // alert
-                StringBuilder sb = new StringBuilder();
-                sb.append("You have made a realized profit of: " + df.format(customerStockTradingSystem.getRealizedProfit()) + "\n");
-                sb.append("You have an unrealized profit of: " + df.format(customerStockTradingSystem.getUnrealizedProfit()) + "\n");
-                sb.append("Duke the Java Swing Mascot is proud of you regardless of where you are in your financial journey!");
-                JOptionPane.showMessageDialog(null, sb.toString(), "Profit Information", JOptionPane.INFORMATION_MESSAGE);
+                String sb = "You have made a realized profit of: " + df.format(customerStockTradingSystem.getRealizedProfit()) + "\n" +
+                        "You have an unrealized profit of: " + df.format(customerStockTradingSystem.getUnrealizedProfit()) + "\n" +
+                        "Duke the Java Swing Mascot is proud of you regardless of where you are in your financial journey!";
+                JOptionPane.showMessageDialog(null, sb, "Profit Information", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 

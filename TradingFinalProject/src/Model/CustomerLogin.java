@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CustomerLogin {
-    private ArrayList<Customer> customers = new ArrayList<>();
+    private final ArrayList<Customer> customers = new ArrayList<>();
     private CustomerPersonalAccountSystem customerPersonalAccountSystem;
 
     public CustomerLogin(String filePath) {

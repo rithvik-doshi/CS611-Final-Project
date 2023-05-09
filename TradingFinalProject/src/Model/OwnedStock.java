@@ -2,8 +2,7 @@ package Model;
 
 public class OwnedStock extends Stock {
     private int quantity;
-    private double purchasePrice;
-    private String StockName;
+    private final double purchasePrice;
     public OwnedStock(String name, int quantity, double purchasePrice) {
         super(name);
         if (quantity < 1) {
@@ -32,11 +31,6 @@ public class OwnedStock extends Stock {
         }
         this.quantity -= quantity;
     }
-
-    public boolean equals(String string){
-        return true;
-    }
-
 
 
     @Override

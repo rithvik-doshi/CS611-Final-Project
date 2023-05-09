@@ -10,14 +10,13 @@ import java.util.List;
 
 public class TradingAccount extends Account {
     int customerId;
-    double netProfit;
-    public boolean found = false;
+    public boolean found;
     double realizedProfit;
     private StockTransactionHistory stockTransactionHistory;
 
     // double unrealizedProfit;
-    private HashMap<String, Integer> stockHoldings = new HashMap<>();
-    private HashMap<String, Double> purchasePrices = new HashMap<>();
+    private final HashMap<String, Integer> stockHoldings = new HashMap<>();
+    private final HashMap<String, Double> purchasePrices = new HashMap<>();
 
     public TradingAccount(int customerId){
         this.customerId = customerId;
@@ -49,8 +48,8 @@ public class TradingAccount extends Account {
 //                System.out.println(fields[0]);
 //                System.out.println(fields[0]+ " "+ fields[1] +" "+ fields[2]);
                 String name = fields[0];
-                        double purchasePrice = Double.valueOf(fields[2]);
-                                int quantity = Integer.valueOf(fields[1]);
+                        double purchasePrice = Double.parseDouble(fields[2]);
+                                int quantity = Integer.parseInt(fields[1]);
                 stockHoldings.put(name, stockHoldings.getOrDefault(name, 0) + quantity);
                 purchasePrices.put(name, purchasePrice);
 //                                ownedStocks.add(new OwnedStock(name, quantity, purchasePrice));
@@ -79,12 +78,7 @@ public class TradingAccount extends Account {
 // determine if the trading account can have a derivative account by checking the net profit over 10000
 
     public boolean canHaveDerivativeAccount(){
-
-        if(this.getRealizedProfit() > 10000){
-            return true;
-        }else{
-            return false;
-        }
+        return this.getRealizedProfit() > 10000;
     }
     
 

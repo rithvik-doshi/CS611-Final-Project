@@ -45,10 +45,6 @@ public abstract class Person {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-//    public String toString() {
-//        return "Name: " + name + " Password: " + password + " Type: " + type + " ID: " + id;
-//    }
 
     public boolean equals(Object o) {
         if (o instanceof Person) {

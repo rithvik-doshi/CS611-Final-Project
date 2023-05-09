@@ -11,12 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StockMarketView extends JFrame {
-    private JTable stockTable;
-    private JScrollPane scrollPane;
-    private JPanel panel;
-    private JButton backButton;
-    private CustomerPersonalAccountSystem customerPersonalAccountSystem;
-    private CustomerStockTradingSystem customerStockTradingSystem;
+    private final JTable stockTable;
+    private final CustomerStockTradingSystem customerStockTradingSystem;
 
 
     public StockMarketView(CustomerPersonalAccountSystem customerPersonalAccountSystem) {
@@ -25,14 +21,13 @@ public class StockMarketView extends JFrame {
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        this.customerPersonalAccountSystem = customerPersonalAccountSystem;
         customerStockTradingSystem = new CustomerStockTradingSystem(customerPersonalAccountSystem.getCustomer(),customerPersonalAccountSystem.getCustomer().getPersonalAccount());
 
         // Set up the table and scroll pane
         String[] columnNames = {"Price", "Name"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0); // Initially no data, just column names
         stockTable = new JTable(model);
-        scrollPane = new JScrollPane(stockTable);
+        JScrollPane scrollPane = new JScrollPane(stockTable);
 
         populateTableWithStocks(); // Populate the table with stock data
 
@@ -64,13 +59,11 @@ public class StockMarketView extends JFrame {
         });
 
         // Set up the buttons
-        backButton = new JButton("Back");
+        JButton backButton = new JButton("Back");
 
         // Add action listeners to the buttons
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO: Implement back button functionality
-//                TradingAccountView tradingAccountView = new TradingAccountView(customerPersonalAccountSystem);
                 TradingAccountView tradingAccountView = new TradingAccountView(customerPersonalAccountSystem);
                 tradingAccountView.setVisible(true);
                 dispose();
@@ -80,7 +73,7 @@ public class StockMarketView extends JFrame {
 
 
         // Add components to the panel
-        panel = new JPanel(new BorderLayout());
+        JPanel panel = new JPanel(new BorderLayout());
         panel.add(scrollPane, BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel(new FlowLayout());
         buttonPanel.add(backButton);
@@ -101,10 +94,4 @@ public class StockMarketView extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        Customer customer=new Customer(1,"sam","sam","123",1000);
-        CustomerPersonalAccountSystem customerPersonalAccountSystem1 = new CustomerPersonalAccountSystem(customer);
-        StockMarketView ui = new StockMarketView(customerPersonalAccountSystem1);
-        ui.setVisible(true);
-    }
 }

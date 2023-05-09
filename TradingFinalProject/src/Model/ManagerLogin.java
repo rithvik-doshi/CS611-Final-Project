@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ManagerLogin {
-    private String managerDataPath;
+    private final String managerDataPath;
     private Manager manager;
 
     public ManagerLogin(String managerDataPath) {

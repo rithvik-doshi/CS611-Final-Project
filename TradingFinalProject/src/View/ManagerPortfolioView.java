@@ -9,33 +9,22 @@ import java.awt.event.ActionListener;
 
 public class ManagerPortfolioView extends JFrame {
 
-    private JLabel titleLabel;
-
-    private JButton manageStocksButton;
-    private JButton approveCustomersButton;
-    private JButton trackCustomersButton;
-    private JButton backButton;
-
-    private Manager manager;
-
     public ManagerPortfolioView(Manager manager) {
         super("Manager Portfolio System");
-
-        this.manager = manager;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        titleLabel = new JLabel("Welcome to the Manager Portfolio System");
+        JLabel titleLabel = new JLabel("Welcome to the Manager Portfolio System");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         add(titleLabel, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel(new GridLayout(2, 2, 10, 10));
-        manageStocksButton = new JButton("Manage Stocks");
-        approveCustomersButton = new JButton("Approve New Customers");
-        trackCustomersButton = new JButton("Track Customers");
-        backButton = new JButton("Back");
+        JButton manageStocksButton = new JButton("Manage Stocks");
+        JButton approveCustomersButton = new JButton("Approve New Customers");
+        JButton trackCustomersButton = new JButton("Track Customers");
+        JButton backButton = new JButton("Back");
 
 
         manageStocksButton.addActionListener(new ActionListener() {
@@ -70,8 +59,8 @@ public class ManagerPortfolioView extends JFrame {
 
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ManagerLoginPage managerLoginPage = new ManagerLoginPage();
                 ManagerPortfolioView.this.setVisible(false);
+                dispose();
             }
         });
 
@@ -86,9 +75,5 @@ public class ManagerPortfolioView extends JFrame {
         setVisible(true);
     }
 
-
-    public static void main(String[] args) {
-//        ManagerPortfolioView ui = new ManagerPortfolioView();
-    }
 
 }

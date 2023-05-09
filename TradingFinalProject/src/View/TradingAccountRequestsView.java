@@ -11,12 +11,9 @@ import Model.Request;
 import Model.RequestFactory;
 
 public class TradingAccountRequestsView extends JFrame {
-    private JPanel requestsPanel;
-    private JButton backButton;
-    private RequestFactory requestFactory = new RequestFactory();
-    private PortfolioManagementSystem portfolioManagementSystem;
-
-    private Manager manager;
+    private final JPanel requestsPanel;
+    private final RequestFactory requestFactory = new RequestFactory();
+    private final PortfolioManagementSystem portfolioManagementSystem;
 
     public TradingAccountRequestsView(Manager manager) {
 
@@ -30,7 +27,7 @@ public class TradingAccountRequestsView extends JFrame {
         requestsPanel.setLayout(new BoxLayout(requestsPanel, BoxLayout.Y_AXIS));
         requestsPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        backButton = new JButton("Back");
+        JButton backButton = new JButton("Back");
         backButton.addActionListener(e -> {
             requestFactory.removeApprovedAndRejectedRequest();
             TradingAccountRequestsView.this.dispose();
@@ -57,7 +54,7 @@ public class TradingAccountRequestsView extends JFrame {
             JPanel requestPanel = new JPanel(new GridLayout(1, 3));
             requestPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
 
-            JLabel nameLabel = new JLabel(portfolioManagementSystem.getNamefromId(Integer.valueOf(request.getSender())));
+            JLabel nameLabel = new JLabel(portfolioManagementSystem.getNamefromId(Integer.parseInt(request.getSender())));
             requestPanel.add(nameLabel);
 
             JLabel statusLabel = new JLabel(request.getStatus());
@@ -89,7 +86,4 @@ public class TradingAccountRequestsView extends JFrame {
         requestsPanel.repaint();
     }
 
-    public static void main(String[] args) {
-//        new TradingAccountRequestsView();
-    }
 }

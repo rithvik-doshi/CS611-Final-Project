@@ -1,6 +1,5 @@
 package Model;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -11,8 +10,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class Request {
-    private String sender;
-    // private String receiver;
+    private final String sender;
     private String status;
     private boolean isApproved;
 
@@ -81,10 +79,8 @@ public class Request {
         currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/CustomerStockHistory/"+ getSender() +"_StockHistory.txt";
         Path path = Paths.get(currentPath);
         boolean fileExists = Files.exists(path);
-        if(fileExists){return;}
-        else{
+        if (!fileExists) {
             try {
-                File file = new File("/TradingFinalProject/src/Database/DBFiles/CustomerStockHistory", getSender() +"_StockHistory.txt");
                 Files.createFile(path);
                 try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.WRITE)) {
                     String header = "behavior, item name, quantity, total price" +
@@ -104,10 +100,8 @@ public class Request {
         currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/CustomerStocks/"+ getSender() +"_Stocks.txt";
         Path path = Paths.get(currentPath);
         boolean fileExists = Files.exists(path);
-        if(fileExists){return;}
-        else{
+        if (!fileExists) {
             try {
-                File file = new File("/TradingFinalProject/src/Database/DBFiles/CustomerStocks", getSender() +"_Stocks.txt");
                 Files.createFile(path);
                 try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.WRITE)) {
                     String header = "itemname, quantity" +
@@ -148,7 +142,6 @@ public class Request {
         return status;
     }
 
-    //TODO write request to database
     public void writeRequestToDB() {
 
         RequestFactory rf = new RequestFactory();
@@ -174,8 +167,4 @@ public class Request {
         }
     }
 
-//    public static void main(String[] args) {
-//        Request r = new Request("1", "Pending");
-//
-//    }
 }

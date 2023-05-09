@@ -12,15 +12,12 @@ import Model.SMProxy;
 
 public class ManageStockView extends JFrame {
 
-    private JLabel titleLabel;
-    private JPanel stockPanel;
-    private JButton addStockButton;
-    private JButton backButton;
+    private final JPanel stockPanel;
 
     // List of stocks
-    private ArrayList<MarketStock> Marketstocks;
+    private ArrayList<MarketStock> MarketStocks;
 
-    private Manager manager;
+    private final Manager manager;
     
 
     public ManageStockView(Manager manager) {
@@ -28,12 +25,12 @@ public class ManageStockView extends JFrame {
 
         this.manager = manager;
         //Test Proposed:
-        Marketstocks = SMProxy.instance.getAllStocks();
+        MarketStocks = SMProxy.instance.getAllStocks();
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        titleLabel = new JLabel("Manage Stocks");
+        JLabel titleLabel = new JLabel("Manage Stocks");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         add(titleLabel, BorderLayout.NORTH);
@@ -43,7 +40,7 @@ public class ManageStockView extends JFrame {
         JScrollPane scrollPane = new JScrollPane(stockPanel);
         add(scrollPane, BorderLayout.CENTER);
 
-        backButton = new JButton("Back");
+        JButton backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,7 +50,7 @@ public class ManageStockView extends JFrame {
             }
         });
 
-        addStockButton = new JButton("Add Stock");
+        JButton addStockButton = new JButton("Add Stock");
         addStockButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -90,7 +87,7 @@ public class ManageStockView extends JFrame {
                         double stockPrice = Double.parseDouble(stockPriceString);
 
                         SMProxy.instance.addStock(stockName, stockPrice, manager.getID(), manager.getKey());
-                        Marketstocks = SMProxy.instance.getAllStocks();
+                        MarketStocks = SMProxy.instance.getAllStocks();
                         displayStocks();
 
                         addStockDialog.dispose();
@@ -126,7 +123,7 @@ public class ManageStockView extends JFrame {
     private void displayStocks() {
         stockPanel.removeAll();
 
-        for (MarketStock stock : Marketstocks) {
+        for (MarketStock stock : MarketStocks) {
             JPanel stockPanel = new JPanel();
             stockPanel.setLayout(new GridLayout(1, 4));
 
@@ -183,7 +180,7 @@ public class ManageStockView extends JFrame {
                         double price = Double.parseDouble(priceString);
 //                        stock.setMoney(price);
                         SMProxy.instance.setStockPrice(stock.getName(), price, manager.getID(), manager.getKey());
-                        Marketstocks = SMProxy.instance.getAllStocks();
+                        MarketStocks = SMProxy.instance.getAllStocks();
                         displayStocks();
     
                         editPriceDialog.dispose();
@@ -230,8 +227,5 @@ public class ManageStockView extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        new ManageStockView(new Manager(1, "Rithvik Doshi", "bruh@buh.com", "password"));
-    }
 }
     

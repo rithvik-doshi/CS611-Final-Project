@@ -7,10 +7,10 @@ import java.util.ArrayList;
 
 public class PortfolioManagementSystem {
 
-    private Manager manager ;
+    private final Manager manager ;
     SMProxy stockMarket = SMProxy.instance;
 
-    ArrayList<Customer> customerInfor = new CustomerLogin(Paths.get("").toAbsolutePath().toString()+"/TradingFinalProject/src/Database/DBFiles/Customer.txt").getCustomersList();
+    ArrayList<Customer> customerInfor = new CustomerLogin(Paths.get("").toAbsolutePath() +"/TradingFinalProject/src/Database/DBFiles/Customer.txt").getCustomersList();
 
     public PortfolioManagementSystem(Manager manager) {
         this.manager = manager;
@@ -68,7 +68,5 @@ public class PortfolioManagementSystem {
         return customer.getTradingAccount().getRealizedProfit();
     }
 
-
-//TODO:- Notify all customers who have made more than 10k in realized trading
 
 }

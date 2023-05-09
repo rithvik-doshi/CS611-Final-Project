@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public abstract class TransactionHistory {
@@ -17,10 +16,8 @@ public abstract class TransactionHistory {
     private static final String currentPath = Paths.get("").toAbsolutePath() + "/TradingFinalProject/src/Database/DBFiles/";
 
     protected TransactionHistory(String customerID, String name) {
-        //TODO: load history from file based on input params
-        String fileIdentity = customerID;
 
-        fileName = historyType(fileIdentity);
+        fileName = historyType(customerID);
 
         File file = new File(currentPath + fileName);
 
@@ -59,7 +56,6 @@ public abstract class TransactionHistory {
     public abstract String fileHeader();
 
     public boolean addToHistory(Transaction t){
-        //TODO: add to history
         history.add(t);
 
         File file = new File(currentPath + fileName);

@@ -3,6 +3,7 @@ package Model;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,8 @@ public class PersonalAccount extends Account {
 
 //        System.out.println("newMoney: " + newMoney);
         try {
-            List<String> fileContent = new ArrayList<>(Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8));
+            Path path = Paths.get(filePath);
+            List<String> fileContent = new ArrayList<>(Files.readAllLines(path, StandardCharsets.UTF_8));
             int lineNumber = -1;
 
             for (int i = 1; i < fileContent.size(); i++) {
@@ -54,10 +56,8 @@ public class PersonalAccount extends Account {
                 fields[4] = String.valueOf(newMoney);
 //                System.out.println("fields[4]"+fields[4]);
                 fileContent.set(lineNumber, String.join(", ", fields));
-                Files.write(Paths.get(filePath), fileContent, StandardCharsets.UTF_8);
+                Files.write(path, fileContent, StandardCharsets.UTF_8);
 //                System.out.println("Money updated successfully");
-            } else {
-//                System.out.println("Customer not found.");
             }
         } catch (IOException e) {
             e.printStackTrace();

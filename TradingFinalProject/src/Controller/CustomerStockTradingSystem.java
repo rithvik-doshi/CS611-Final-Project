@@ -9,13 +9,11 @@ import java.util.HashMap;
 
 public class CustomerStockTradingSystem {
 
-    private Customer customer;
-    private PersonalAccount personalAccount;
-    private TradingAccount tradingAccount;
-    private SMProxy stockMarket = SMProxy.instance;
+    private final PersonalAccount personalAccount;
+    private final TradingAccount tradingAccount;
+    private final SMProxy stockMarket = SMProxy.instance;
 
     public CustomerStockTradingSystem(Customer customer, PersonalAccount personalAccount) {
-        this.customer = customer;
         this.personalAccount = personalAccount;
         this.tradingAccount = new TradingAccount(customer.getID());
     }
@@ -34,10 +32,7 @@ public class CustomerStockTradingSystem {
     }
 
     public void deductFunds(double amount) {
-        if(personalAccount.getBalance() < amount){
-//            System.out.println("not enough funds");
-        }
-        else {
+        if (!(personalAccount.getBalance() < amount)) {
             personalAccount.withdraw(amount);
         }
     }
@@ -65,8 +60,6 @@ public class CustomerStockTradingSystem {
 
             tradingAccount.sellStock(name, quantity, stockPrice);
             addFunds(revenue);
-        } else {
-//            System.out.println("Insufficient shares for this transaction.");
         }
     }
 
@@ -83,8 +76,4 @@ public class CustomerStockTradingSystem {
         return tradingAccount.canHaveDerivativeAccount();
     }
 
-    public static void  main(String[]arg){
-
-    }
-
-    }
+}

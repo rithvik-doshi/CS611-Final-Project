@@ -1,6 +1,5 @@
 package Model;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,10 +35,8 @@ public class Customer extends Person {
         currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/CustomerPersonalHistory/"+ getID() +"_PersonalHistory.txt";
         Path path = Paths.get(currentPath);
         boolean fileExists = Files.exists(path);
-        if(fileExists){return;}
-        else{
+        if (!fileExists) {
             try {
-                File file = new File("/TradingFinalProject/src/Database/DBFiles/CustomerPersonalHistory", getID() +"_PersonalHistory.txt");
                 Files.createFile(path);
                 try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.WRITE)) {
                     String header = "behavior, quantity" +
@@ -58,8 +55,6 @@ public class Customer extends Person {
         if (!checkTradingAccountExit()) {
             Request request = new Request(this.getID()+"");
             request.writeRequestToDB();
-        } else {
-//            System.out.println("You already have a trading account");
         }
     }
 
@@ -67,8 +62,7 @@ public class Customer extends Person {
         String currentPath = Paths.get("").toAbsolutePath().toString();
         currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/CustomerStockHistory/"+ getID() +"_StockHistory.txt";
         Path path = Paths.get(currentPath);
-        boolean fileExists = Files.exists(path);
-        return fileExists;
+        return Files.exists(path);
 
     }
 
@@ -92,7 +86,6 @@ public class Customer extends Person {
         return "C" + getCurrentID();
     }
 
-    // TODO: Add a method to get the current ID from DataBase
     private static int getCurrentID(){
         return 0;
     }

@@ -5,23 +5,18 @@ import java.awt.event.*;
 
 
 public class EntryInterface extends JFrame {
-    private JButton customerButton;
-    private JButton managerButton;
-    private JButton exitButton;
-    private LoginRegistrationPage customerLoginRegistrationPage;
     private ManagerLoginPage managerLoginRegistrationPage;
 
 
 
     public EntryInterface() {
-        // Create the panel and add the buttons to it
         JPanel panel = new JPanel(new GridLayout(4, 1));
-        customerButton = new JButton("Customer");
+        JButton customerButton = new JButton("Customer");
         panel.add(customerButton);
-        managerButton = new JButton("Manager");
+        JButton managerButton = new JButton("Manager");
         panel.add(managerButton);
 
-        exitButton = new JButton("Exit");
+        JButton exitButton = new JButton("Exit");
         panel.add(exitButton);
 
 
@@ -29,9 +24,8 @@ public class EntryInterface extends JFrame {
         customerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Customer button clicked
-                customerLoginRegistrationPage = new LoginRegistrationPage();
-                EntryInterface.this.setVisible(false); // Set the current frame to be invisible
-
+                LoginRegistrationPage loginRegistrationPage = new LoginRegistrationPage();
+                loginRegistrationPage.setVisible(true);
 
             }
         });
@@ -42,7 +36,6 @@ public class EntryInterface extends JFrame {
                 // Customer button clicked
                 managerLoginRegistrationPage = new ManagerLoginPage();
                 managerLoginRegistrationPage.setVisible(true);
-                EntryInterface.this.setVisible(false); // Set the current frame to be invisible
 
             }
         });
@@ -62,7 +55,7 @@ public class EntryInterface extends JFrame {
         getContentPane().add(panel);
 
         // Set up the frame
-        setTitle("Market App");
+        setTitle("Stocks n stuff ©");
         setSize(300, 150);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

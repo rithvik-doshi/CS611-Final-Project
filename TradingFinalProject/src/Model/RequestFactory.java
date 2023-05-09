@@ -66,16 +66,5 @@ public class RequestFactory {
         return true;
     }
 
-
-
-//    public static void main(String[] args) {
-//
-//        RequestFactory createRequests = new RequestFactory();
-//
-//        ArrayList<Request> requests = new ArrayList<>();
-//        requests = createRequests.createRequests();
-////        System.out.println(requests.size());
-//    }
-
 }
 

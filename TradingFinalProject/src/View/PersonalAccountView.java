@@ -9,12 +9,7 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 public class PersonalAccountView extends JFrame {
-    private JLabel greetingLabel;
-    private JLabel accountBalanceLabel;
-    private JButton saveButton;
-    private JButton withdrawButton;
-    private JButton tradingAccountButton;
-    private JButton personalAccountHistory;
+    private final JLabel accountBalanceLabel;
 
     private double accountBalance;
     DecimalFormat df = new DecimalFormat("$#,##0.00");
@@ -26,7 +21,7 @@ public class PersonalAccountView extends JFrame {
         setLocationRelativeTo(null);
 
         // Set up the greeting label
-        greetingLabel = new JLabel("Hi " + customerPersonalAccountSystem.getCustomer().getName()+ "!");
+        JLabel greetingLabel = new JLabel("Hi " + customerPersonalAccountSystem.getCustomer().getName() + "!");
 
         accountBalance = customerPersonalAccountSystem.getPersonalAccountBalance();
 //        System.out.println("Account Balance at init: " + accountBalance);
@@ -35,10 +30,10 @@ public class PersonalAccountView extends JFrame {
         accountBalanceLabel = new JLabel("Account Balance: " + df.format(customerPersonalAccountSystem.getPersonalAccountBalance()));
 
         // Set up the buttons
-        saveButton = new JButton("Deposit Money");
-        withdrawButton = new JButton("Withdraw Money");
-        tradingAccountButton = new JButton("Trading Account");
-        personalAccountHistory = new JButton("View Personal Account History");
+        JButton saveButton = new JButton("Deposit Money");
+        JButton withdrawButton = new JButton("Withdraw Money");
+        JButton tradingAccountButton = new JButton("Trading Account");
+        JButton personalAccountHistory = new JButton("View Personal Account History");
 
         // Add action listeners to the buttons
         saveButton.addActionListener(new ActionListener() {
@@ -111,14 +106,11 @@ public class PersonalAccountView extends JFrame {
         });
         personalAccountHistory.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO: Implement request trading account button functionality
 
-                StringBuilder sb = new StringBuilder();
+                String sb = "History: \n" +
+                        customerPersonalAccountSystem.getHistory();
 
-                sb.append("History: \n");
-                sb.append(customerPersonalAccountSystem.getHistory());
-
-                JOptionPane.showMessageDialog(null, sb.toString(), "Profits", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, sb, "Profits", JOptionPane.PLAIN_MESSAGE);
             }
         });
 
@@ -141,8 +133,4 @@ public class PersonalAccountView extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-//        PersonalAccountView ui = new PersonalAccountView();
-//        ui.setVisible(true);
-    }
 }

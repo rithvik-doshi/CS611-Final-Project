@@ -10,11 +10,7 @@ import Controller.PortfolioManagementSystem;
 import Model.*;
 
 public class CustomerProfitReportView extends JFrame {
-    private JPanel reportPanel;
-    private JButton backButton;
-
-    private Manager manager;
-    private PortfolioManagementSystem portfolioManagementSystem;
+    private final JPanel reportPanel;
 
     DecimalFormat df = new DecimalFormat("$#,##0.00");
 
@@ -22,14 +18,13 @@ public class CustomerProfitReportView extends JFrame {
         setTitle("Customer Profit Report");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.manager = manager;
-        portfolioManagementSystem = new PortfolioManagementSystem(manager);
+        PortfolioManagementSystem portfolioManagementSystem = new PortfolioManagementSystem(manager);
 
         reportPanel = new JPanel();
         reportPanel.setLayout(new BoxLayout(reportPanel, BoxLayout.Y_AXIS));
         reportPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        backButton = new JButton("Back");
+        JButton backButton = new JButton("Back");
         backButton.addActionListener(e -> {
             CustomerProfitReportView.this.dispose();
             ManagerPortfolioView ui = new ManagerPortfolioView(manager);
@@ -80,10 +75,6 @@ public class CustomerProfitReportView extends JFrame {
 
         reportPanel.revalidate();
         reportPanel.repaint();
-    }
-
-    public static void main(String[] args) {
-//        new CustomerProfitReportView();
     }
 
 }

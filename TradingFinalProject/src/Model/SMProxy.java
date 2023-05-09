@@ -16,11 +16,7 @@ public class SMProxy {
 
 //        System.out.println(key + " " + managerKey.getKeyValue());
 
-        if (managerKey.getKeyValue().equals(key)) {
-            return true;
-        }
-
-        return false;
+        return managerKey.getKeyValue().equals(key);
     }
 
     public double getStockPrice(String name) {

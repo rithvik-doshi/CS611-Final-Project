@@ -9,15 +9,9 @@ import java.awt.event.*;
 import java.nio.file.Paths;
 
 public class LoginRegistrationPage extends JFrame {
-    private JButton loginButton;
-    private JButton registerButton;
-    private static JButton backButton;
-    private JTextField usernameTextField;
-    private JPasswordField passwordField;
-    private CustomerLogin customerLogin;
-    private EntryInterface entryInterface;
-    private JButton backButtonLogin;
-    private JButton backButtonRegister;
+    private final JTextField usernameTextField;
+    private final JPasswordField passwordField;
+    private final CustomerLogin customerLogin;
     private CustomerPersonalAccountSystem customerPersonalAccountSystem;
 
 
@@ -61,8 +55,8 @@ public class LoginRegistrationPage extends JFrame {
         loginPanel.add(passwordField, loginConstraints);
 
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2, 10, 0));
-        loginButton = new JButton("Login");
-        backButton = new JButton("Back");
+        JButton loginButton = new JButton("Login");
+        JButton backButton = new JButton("Back");
         buttonPanel.add(loginButton);
 
 
@@ -111,7 +105,7 @@ public class LoginRegistrationPage extends JFrame {
         constraints.gridy = 3;
         constraints.gridwidth = 2;
         constraints.anchor = GridBagConstraints.WEST;
-        registerButton = new JButton("Register");
+        JButton registerButton = new JButton("Register");
         registrationPanel.add(registerButton, constraints);
 
         constraints.gridx = 2;
@@ -128,8 +122,8 @@ public class LoginRegistrationPage extends JFrame {
 
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                EntryInterface entryInterface = new EntryInterface();
                 LoginRegistrationPage.this.setVisible(false);
+                dispose();
             }
         });
 
@@ -177,7 +171,7 @@ public class LoginRegistrationPage extends JFrame {
             }
         });
 
-        backButtonLogin = new JButton("Back");
+        JButton backButtonLogin = new JButton("Back");
         backButtonLogin.addActionListener(e -> {
             LoginRegistrationPage.this.dispose();
             EntryInterface ui = new EntryInterface();
@@ -185,7 +179,7 @@ public class LoginRegistrationPage extends JFrame {
         });
         loginPanel.add(backButtonLogin);
 
-        backButtonRegister = new JButton("Back");
+        JButton backButtonRegister = new JButton("Back");
         backButtonRegister.addActionListener(e -> {
             LoginRegistrationPage.this.dispose();
             EntryInterface ui = new EntryInterface();
@@ -194,8 +188,5 @@ public class LoginRegistrationPage extends JFrame {
         registrationPanel.add(backButtonRegister);
     }
 
-    public static void main(String[] args) {
-        new LoginRegistrationPage();
-    }
 }
 

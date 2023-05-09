@@ -3,11 +3,11 @@
 Author: Rithivik Doshi, Zhangde Song, Yuxi Ge. 
 
 ## Environment 
-Hava 8
+Java 8
 
 #### How to run the code:
-java javac EntryInterface.java    
-java EntryInterface.java
+java javac Main.java    
+java Main.java
 
 #### Files:
 ##### Account.java
