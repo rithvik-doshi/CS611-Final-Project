@@ -55,20 +55,38 @@ The StockFactory class provides two static factory methods for creating stock ob
 #### StockMarket.java
 The StockMarket class represents the stock market system and provides functionalities to manipulate the stocks in the market. It maintains a list of MarketStock objects representing the stocks in the market, and allows adding, removing, setting the price of, and getting the price of a particular stock. The class is implemented as a singleton using the static block initialization method. The stocks in the market are initially loaded from a file named MarketStocks.txt and can be updated by calling the updateStocks() method, which writes the current stocks to the file. The class also overrides the toString() method to provide a string representation of the stocks in the market.
 ##### StockTransaction.java
+The StockTransaction class extends the abstract Transaction class and represents a transaction of a specific stock. It has three instance variables: stockName to store the name of the stock, quantity to store the amount of the stock transacted, and price which is inherited from the Transaction class and represents the price of the transaction. It also has a constructor to initialize these instance variables and getter methods to retrieve their values. Additionally, it overrides the getInfoAsArray() method to return an array of strings containing information about the transaction, and the toString() method to return a string representation of the transaction in the format "behavior, stockName, quantity, price".
 ##### StockTransactionHistory.java
+This class extends the TransactionHistory abstract class. It provides the implementation for a history of transactions for a customer's stock-related transactions.
+
+The StockTransactionHistory class overrides the historyType method to provide a unique file path for the customer's stock transaction history file. It also overrides the getTransaction method to create StockTransaction objects from the information in a single line of the transaction history file.
 ##### TradingAccount.java
-##### TradingSystemModel.java
+This class extends the Account class. It represents a trading account for a customer, with attributes including the customer ID, net profit, realized profit, stock holdings, and purchase prices.
 ##### Transaction.java
+This class erves as a blueprint for creating different types of transactions. It has two attributes - behaviour and money - which represent the type of transaction (buy, sell, deposit, withdraw, etc.) and the amount of money involved.
 ##### TransactionData.java
+This class reads a transaction history file and returns an ArrayList of transaction records. It has an attribute called transactionHistory which is an ArrayList of strings containing the transaction records.
 ##### TransactionHistory.java
+This abstract class defines a framework for different types of transaction histories. It includes a constructor that initializes the transaction history and reads it from a file, and abstract methods that must be implemented by subclasses to define specific types of transaction histories.
 ##### UserStatus.java
+This is a Java enum called UserStatus that defines three constants: LOGGED_IN, ACCOUNT_PENDING, and LOGGED_OUT. This enum can be used to represent the different statuses of a user in a trading or investment application.
 ##### CustomerPortfolioView.java
+This class is a graphical user interface (GUI) for displaying a profit report of all customers. It extends the JFrame class, which is a top-level container for creating a window in a Java Swing application. It has a Manager object and a PortfolioManagementSystem object as instance variables. The displayReport method takes an ArrayList of Customer objects as a parameter and creates a JPanel for each customer, displaying their name, realized profit, and unrealized profit. The GUI also includes a back button for returning to the previous window.
 ##### EntryInterface.java
+The EntryInterface class is a GUI class that represents the entry interface of the Market App. It extends the JFrame class, which is a top-level container for components in a GUI, and displays a window with three buttons: "Customer", "Manager", and "Exit".
 ##### LoginRegistrationPage.java
+This is a GUI (Graphical User Interface) class for the login and registration page for the customers. It contains a tabbed pane with two tabs: "Login" and "Registration". In the login tab, the user can enter their username and password to log in. In the registration tab, the user can register a new account by providing their name, email, and password. The class also contains buttons for login, registration, and a back button to return to the previous screen. When the user clicks the login or register button, the input data is sent to the CustomerLogin object to check if the login is valid or to register a new customer, respectively. If the login is successful, a new PersonalAccountView is created and displayed to the user.
 ##### ManagerLoginPage.java
+This GUI class that represents the Manager Login page of a trading application. It contains a login panel that includes text fields for username, password, and a key, as well as login and back buttons. The class includes an event listener for the login button that checks the validity of the manager's credentials (username, password, and key) using the ManagerLogin class, and opens the ManagerPortfolioView if the login is successful. The back button allows the user to go back to the EntryInterface.
 ##### ManagerPortfolioView.java
+The class implemente different views for customers and managers. The EntryInterface is the starting point of the application, which has buttons for logging in as a customer or manager. LoginRegistrationPage is used for logging in or registering a new customer, while ManagerLoginPage is used for logging in as a manager. The successful login for a customer will lead to PersonalAccountView and for a manager to ManagerPortfolioView, where they can manage stocks, approve new customers, and track customer profits.
 ##### ManageStockView.java
+ManagerLoginPage is a class that represents the login page for the application's manager users. It includes a form for the manager to enter their username, password, and key, and buttons for logging in or going back to the previous screen. When the user logs in successfully, the application displays the manager's portfolio.It displays the manager's portfolio, which includes buttons for managing stocks, approving new customers, and tracking customer profits.It also represents the view for managing stocks. It displays the stocks in the market and allows the manager to add, edit, or delete stocks. It also includes a back button that takes the user back to the previous screen.
 ##### PersonalAccountView.java
+This is a GUI for a personal account view for a customer. It includes buttons for depositing, withdrawing money and accessing the trading account view. There is also a button for viewing the personal account history.
 ##### StockMarketView.java
+This class is a Java Swing-based graphical user interface (GUI) that represents a stock market view for customers. It displays a list of stocks available for trading and allows customers to buy stocks. The class is part of a larger system that handles stock trading and personal accounts.
 ##### TradingAccountRequestsView.java
+The TradingAccountRequestsView class is a Java Swing-based graphical user interface (GUI) that represents a view for managers to handle trading account requests. This class is part of a larger system that handles portfolio management and requests.
 ##### TradingAccountView.java
+The TradingAccountView class is a Java Swing-based graphical user interface (GUI) that represents a view for customers to manage their trading accounts. This class is part of a larger system that handles portfolio management and stock transactions.
