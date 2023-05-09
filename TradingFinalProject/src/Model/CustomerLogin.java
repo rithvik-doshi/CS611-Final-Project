@@ -68,7 +68,7 @@ public class CustomerLogin {
             }
         }
 
-        System.out.println(customers.size());
+//        System.out.println(customers.size());
         Customer newCustomer = new Customer(newID, name, email, password,0);
         customers.add(newCustomer);
 

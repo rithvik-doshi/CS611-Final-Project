@@ -3,6 +3,7 @@ package View;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import Controller.PortfolioManagementSystem;
@@ -14,6 +15,8 @@ public class CustomerProfitReportView extends JFrame {
 
     private Manager manager;
     private PortfolioManagementSystem portfolioManagementSystem;
+
+    DecimalFormat df = new DecimalFormat("$#,##0.00");
 
     public CustomerProfitReportView(Manager manager) {
         setTitle("Customer Profit Report");
@@ -62,8 +65,8 @@ public class CustomerProfitReportView extends JFrame {
 
             if (tradingAccount != null) {
                 realizedProfit = tradingAccount.getRealizedProfit();
-                realizedProfitLabel = new JLabel("Realized Profit: " + realizedProfit);
-                unrealizedProfitLabel = new JLabel("Unrealized Profit: " + customer.getTradingAccount().getUnrealizedProfit(SMProxy.instance));
+                realizedProfitLabel = new JLabel("Realized Profit: " + df.format(realizedProfit));
+                unrealizedProfitLabel = new JLabel("Unrealized Profit: " + df.format(customer.getTradingAccount().getUnrealizedProfit(SMProxy.instance)));
             } else {
                 realizedProfitLabel = new JLabel("Realized Profit: N/A (no trading account)");
                 unrealizedProfitLabel = new JLabel("Unrealized Profit: N/A (no trading account)");

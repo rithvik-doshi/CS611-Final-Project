@@ -138,8 +138,11 @@ public class LoginRegistrationPage extends JFrame {
                 String username = usernameTextField.getText();
                 String password = new String(passwordField.getPassword());
 
+                usernameTextField.setText("");
+                passwordField.setText("");
+
                 if (customerLogin.checkLogin(username, password)) {
-                    System.out.println("successful");
+//                    System.out.println("successful");
                     JOptionPane.showMessageDialog(null, "Login successful!");
                     customerPersonalAccountSystem = customerLogin.getCustomerPersonalAccountSystem();
                     PersonalAccountView personalAccountView = new PersonalAccountView(customerPersonalAccountSystem);
@@ -158,6 +161,11 @@ public class LoginRegistrationPage extends JFrame {
                 String name = registerUsernameTextField.getText();
                 String email = registerEmailTextField.getText();
                 String password = new String(registerPasswordField.getPassword());
+
+                registerUsernameTextField.setText("");
+                registerEmailTextField.setText("");
+                registerPasswordField.setText("");
+
                 int success = customerLogin.registerNewCustomer(name, email, password, finalCurrentPath);
                 if (success == 1) {
                     JOptionPane.showMessageDialog(LoginRegistrationPage.this, "Registration successful!");

@@ -50,8 +50,8 @@ public class Request {
 
             for (int i = 0; i < fileContent.size(); i++) {
                 String[] fields = fileContent.get(i).split(" ");
-                System.out.println(fields[0]+ " "+ fields[1]);
-                System.out.println(getSender());
+//                System.out.println(fields[0]+ " "+ fields[1]);
+//                System.out.println(getSender());
                 if (fields[0].equals(getSender())) {
 
                     lineNumber = i;
@@ -61,11 +61,11 @@ public class Request {
 
             if (lineNumber != -1) {
                 String[] fields = fileContent.get(lineNumber).split(" ");
-                System.out.println(fields[0]+ " "+ fields[1]);
+//                System.out.println(fields[0]+ " "+ fields[1]);
                 fields[1] = newStatus;
                 fileContent.set(lineNumber, String.join(" ", fields));
                 Files.write(path, fileContent, StandardCharsets.UTF_8);
-                System.out.println("Request status changed to Approved SenderID: "+ getSender());
+//                System.out.println("Request status changed to Approved SenderID: "+ getSender());
             }  }
         catch (IOException e) {
             e.printStackTrace();
@@ -156,7 +156,7 @@ public class Request {
         rf.createRequests();
 
         if (rf.senderInRequests(sender)) {
-            System.out.println("Request already exists in DB");
+//            System.out.println("Request already exists in DB");
             return;
         }
 
@@ -167,9 +167,9 @@ public class Request {
             FileWriter fw = new FileWriter(path, true);
             fw.write(data);
             fw.close();
-            System.out.println("Successfully wrote to the file.");
+//            System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
-            System.out.println("An error occurred while writing request to DBfile.");
+//            System.out.println("An error occurred while writing request to DBfile.");
             e.printStackTrace();
         }
     }

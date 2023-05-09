@@ -28,21 +28,6 @@ public class CustomerStockTradingSystem {
         return tradingAccount.getStockHoldings();
     }
 
-    public HashMap<String, Double> getPurchasePrices(){
-        return tradingAccount.getPurchasePrices();
-    }
-
-
-    // Request to create a trading account
-    public void createTradingAccount() {
-        if (customer.getTradingAccount() == null) {
-            this.tradingAccount = new TradingAccount(customer.getID());
-            customer.setTradingAccount(tradingAccount);
-        } else {
-            System.out.println("You already have a trading account.");
-        }
-    }
-
     // Allow money to be added/deducted from a personal account
     public void addFunds(double amount) {
         personalAccount.deposit(amount);
@@ -50,7 +35,7 @@ public class CustomerStockTradingSystem {
 
     public void deductFunds(double amount) {
         if(personalAccount.getBalance() < amount){
-            System.out.println("not enough funds");
+//            System.out.println("not enough funds");
         }
         else {
             personalAccount.withdraw(amount);
@@ -68,7 +53,7 @@ public class CustomerStockTradingSystem {
             return true;
         } else {
 
-            System.out.println("1Insufficient funds for this transaction.");
+//            System.out.println("Insufficient funds for this transaction.");
             return false;
         }
     }
@@ -81,7 +66,7 @@ public class CustomerStockTradingSystem {
             tradingAccount.sellStock(name, quantity, stockPrice);
             addFunds(revenue);
         } else {
-            System.out.println("Insufficient shares for this transaction.");
+//            System.out.println("Insufficient shares for this transaction.");
         }
     }
 

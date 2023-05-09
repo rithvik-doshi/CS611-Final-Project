@@ -16,7 +16,7 @@ public class StockTransactionHistory extends TransactionHistory{
 
     public Transaction getTransaction(String[] parts) {
         String behaviour = parts[0];
-        System.out.println("In get transaction: " + Arrays.toString(parts));
+//        System.out.println("In get transaction: " + Arrays.toString(parts));
         double money = Double.parseDouble(parts[3]);
         int quantity = Integer.parseInt(parts[2]);
         String stockName = parts[1];
@@ -41,7 +41,7 @@ public class StockTransactionHistory extends TransactionHistory{
                 }
             }
         }
-        System.out.println("Profit: " + profit);
+//        System.out.println("Profit: " + profit);
         return profit;
     }
 

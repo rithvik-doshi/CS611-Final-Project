@@ -29,10 +29,10 @@ public class PersonalAccountView extends JFrame {
         greetingLabel = new JLabel("Hi " + customerPersonalAccountSystem.getCustomer().getName()+ "!");
 
         accountBalance = customerPersonalAccountSystem.getPersonalAccountBalance();
-        System.out.println("Account Balance at init: " + accountBalance);
+//        System.out.println("Account Balance at init: " + accountBalance);
 
         // Set up the labels
-        accountBalanceLabel = new JLabel("Account Balance: " + customerPersonalAccountSystem.getPersonalAccountBalance());
+        accountBalanceLabel = new JLabel("Account Balance: " + df.format(customerPersonalAccountSystem.getPersonalAccountBalance()));
 
         // Set up the buttons
         saveButton = new JButton("Deposit Money");
@@ -46,13 +46,13 @@ public class PersonalAccountView extends JFrame {
                 String input = JOptionPane.showInputDialog("Enter amount to deposit:");
                 if (input != null) {
                     try {
-                        if (Integer.parseInt(input) < 0){
+                        if (Double.parseDouble(input) < 0){
                             throw new NumberFormatException();
                         }
                         double amount = Double.parseDouble(input);
                         accountBalance += amount;
                         customerPersonalAccountSystem.saveMoney(amount);
-                        System.out.println("Account Balance after deposit: " + customerPersonalAccountSystem.getPersonalAccountBalance());
+//                        System.out.println("Account Balance after deposit: " + customerPersonalAccountSystem.getPersonalAccountBalance());
                         accountBalanceLabel.setText("Account Balance: " + df.format(accountBalance));
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid amount.");
@@ -66,16 +66,16 @@ public class PersonalAccountView extends JFrame {
                 String input = JOptionPane.showInputDialog("Enter amount to withdraw:");
                 if (input != null) {
                     try {
-                        if (Integer.parseInt(input) < 0){
+                        if (Double.parseDouble(input) < 0){
                             throw new NumberFormatException();
                         }
                         double amount = Double.parseDouble(input);
-                        if (amount > accountBalance) {
+                        if (amount > (accountBalance = Math.ceil(accountBalance * 100) / 100.0)) {
                             JOptionPane.showMessageDialog(null, "Insufficient funds.");
                         } else {
                             accountBalance -= amount;
                             customerPersonalAccountSystem.withdrawMoney(amount);
-                            System.out.println("Account Balance after withdraw: " + customerPersonalAccountSystem.getPersonalAccountBalance());
+//                            System.out.println("Account Balance after withdraw: " + customerPersonalAccountSystem.getPersonalAccountBalance());
                             accountBalanceLabel.setText("Account Balance: " + df.format(accountBalance));
                         }
                     } catch (NumberFormatException ex) {

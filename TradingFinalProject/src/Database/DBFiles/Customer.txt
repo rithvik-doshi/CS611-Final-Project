@@ -4,5 +4,7 @@ id, name, email, password, money
 3, Peter Song, sozhangd@bu.edu, 789, 234.0
 4, SAM, SAM@BU.EDU, 123, 0
 5, peter, peter@bu.edu, 123, 2345.0
-6, doshirithvik, doshirithvik@gmail.com, bruh, 946.9999999999999
+6, doshirithvik, doshirithvik@gmail.com, bruh, 40000.0
 7, newguy, newguy@bu.edu, 123, 500.0
+8, test1, test1@bu.edu, test1, 0
+10, test2, test2@bu.edu, test2, 0

@@ -20,11 +20,6 @@ public class StockTransaction extends Transaction{
         return quantity;
     }
 
-    @Override
-    public String[] getInfoAsArray() {
-        return new String[]{this.getBehaviour(), this.getStockName(), String.valueOf(this.getQuantity()), String.valueOf(this.getMoney())};
-    }
-
     public String toString() {
         return this.getBehaviour() + "," + this.getStockName() + "," + this.getQuantity() + "," + this.getMoney();
     }

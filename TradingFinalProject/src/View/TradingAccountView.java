@@ -22,6 +22,8 @@ public class TradingAccountView extends JFrame {
     private JLabel accountBalanceLabel;
     private JButton backButton;
     private JButton viewStockMarketButton;
+
+    private JButton viewProfitsButton;
     private CustomerStockTradingSystem customerStockTradingSystem;
     private HashMap<String, Integer> stockHoldings = new HashMap<>();
     private double balance;
@@ -40,11 +42,14 @@ public class TradingAccountView extends JFrame {
     String currentPath = Paths.get("").toAbsolutePath() + "/TradingFinalProject/src/Database/DBFiles/CustomerStockHistory/";
     String path;
 
+    CustomerPersonalAccountSystem customerPersonalAccountSystem;
+
     public TradingAccountView(CustomerPersonalAccountSystem customerPersonalAccountSystem) {
         super("Trading Account");
         setSize(700, 700);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        this.customerPersonalAccountSystem = customerPersonalAccountSystem;
         customerStockTradingSystem = new CustomerStockTradingSystem(customerPersonalAccountSystem.getCustomer(), customerPersonalAccountSystem.getCustomer().getPersonalAccount());
         stockHoldings = customerStockTradingSystem.getStockHoldings();
         balance = customerStockTradingSystem.getBalance();
@@ -53,8 +58,8 @@ public class TradingAccountView extends JFrame {
         transactionData = new TransactionData(path);
         transactionHistory = transactionData.getTransactionHistory(path);
 
-        // Set up the greeting label
-        greetingLabel = new JLabel("Hi " + customerPersonalAccountSystem.getCustomer().getName() + "!");
+        greetingLabel = new JLabel("Hi, " + customerPersonalAccountSystem.getCustomer().getName() + "!");
+
 
         titleLabel = new JLabel("Manage Stocks");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
@@ -109,8 +114,23 @@ public class TradingAccountView extends JFrame {
             }
         });
 
-        // Add the viewStockMarketButton to the panel
-        panel.add(viewStockMarketButton, BorderLayout.SOUTH);
+        viewProfitsButton = new JButton("View Profits");
+
+        viewProfitsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // alert
+                StringBuilder sb = new StringBuilder();
+                sb.append("You have made a realized profit of: " + df.format(customerStockTradingSystem.getRealizedProfit()) + "\n");
+                sb.append("You have an unrealized profit of: " + df.format(customerStockTradingSystem.getUnrealizedProfit()) + "\n");
+                sb.append("Duke the Java Swing Mascot is proud of you regardless of where you are in your financial journey!");
+                JOptionPane.showMessageDialog(null, sb.toString(), "Profit Information", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+        JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
+        bottomPanel.add(viewStockMarketButton);
+        bottomPanel.add(viewProfitsButton);
+        panel.add(bottomPanel, BorderLayout.SOUTH);
 
         // Add the Back button to the top-right corner
         GridBagConstraints gbc = new GridBagConstraints();
@@ -130,9 +150,8 @@ public class TradingAccountView extends JFrame {
         // Add panel to the frame
         getContentPane().add(panel);
 
-        if (customerStockTradingSystem.canHaveDerivativeAccount()){
-
-            JOptionPane.showMessageDialog(null, "You can now apply for a derivative account!", "Derivative Account", JOptionPane.PLAIN_MESSAGE);
+        if (customerStockTradingSystem.canHaveDerivativeAccount()) {
+            JOptionPane.showMessageDialog(null, "Congrats, you're eligible for a Derivative trading account!\nContact your portfolio manager to set up a meeting to discuss this!", "Eligible for Derivative Trading Account", JOptionPane.QUESTION_MESSAGE);
         }
 
     }
@@ -140,7 +159,7 @@ public class TradingAccountView extends JFrame {
     private void updateTransactionHistoryLabel() {
         StringBuilder transactionsStringBuilder = new StringBuilder("<html><body>");
         transactionHistory = transactionData.getTransactionHistory(path);
-        System.out.println(transactionHistory);
+//        System.out.println(transactionHistory);
         for (String transaction : transactionHistory) {
             transactionsStringBuilder.append(transaction);
             transactionsStringBuilder.append("<br/>");
@@ -182,7 +201,7 @@ public class TradingAccountView extends JFrame {
     private void updateEnv(){
         updateStocksPanel();
         balance = customerStockTradingSystem.getBalance();
-        System.out.println("Balance here: " + balance);
+//        System.out.println("Balance here: " + balance);
         panel.remove(accountBalanceLabel);
         accountBalanceLabel = new JLabel("Account Balance: " + df.format(balance));
         panel.add(accountBalanceLabel, BorderLayout.WEST);

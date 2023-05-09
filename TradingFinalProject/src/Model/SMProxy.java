@@ -14,7 +14,7 @@ public class SMProxy {
 
         ManagerKey managerKey = new ManagerKey(ID);
 
-        System.out.println(key + " " + managerKey.getKeyValue());
+//        System.out.println(key + " " + managerKey.getKeyValue());
 
         if (managerKey.getKeyValue().equals(key)) {
             return true;

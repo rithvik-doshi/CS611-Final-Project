@@ -37,7 +37,7 @@ buy, NFLX, 1, 40.0
 sell, NFLX, 1, 40.0
 buy, AAPL, 1, 34.0
 buy, FB, 1, 18.1
-buy, MA, 12, 601.4399999999999
+buy, MA, 12, 601.43
 buy, V, 1, 23.85
 buy, V, 1, 23.85
 buy, V, 1, 23.85

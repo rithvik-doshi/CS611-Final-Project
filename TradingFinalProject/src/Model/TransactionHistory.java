@@ -27,10 +27,10 @@ public abstract class TransactionHistory {
         history = new ArrayList<>();
 
         try {
-            System.out.println(fileName);
+//            System.out.println(fileName);
             if (!file.isFile()) {
                 file.createNewFile();
-                System.out.println("Created new file: " + file.getAbsolutePath());
+//                System.out.println("Created new file: " + file.getAbsolutePath());
 //                add a line to the file
                 FileWriter fw = new FileWriter(file, true);
                 fw.write(fileHeader());
@@ -41,7 +41,7 @@ public abstract class TransactionHistory {
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
                 String[] parts = line.split(",\\s?");
-                System.out.println(Arrays.toString(parts));
+//                System.out.println(Arrays.toString(parts));
                 if (parts.length < 2){
                     continue;
                 }

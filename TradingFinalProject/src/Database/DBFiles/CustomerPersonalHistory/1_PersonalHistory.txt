@@ -70,7 +70,7 @@ Withdraw, 40.0
 Deposit, 40.0
 Withdraw, 34.0
 Withdraw, 18.1
-Withdraw, 601.4399999999999
+Withdraw, 601.43
 Withdraw, 23.85
 Withdraw, 23.85
 Withdraw, 23.85

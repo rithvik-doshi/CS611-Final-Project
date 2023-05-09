@@ -45,9 +45,9 @@ public class TradingAccount extends Account {
             String line; // skip header line
             while ((line = reader.readLine()) != null) {
                 String[] fields = line.split(",");
-                System.out.println("Trading Account Read from DB");
-                System.out.println(fields[0]);
-                System.out.println(fields[0]+ " "+ fields[1] +" "+ fields[2]);
+//                System.out.println("Trading Account Read from DB");
+//                System.out.println(fields[0]);
+//                System.out.println(fields[0]+ " "+ fields[1] +" "+ fields[2]);
                 String name = fields[0];
                         double purchasePrice = Double.valueOf(fields[2]);
                                 int quantity = Integer.valueOf(fields[1]);
@@ -119,7 +119,7 @@ public class TradingAccount extends Account {
 //        ownedStocks.add( new OwnedStock(name, quantity, price));
         addlineToStockHistoryDBFiles("buy", name, quantity, quantity*price);
         if(stockHoldings.get(name)!=null){
-            System.out.println("Stock found in holding Stock");
+//            System.out.println("Stock found in holding Stock");
             changeStockQuantity(name, -1*quantity);}
         else{
         addLineToCustomerStocks(name, quantity, price);}
@@ -136,9 +136,9 @@ public class TradingAccount extends Account {
             FileWriter fw = new FileWriter(currentPath, true);
             fw.write(data);
             fw.close();
-            System.out.println("Successfully add line.");
+//            System.out.println("Successfully add line.");
         } catch (IOException e) {
-            System.out.println("An error occurred while writing request to DBfile.-----addlineToStockHistoryDBFiles");
+//            System.out.println("An error occurred while writing request to DBfile.-----addlineToStockHistoryDBFiles");
             e.printStackTrace();
         }
     }
@@ -152,9 +152,9 @@ public class TradingAccount extends Account {
             FileWriter fw = new FileWriter(currentPath, true);
             fw.write(data);
             fw.close();
-            System.out.println("Successfully wrote to the file.----addLineToCustomerStocks"+" "+name+" "+quantity+" "+purchasePrices);
+//            System.out.println("Successfully wrote to the file.----addLineToCustomerStocks"+" "+name+" "+quantity+" "+purchasePrices);
         } catch (IOException e) {
-            System.out.println("An error occurred while writing request to DBfile.----addLineToCustomerStocks");
+//            System.out.println("An error occurred while writing request to DBfile.----addLineToCustomerStocks");
             e.printStackTrace();
         }
     }
@@ -169,8 +169,8 @@ public class TradingAccount extends Account {
 
             for (int i = 1; i < fileContent.size(); i++) {
                 String[] fields = fileContent.get(i).split(",");
-                System.out.println(fields[0]+ " "+ fields[1]+" "+ fields[2]);
-//                System.out.println();
+//                System.out.println(fields[0]+ " "+ fields[1]+" "+ fields[2]);
+////                System.out.println();
                 if (fields[0].equals(name)) {
 
                     lineNumber = i;
@@ -180,11 +180,11 @@ public class TradingAccount extends Account {
 
             if (lineNumber != -1) {
                 String[] fields = fileContent.get(lineNumber).split(",");
-                System.out.println(fields[0]+ " "+ fields[1]);
+//                System.out.println(fields[0]+ " "+ fields[1]);
                 fields[1] = Integer.valueOf(fields[1])-reduceNumber+"";
                 fileContent.set(lineNumber, String.join(",", fields));
                 Files.write(path, fileContent, StandardCharsets.UTF_8);
-                System.out.println("Change Stock Quantity: "+ name + -1*reduceNumber);
+//                System.out.println("Change Stock Quantity: "+ name + -1*reduceNumber);
             }  }
         catch (IOException e) {
             e.printStackTrace();
@@ -207,7 +207,7 @@ public class TradingAccount extends Account {
             addlineToStockHistoryDBFiles("sell", name, quantity, quantity*price);
 
         } else {
-            System.out.println("Insufficient shares to sell.");
+//            System.out.println("Insufficient shares to sell.");
         }
 
     }
@@ -223,7 +223,7 @@ public class TradingAccount extends Account {
                 bufferedWriter.write(name + "," + stockHoldings.get(name)+","+purchasePrices.get(name)+"\n");
             }
             bufferedWriter.close();
-            System.out.println("Successfully updated the file.");
+//            System.out.println("Successfully updated the file.");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

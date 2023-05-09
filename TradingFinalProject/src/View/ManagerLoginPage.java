@@ -71,6 +71,10 @@ public class ManagerLoginPage extends JFrame {
                 String password = new String(passwordField.getPassword());
                 String managerKey = keyTextField.getText();
 
+                usernameTextField.setText("");
+                passwordField.setText("");
+                keyTextField.setText("");
+
                 if (managerLogin.checkLogin(username, password, managerKey)) {
                     JOptionPane.showMessageDialog(null, "Login successful!");
                     Manager manager = managerLogin.getManager();

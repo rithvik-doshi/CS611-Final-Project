@@ -1,12 +1,4 @@
 package Controller;
-//- Manage the stocks available to trade and current prices
-// - Approve new customers
-// - Track (receive reports) of all customers and their unrealized and/or realized
-// profits
-// - Notify all customers who have made more than 10k in realized trading 
-// gains they have the opportunity to create a derivative trading account
-// (allowing them to trade options). The ability to trade options is not to be 
-// implemented.
 
 import Model.*;
 
@@ -26,7 +18,7 @@ public class PortfolioManagementSystem {
 
     public void approveRequest(Request request) {
         manager.approveRequest(request);
-        System.out.println("Request approved by manager");
+//        System.out.println("Request approved by manager");
     }
 
     public ArrayList<Customer> getCustomerInfor(){
@@ -43,16 +35,19 @@ public class PortfolioManagementSystem {
     }
 
     public void updateStockPrice(MarketStock marketStock, double price) {
-        if(price < 0){System.out.println("Invalid Price. Change Price failed");}
-        else{
-        marketStock.setMoney(price);
-        System.out.println("Stock price updated");
-    }}
+        if (price < 0) {
+            System.out.println("Invalid Price. Change Price failed");
+        } else {
+            marketStock.setMoney(price);
+            System.out.println("Stock price updated");
+        }
+    }
 
     //add a new stock to the stock market
     public void addStock(String name, double price, int ID, ManagerKey key) {
-        if(price < 0){System.out.println("Invalid Price. Add Stock failed");}
-        else{}
+        if (price < 0) {
+            System.out.println("Invalid Price. Add Stock failed");
+        }
         stockMarket.addStock(name, price, ID, key);
         System.out.println("Stock added, Name: " + name + " Price: " + price);
     }

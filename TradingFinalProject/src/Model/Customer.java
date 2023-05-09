@@ -55,26 +55,22 @@ public class Customer extends Person {
 
     //send request to manager to open a trading account
     public void sendTradingAccountRequest(){
-        if(!checkTradingAccountExit()){
+        if (!checkTradingAccountExit()) {
             Request request = new Request(this.getID()+"");
-            request.writeRequestToDB();}
-
-        else{
-            System.out.println("You already have a trading account");
+            request.writeRequestToDB();
+        } else {
+//            System.out.println("You already have a trading account");
         }
     }
 
     public boolean checkTradingAccountExit() {
         String currentPath = Paths.get("").toAbsolutePath().toString();
         currentPath = currentPath + "/TradingFinalProject/src/Database/DBFiles/CustomerStockHistory/"+ getID() +"_StockHistory.txt";
-
         Path path = Paths.get(currentPath);
-
         boolean fileExists = Files.exists(path);
         return fileExists;
 
     }
-
 
     public PersonalAccount getPersonalAccount() {
         return personalAccount;
